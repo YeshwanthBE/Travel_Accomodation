@@ -20,9 +20,26 @@ class User:
         user=self.cursor.fetchone() 
         result_dict = {
             "mailid": user[0],
-            "password": user[1],
             "name": user[2],
             "address": user[3],
             "phno": user[4]
             }
         return json.dumps(result_dict, indent=4)
+    def del_user(self,mailid):
+        self.cursor.execute("delete from Users where mailid=%s",(mailid,))
+        self.db.commit()
+    def update_user(self,mailid,fieldname,fieldvalue):
+        query="update users set {}=%s where mailid=%s".format(fieldname)
+        self.cursor.execute(query,(fieldvalue,mailid))
+        self.db.commit()
+    def reset_pass(self,mailid,password):
+        pwd=hashlib.sha256(password.encode()).hexdigest()
+        self.cursor.execute("update users set password=%s where mailid=%s",(pwd,mailid))
+        self.db.commit()
+    def Auth(self,mailid,password):
+        pwd=hashlib.sha256(password.encode()).hexdigest()
+        if pwd==self.cursor.execute("select password from users where mailid=%s",(mailid,)):
+            return True
+        else:
+            return False
+        
