@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net" modified="2023-09-16T04:15:22.561Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="jRt4r-bE-hv8WFfxl2XN" version="21.7.5" type="device">
+  <diagram name="Page-1" id="ecQIZs7QBT44imzVOVvL">
+    <mxGraphModel dx="875" dy="481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-38" value="&lt;b&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;User-Registration/Authentication&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="35" y="313" width="783" height="211" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-20" value="&lt;b style=&quot;font-size: 17px;&quot;&gt;&lt;br&gt;Travel_accomodation-Web_Application&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="35" y="25" width="780" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="TFKoXqjBXU_sY_4J6MIB-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="TFKoXqjBXU_sY_4J6MIB-17" target="TFKoXqjBXU_sY_4J6MIB-20" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="TFKoXqjBXU_sY_4J6MIB-17" target="8UIeWqtPzbzxWet9iIrQ-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TFKoXqjBXU_sY_4J6MIB-17" value="&lt;br&gt;Python Experience Api&lt;br&gt;&lt;br&gt;userprofile/search accom&lt;br&gt;booking/rating-reviews/&lt;br&gt;past-modify current bookings/&lt;br&gt;manage-accom/payment-encryption/admin-analytics" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="171.5" y="81" width="149" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="TFKoXqjBXU_sY_4J6MIB-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="TFKoXqjBXU_sY_4J6MIB-20" target="TFKoXqjBXU_sY_4J6MIB-22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="TFKoXqjBXU_sY_4J6MIB-20" target="TFKoXqjBXU_sY_4J6MIB-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TFKoXqjBXU_sY_4J6MIB-20" value="python(flask) process api&lt;br&gt;&lt;br&gt;sync-user-registration&lt;br&gt;/async-reviews-rating/&lt;br&gt;sync-payment/&lt;br&gt;async-searching/&lt;br&gt;accom-manage-queue/&lt;br&gt;verify-book/notification/&lt;br&gt;analytics" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="365" y="81.12" width="130" height="158.75" as="geometry" />
+        </mxCell>
+        <mxCell id="TFKoXqjBXU_sY_4J6MIB-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="TFKoXqjBXU_sY_4J6MIB-22" target="TFKoXqjBXU_sY_4J6MIB-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TFKoXqjBXU_sY_4J6MIB-22" target="TFKoXqjBXU_sY_4J6MIB-20" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TFKoXqjBXU_sY_4J6MIB-22" value="python(flask) system api&lt;br&gt;&lt;br&gt;Users/Accomodations/&lt;br&gt;reviews-rating/bookings" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="540" y="80" width="128" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TFKoXqjBXU_sY_4J6MIB-24" target="TFKoXqjBXU_sY_4J6MIB-22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TFKoXqjBXU_sY_4J6MIB-24" value="database" style="whiteSpace=wrap;html=1;rounded=0;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+          <mxGeometry x="718" y="126" width="81" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-3" target="TFKoXqjBXU_sY_4J6MIB-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-3" value="web site" style="shape=ext;double=1;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="48" y="120" width="80" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-23" target="8UIeWqtPzbzxWet9iIrQ-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-23" value="web site" style="shape=ext;double=1;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="46" y="379" width="80" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-24" target="8UIeWqtPzbzxWet9iIrQ-26" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-24" target="8UIeWqtPzbzxWet9iIrQ-23" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-24" value="Python Experience Api&lt;br&gt;user-registration/&lt;br&gt;user login/&lt;br&gt;user-profile/&lt;br&gt;user-pwd-reset" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="157" y="360.5" width="144" height="117" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-26" target="8UIeWqtPzbzxWet9iIrQ-30" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-26" target="8UIeWqtPzbzxWet9iIrQ-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-26" value="python(flask)process&lt;br&gt;api&lt;br&gt;&lt;br&gt;user-registration-verify-existing /user-authentication/user-pwd-reset-post-authentication" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="365" y="360" width="167" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-30" target="8UIeWqtPzbzxWet9iIrQ-32" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-30" target="8UIeWqtPzbzxWet9iIrQ-26" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-30" value="Python(flask)system api&lt;br&gt;&lt;br&gt;crud-user/reset-pwd/authentication" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="578.5" y="361" width="120" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="8UIeWqtPzbzxWet9iIrQ-32" target="8UIeWqtPzbzxWet9iIrQ-30" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8UIeWqtPzbzxWet9iIrQ-32" value="database" style="whiteSpace=wrap;html=1;rounded=0;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+          <mxGeometry x="729" y="384" width="81" height="68" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
