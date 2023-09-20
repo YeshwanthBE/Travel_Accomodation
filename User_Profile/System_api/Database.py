@@ -11,12 +11,19 @@ class User:
         self.cursor=self.db.cursor()
         self.cursor.execute("CREATE TABLE IF NOT EXISTS Users (mailid VARCHAR(255) PRIMARY KEY,password VARCHAR(256) NOT NULL,salt varbinary(255),name VARCHAR(255),address VARCHAR(255),phno VARCHAR(255));")
         self.db.commit()
-
+        
+    def isexists(self,mailid):
+        self.cursor.execute("select mailid from users where mailid=%s",(mailid,))
+        if self.cursor.fetchone() is None:
+            return False
+        return True
+    
     def add_user(self,user_json:json):
         salt=os.urandom(16)
         pwd=hashlib.sha256(user_json['password'].encode()+salt).hexdigest()
         self.cursor.execute("Insert into Users values (%s,%s,%s,%s,%s,%s)",(user_json['mailid'],pwd,salt,user_json['name'],user_json['address'],user_json['phno']))
         self.db.commit()
+
     def show_user(self,mailid:str) -> json:
         self.cursor.execute("Select * from Users where mailid=%s",(mailid,))
         user=self.cursor.fetchone() 
@@ -27,19 +34,23 @@ class User:
             "phno": user[5]
             }
         return json.dumps(result_dict, indent=4)
+    
     def del_user(self,mailid:str):
         self.cursor.execute("delete from Users where mailid=%s;",(mailid,))
         self.db.commit()
+
     def update_user(self,mailid,user_json):
         query="update users set {}=%s,{}=%s,{}=%s where mailid=%s;".format('name','address','phno')
         self.cursor.execute(query,(user_json['name'],user_json['address'],user_json['phno'],mailid))
         self.db.commit()
+
     def reset_pass(self,mailid,password):
         self.cursor.execute("select salt from users where mailid=%s",(mailid,))
         salt=self.cursor.fetchone()[0]
         pwd=hashlib.sha256(password.encode()+salt).hexdigest()
         self.cursor.execute("update users set password=%s where mailid=%s;",(pwd,mailid))
         self.db.commit()
+
     def Auth(self,mailid,password):
         self.cursor.execute("select salt from users where mailid=%s",(mailid,))
         salt=self.cursor.fetchone()[0]
