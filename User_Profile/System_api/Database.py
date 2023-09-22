@@ -51,8 +51,9 @@ class User:
         self.cursor.execute("update users set password=%s where mailid=%s;",(pwd,mailid))
         self.db.commit()
 
-    def Auth(self,mailid,password):
-        self.cursor.execute("select salt from users where mailid=%s",(mailid,))
+    def Auth(self,mailid,password,ap):
+        table= "admin" if ap else "users"
+        self.cursor.execute("select salt from %s where mailid=%s",(self.table,mailid))
         salt=self.cursor.fetchone()[0]
         pwd=hashlib.sha256(password.encode()+salt).hexdigest()
         self.cursor.execute("select password from users where mailid=%s;",(mailid,))

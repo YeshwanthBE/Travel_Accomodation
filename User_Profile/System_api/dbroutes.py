@@ -5,8 +5,10 @@ from Database import User
 app=Flask(__name__) 
 obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml")
 
-@app.route('/profile/Signup',methods=['POST'])
-def signup():
+@app.route('/profile/Signup/<int:ap>',methods=['POST'])
+def signup(ap):
+    response_data = {"message": "User Registered Successfully"}
+    return jsonify(response_data), 201
     response_data = {"message": "User Registered Successfully"}
     return jsonify(response_data), 201
 
