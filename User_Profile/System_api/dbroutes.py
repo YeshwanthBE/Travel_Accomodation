@@ -4,14 +4,14 @@ from Database import User
 
 app=Flask(__name__) 
 
-@app.route('/profile/<int:ap>/Signup/',methods=['POST'])
+@app.route('/dbprofile/<int:ap>/Signup',methods=['POST'])
 def signup(ap):
     obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
     obj.add_user(request.get_json(),ap)
     response_data = {"message": "User Registered Successfully"}
     return jsonify(response_data), 201
 
-@app.route('/profile/<int:ap>/<mailid>/',methods=['GET','POST','DELETE','PATCH'])
+@app.route('/dbprofile/<int:ap>/<mailid>',methods=['GET','POST','DELETE','PATCH'])
 def profile(mailid,ap):
     obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
     if request.method=='GET':
@@ -31,7 +31,7 @@ def profile(mailid,ap):
         response_data = {"message": "Profile Updated Successfully"}
         return jsonify(response_data), 200  
     
-@app.route('/profile/<int:ap>/<mailid>/exists')
+@app.route('/dbprofile/<int:ap>/<mailid>/exists')
 def exists(mailid,ap):
     obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
     if obj.isexists(mailid,ap) is True:
@@ -39,7 +39,7 @@ def exists(mailid,ap):
     else:
         return jsonify({"message":'mailid not exists'}),404
     
-@app.route('/profile/<int:ap>/<mailid>/auth',methods=['POST'])
+@app.route('/dbprofile/<int:ap>/<mailid>/auth',methods=['POST'])
 def auth(mailid,ap):
     obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
     pwd=request.get_json().get('password')
