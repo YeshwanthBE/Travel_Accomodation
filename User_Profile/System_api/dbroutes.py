@@ -7,9 +7,8 @@ app=Flask(__name__)
 @app.route('/dbprofile/<int:ap>/Signup',methods=['POST'])
 def signup(ap):
     obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
-    obj.add_user(request.get_json(),ap)
-    response_data = {"message": "User Registered Successfully"}
-    return jsonify(response_data), 201
+    obj.add_user(request.get_json(),ap) 
+    return jsonify({"message": "User Registered Successfully"}), 201
 
 @app.route('/dbprofile/<int:ap>/<mailid>',methods=['GET','POST','DELETE','PATCH'])
 def profile(mailid,ap):
@@ -18,18 +17,15 @@ def profile(mailid,ap):
         return jsonify(obj.show_user(mailid,ap))
     elif request.method=='DELETE':
         obj.del_user(mailid,ap)
-        response_data = {"message": "User Deleted Successfully"}
-        return jsonify(response_data), 200
+        return jsonify({"message": "User Deleted Successfully"}), 200
     elif request.method=='POST':
         data=request.get_json()
         obj.reset_pass(mailid,data['newpwd'],ap)
-        response_data = {"message": "Password Resetted Successfully"}
-        return jsonify(response_data), 200
+        return jsonify({"message": "Password Resetted Successfully"}), 200
     else:
         data=request.get_json()
         obj.update_user(mailid,data,ap)
-        response_data = {"message": "Profile Updated Successfully"}
-        return jsonify(response_data), 200  
+        return jsonify({"message": "Profile Updated Successfully"}), 200  
     
 @app.route('/dbprofile/<int:ap>/<mailid>/exists')
 def exists(mailid,ap):
