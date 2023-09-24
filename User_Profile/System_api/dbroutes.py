@@ -43,5 +43,14 @@ def auth(mailid,ap):
         return jsonify({"message":"Authentication Successful"}),200
     return jsonify({"message":"Invalid Mailid or password"}),401
 
+@app.route('/dbprofile/<int:ap>/<mailid>/tk',methods=['GET','POST'])
+def tokenauth(ap,mailid):
+    obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
+    if request.method=='GET':
+        return jsonify(obj.token(mailid))
+    else:
+        obj.token(mailid,request.args.get('token'))
+        return jsonify({}),200
+
 if __name__ == '__main__':
    app.run(debug = True)  

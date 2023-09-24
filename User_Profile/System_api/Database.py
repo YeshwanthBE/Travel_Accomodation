@@ -1,3 +1,4 @@
+from datetime import datetime as dt,timedelta as td
 import mysql.connector as mc
 import hashlib
 import yaml 
@@ -68,3 +69,13 @@ class User:
             return True
         else:
             return False
+    
+    def token(self,mailid,token=None):
+        if token is not None:
+            self.cursor.execute("Create table if not exists tverify (mailid varchar(255),token varchar(255),expiry datetime);")
+            self.cursor.execute("insert into tverify values(%s,%s,%s)",(mailid,token,dt.now()+td(hours=1)))
+            self.db.commit()
+        else:
+            self.cursor.execute("select token,expiry from tverify where mailid=%s",(mailid,))
+            return json.dumps(self.cursor.fetchone(),default=str)
+        
