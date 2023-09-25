@@ -57,6 +57,7 @@ class User:
         salt=self.cursor.fetchone()[0]
         pwd=hashlib.sha256(password.encode()+salt).hexdigest()
         self.cursor.execute(f"update {table} set password=%s where mailid=%s;",(pwd,mailid))
+        self.cursor.execute(f"delete from tverify where mailid=%s",(mailid,))
         self.db.commit()
 
     def Auth(self,mailid,password,ap=0):
@@ -72,10 +73,18 @@ class User:
     
     def token(self,mailid,token=None):
         if token is not None:
-            self.cursor.execute("Create table if not exists tverify (mailid varchar(255),token varchar(255),expiry datetime);")
-            self.cursor.execute("insert into tverify values(%s,%s,%s)",(mailid,token,dt.now()+td(hours=1)))
+            self.cursor.execute("Create table if not exists tverify (mailid varchar(255) primary key,token varchar(255),expiry datetime);")
+            self.cursor.execute("select * from tverify where mailid=%s",(mailid,))
+            expiry=dt.now()+td(hours=1)
+            if self.cursor.fetchone() is None:
+                self.cursor.execute("insert into tverify values(%s,%s,%s)",(mailid,token,expiry))
+            else:
+                self.cursor.execute("update tverify set token=%s,expiry=%s where mailid=%s",(token,expiry,mailid,))
             self.db.commit()
         else:
             self.cursor.execute("select token,expiry from tverify where mailid=%s",(mailid,))
-            return json.dumps(self.cursor.fetchone(),default=str)
+            response=self.cursor.fetchone()
+            if response is None:
+                return response
+            return json.dumps({"tk":response[0],"expiry":str(response[1])},indent=4)
         

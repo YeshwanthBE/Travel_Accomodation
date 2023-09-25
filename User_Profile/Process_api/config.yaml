@@ -1,5 +1,9 @@
 database:
   baseurl: "http://127.0.0.1:5000"
 mail:
-  MAILGUN_DOMAIN: "https://app.mailgun.com/app/sending/domains/sandbox382570e5bbde44478dc5075e651267e8.mailgun.org"
-  MAILGUN_API_KEY: "12f1ce3e2b92593b6335c3c4254b1de1-4b98b89f-041e3801"
+  server: "smtp.gmail.com"
+  port: 587
+  ssl: False
+  tls: True
+  username: "oneyesexplora19@gmail.com"
+  password: "admin@1yes"
