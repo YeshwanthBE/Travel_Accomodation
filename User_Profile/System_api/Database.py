@@ -13,16 +13,12 @@ class User:
         self.cursor=self.db.cursor()
         self.cursor.execute(f"CREATE TABLE IF NOT EXISTS {table} (mailid VARCHAR(255) PRIMARY KEY,password VARCHAR(256) NOT NULL,salt varbinary(255),name VARCHAR(255),address VARCHAR(255),phno VARCHAR(255));")
         self.db.commit()
-        
-    def isexists(self,mailid,ap=0):
-        table= "admin" if ap else "users"
-        self.cursor.execute(f"select mailid from {table} where mailid=%s",(mailid,))
-        if self.cursor.fetchone() is None:
-            return False
-        return True
     
     def add_user(self,user_json:json,ap=0):
         table= "admin" if ap else "users"
+        self.cursor.execute(f"select mailid from {table} where mailid=%s",(user_json['mailid'],))
+        if self.cursor.fetchone() is not None:
+            return False
         salt=os.urandom(16)
         pwd=hashlib.sha256(user_json['password'].encode()+salt).hexdigest()
         self.cursor.execute(f"Insert into {table} values (%s,%s,%s,%s,%s,%s)",(user_json['mailid'],pwd,salt,user_json['name'],user_json['address'],user_json['phno']))
@@ -80,6 +76,7 @@ class User:
                 self.cursor.execute("insert into tverify values(%s,%s,%s)",(mailid,token,expiry))
             else:
                 self.cursor.execute("update tverify set token=%s,expiry=%s where mailid=%s",(token,expiry,mailid,))
+            self.cursor.execute("delete from tverify where expiry<%s",(dt.now(),))
             self.db.commit()
         else:
             self.cursor.execute("select token,expiry from tverify where mailid=%s",(mailid,))

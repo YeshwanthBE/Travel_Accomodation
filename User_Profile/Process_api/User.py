@@ -12,12 +12,6 @@ class Profile:
             db=config['database']['baseurl']
             self.baseurl=f'{db}/dbprofile/{ap}' 
             self.mail=config['mail']
-
-    def isexist(self,mailid):
-        if requests.get(f'{self.baseurl}/{mailid}/exists').status_code==200:
-            return True
-        else:
-            return False
         
     def sendmail(self,app,to,subject,body):
         app.config['MAIL_SERVER'] = self.mail['server']
@@ -32,29 +26,36 @@ class Profile:
         mail.send(msg) 
 
     def register(self,user_json):
-        return requests.post(f'{self.baseurl}/Signup',json=user_json)
+        return requests.post(f'{self.baseurl}/Signup/',json=user_json)
     
-    def showprofile(self,mailid):
-        return requests.get(f'{self.baseurl}/{mailid}')
+    def showprofile(self,jwt):
+        header={"Authorization": jwt}
+        return requests.get(f'{self.baseurl}/',headers=header)
 
-    def auth(self,mailid,pwd):
-        return requests.post(f'{self.baseurl}/{mailid}/auth',json={"password":pwd})
+    def auth(self,user_json):
+        return requests.post(f'{self.baseurl}/auth/',json=user_json)
     
-    def modifyuser(self,maild,user_json):
-        return requests.patch(f'{self.baseurl}/{maild}',json=user_json)
+    def modifyuser(self,user_json,jwt):
+        header={"Authorization": jwt}
+        return requests.patch(f'{self.baseurl}/',json=user_json,headers=header)
     
     def deluser(self,mailid,pwd):
         response=self.auth(mailid,pwd)
+        header={"Authorization": response.json()['token']}
         if response.status_code==200:
-            return requests.delete(f'{self.baseurl}/{mailid}')
+            return requests.delete(f'{self.baseurl}/',headers=header)
         else:
             return response
     
-    def rstpwd(self,mailid,token,pwd):
-        response=json.loads(requests.get(f'{self.baseurl}/{mailid}/tk').json())
-        if token != response['tk'] or dt.now()>dt.strptime(response['expiry'],"%Y-%m-%d %H:%M:%S"):
+    def verifytk(self,mailid,token,pwd)->requests.Response:
+        response=requests.get(f'{self.baseurl}/tk?mailid={mailid}').json()
+        tk=json.loads(response["token"])
+        if token != tk["tk"] or dt.now()>dt.strptime(tk["expiry"],"%Y-%m-%d %H:%M:%S"):
             return False
-        return requests.post(f'{self.baseurl}/{mailid}',json=pwd)
+        return response["jwt"]
     
     def settoken(self,mailid,token):
-        return requests.post(f'{self.baseurl}/{mailid}/tk?token={token}')
+        return requests.post(f'{self.baseurl}/tk/',json={"mailid":mailid,"token":token})
+
+    def rstpwd(self,pwd,jwt):
+        return requests.post(f'{self.baseurl}/',json=pwd,headers={"Authorization": jwt})
