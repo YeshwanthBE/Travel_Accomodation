@@ -39,13 +39,9 @@ class Profile:
         header={"Authorization": jwt}
         return requests.patch(f'{self.baseurl}/',json=user_json,headers=header)
     
-    def deluser(self,mailid,pwd):
-        response=self.auth(mailid,pwd)
-        header={"Authorization": response.json()['token']}
-        if response.status_code==200:
-            return requests.delete(f'{self.baseurl}/',headers=header)
-        else:
-            return response
+    def deluser(self,jwt,pwd):
+        header={"Authorization": jwt}
+        return requests.delete(f'{self.baseurl}/',headers=header,json=pwd)
     
     def verifytk(self,mailid,token)->requests.Response:
         response=requests.get(f'{self.baseurl}/tk?mailid={mailid}').json()

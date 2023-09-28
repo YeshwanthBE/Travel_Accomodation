@@ -20,8 +20,9 @@ def profile(ap):
         response=obj.showprofile(jwt)
         return jsonify(response.json()),response.status_code
     elif request.method=='DELETE':
-        pwd=request.get_json()['password']
-        response=obj.deluser(jwt)
+        pwd=request.get_json()
+        jwt=request.headers.get('Authorization')
+        response=obj.deluser(jwt,pwd)
         return jsonify(response.json()),response.status_code
     elif request.method=='POST':
         token=str(uuid.uuid4())

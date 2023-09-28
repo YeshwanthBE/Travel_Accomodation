@@ -38,6 +38,9 @@ def profile(mailid,ap):
     if request.method=='GET':
         return jsonify(obj.show_user(mailid,ap))
     elif request.method=='DELETE':
+        pwd=request.get_json()["password"]
+        if not obj.Auth(mailid,pwd,ap):
+            return jsonify({"message": "Invalid Password"}),401
         obj.del_user(mailid,ap)
         return jsonify({"message": "User Deleted Successfully"}), 200
     elif request.method=='POST':

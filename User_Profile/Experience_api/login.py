@@ -80,5 +80,30 @@ def newpwd():
         flash(resp.json())
         return redirect(url_for("login"))
 
+@app.route("/profile/")
+def show():
+    cred=json.loads(request.cookies.get("usr"))
+    data=requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']})
+    render_template("profile.html")
+@app.route("/modify/",methods=["PATCH"])
+def mod():
+    cred=json.loads(request.cookies.get("usr"))
+    data={
+        "name": request.form["name"],
+        "address": request.form["address"],
+        "phno": request.form["phno"]
+        }
+    requests.patch(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
+    return redirect(url_for("show"))
+
+@app.route("/delete/",methods=['DELETE'])
+def delete():
+    data={"password": request.form["password"]}
+    cred=json.loads(request.cookies.get("usr"))
+    requests.delete(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
+    response=make_response(redirect(url_for("Homepage")))
+    response.delete_cookie("usr")
+    return response
+
 if __name__ == '__main__':
    app.run(debug = True,port=8081)  
