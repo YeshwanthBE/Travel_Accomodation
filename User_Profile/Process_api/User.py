@@ -47,7 +47,7 @@ class Profile:
         else:
             return response
     
-    def verifytk(self,mailid,token,pwd)->requests.Response:
+    def verifytk(self,mailid,token)->requests.Response:
         response=requests.get(f'{self.baseurl}/tk?mailid={mailid}').json()
         tk=json.loads(response["token"])
         if token != tk["tk"] or dt.now()>dt.strptime(tk["expiry"],"%Y-%m-%d %H:%M:%S"):

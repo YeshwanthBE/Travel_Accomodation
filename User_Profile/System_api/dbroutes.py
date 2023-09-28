@@ -14,7 +14,7 @@ def token_required(f):
             return jsonify({'message': 'Token is missing'}), 401
         try:
             algorithm="HS256" if kwargs.get('ap') else "HS512"
-            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=algorithm)
             mailid = data['mailid']
         except jwt.ExpiredSignatureError:
             return jsonify({'message': 'Token has expired'}), 401
@@ -53,13 +53,13 @@ def profile(mailid,ap):
 def auth(ap):
     data=request.get_json()
     obj=User(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
-    if obj.Auth(data['mailid'],data['pwd'],ap):
+    if obj.Auth(data['mailid'],data['password'],ap):
         payload={"mailid": data['mailid'],
          "exp": int(time.time())+86400
         }
         algorithm="HS256" if ap else "HS512"
         token=jwt.encode(payload,app.config['SECRET_KEY'],algorithm=algorithm)
-        return jsonify({"token":token}),200
+        return jsonify({"jwt":token}),200
     return jsonify({"message":"Invalid Mailid or password"}),401
 
 @app.route('/dbprofile/<int:ap>/tk/',methods=['GET','POST'])
