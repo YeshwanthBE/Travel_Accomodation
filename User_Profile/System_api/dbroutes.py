@@ -42,7 +42,7 @@ def profile(mailid,ap):
         return jsonify({"message": "User Deleted Successfully"}), 200
     elif request.method=='POST':
         data=request.get_json()
-        obj.reset_pass(mailid,data['pwd'],ap)
+        obj.reset_pass(mailid,data['password'],ap)
         return jsonify({"message": "Password Resetted Successfully"}), 200
     else:
         data=request.get_json()
