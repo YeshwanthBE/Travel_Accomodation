@@ -4,3 +4,4 @@ database:
   username: root
   password: admin
   dbname: test
+  connection_timeout: 10
