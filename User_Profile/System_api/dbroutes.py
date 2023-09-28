@@ -27,20 +27,20 @@ def token_required(f):
 def signup(ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
+        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml")
         if obj.add_user(request.get_json(),ap) is not False:
             return jsonify({"message": "User Registered Successfully"}), 201
         else:
             return jsonify({"message": "Mailid already exist"}), 401
     except Exception as e:
-        return jsonify({"Exception": e}),500
+        return jsonify({"Exception": str(e)}),500
 
 @app.route('/dbprofile/<int:ap>/',methods=['GET','POST','DELETE','PATCH'])
 @token_required
 def profile(mailid,ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
+        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml")
         if request.method=='GET':
             return jsonify(obj.show_user(mailid,ap))
         elif request.method=='DELETE':
@@ -58,14 +58,14 @@ def profile(mailid,ap):
             obj.update_user(mailid,data,ap)
             return jsonify({"message": "Profile Updated Successfully"}), 200  
     except Exception as e:
-        return jsonify({"Exception": e}),500
+        return jsonify({"Exception": str(e)}),500
     
 @app.route('/dbprofile/<int:ap>/auth/',methods=['POST'])
 def auth(ap):
     try:
         data=request.get_json()
         obj=User()
-        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
+        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml")
         if obj.Auth(data['mailid'],data['password'],ap):
             payload={"mailid": data['mailid'],
             "exp": int(time.time())+86400
@@ -75,13 +75,13 @@ def auth(ap):
             return jsonify({"jwt":token}),200
         return jsonify({"message":"Invalid Mailid or password"}),401
     except Exception as e:
-        return jsonify({"Exception": e}),500
+        return jsonify({"Exception": str(e)}),500
 
 @app.route('/dbprofile/<int:ap>/tk/',methods=['GET','POST'])
 def tokenauth(ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml",ap)
+        obj.connect(os.getcwd()+"\\User_Profile\\System_api\\config.yaml")
         if request.method=='GET':
             mailid=request.args.get('mailid')
             payload={"mailid": mailid,
@@ -96,7 +96,7 @@ def tokenauth(ap):
             obj.token(data['mailid'],data['token'])
             return jsonify({}),200
     except Exception as e:
-        return jsonify({"Exception": e}),500
+        return jsonify({"Exception": str(e)}),500
 
 if __name__ == '__main__':
    app.run(debug = True)  
