@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request,make_response,jsonify
-from Database import User
+from UserDatabase import User
 from functools import wraps
 import jwt
 import time
