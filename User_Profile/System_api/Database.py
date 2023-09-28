@@ -7,17 +7,18 @@ import os
 class User:
     def connect(self,filepath):
         try:
-            self.db.start_transaction()
             with open(filepath, 'r') as file:
                 db_config= yaml.safe_load(file)['database']    
                 self.db = mc.connect(host=db_config['host'],user=db_config['username'],password=db_config['password'],database=db_config['dbname'])
+            self.db.start_transaction()
             self.cursor=self.db.cursor()
             self.cursor.execute(f"CREATE TABLE IF NOT EXISTS admin (mailid VARCHAR(255) PRIMARY KEY,password VARCHAR(256) NOT NULL,salt varbinary(255),name VARCHAR(255),address VARCHAR(255),phno VARCHAR(255));")
             self.cursor.execute(f"CREATE TABLE IF NOT EXISTS users (mailid VARCHAR(255) PRIMARY KEY,password VARCHAR(256) NOT NULL,salt varbinary(255),name VARCHAR(255),address VARCHAR(255),phno VARCHAR(255));")
             self.cursor.execute("Create table if not exists tverify (mailid varchar(255) primary key,token varchar(255),expiry datetime);")
             self.db.commit()
         except Exception as e:
-            self.db.rollback()
+            if self.db:
+                self.db.rollback()
             raise e
     
     def add_user(self,user_json:json,ap=0):
