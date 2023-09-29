@@ -1,0 +1,9 @@
+database:
+  baseurl: "http://127.0.0.1:8082"
+mail:
+  server: "smtp.gmail.com"
+  port: 587
+  ssl: False
+  tls: True
+  username: "oneyesexplora19@gmail.com"
+  password: "admin@1yes"

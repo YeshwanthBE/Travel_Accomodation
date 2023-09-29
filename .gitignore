@@ -11,3 +11,4 @@ User_Profile/Process_api/test.py
 User_Profile/System_api/deleted_code
 Accomodations/System_api/__pycache__/InnDatabase.cpython-311.pyc
 User_Profile/System_api/__pycache__/UserDatabase.cpython-311.pyc
+Accomodations/Process_api/__pycache__/acmpro.cpython-311.pyc
