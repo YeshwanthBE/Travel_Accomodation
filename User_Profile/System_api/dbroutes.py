@@ -13,7 +13,7 @@ def token_required(f):
         if not token:
             return jsonify({'message': 'Token is missing'}), 401
         try:
-            algorithm="HS256" if kwargs.get('ap') else "HS512"
+            algorithm="HS512" if kwargs.get('ap') else "HS256"
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=algorithm)
             mailid = data['mailid']
         except jwt.ExpiredSignatureError:
@@ -70,7 +70,7 @@ def auth(ap):
             payload={"mailid": data['mailid'],
             "exp": int(time.time())+86400
             }
-            algorithm="HS256" if ap else "HS512"
+            algorithm="HS512" if ap else "HS256"
             token=jwt.encode(payload,app.config['SECRET_KEY'],algorithm=algorithm)
             return jsonify({"jwt":token}),200
         return jsonify({"message":"Invalid Mailid or password"}),401
@@ -87,7 +87,7 @@ def tokenauth(ap):
             payload={"mailid": mailid,
             "exp": int(time.time())+300
             }
-            algorithm="HS256" if ap else "HS512"
+            algorithm="HS512" if ap else "HS256"
             token=jwt.encode(payload,app.config['SECRET_KEY'],algorithm=algorithm)
             return jsonify({"token": obj.token(mailid),
                             "jwt": token})
