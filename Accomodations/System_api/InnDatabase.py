@@ -10,7 +10,7 @@ class acm:
                 self.db = mc.connect(host=db_config['host'],user=db_config['username'],password=db_config['password'],database=db_config['dbname'])
             self.db.start_transaction()
             self.cursor=self.db.cursor()
-            self.cursor.execute("CREATE TABLE accommodations (mailid varchar(20) PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, location VARCHAR(255), phno varchar(20), price DECIMAL(10, 2), rating FLOAT, image_url VARCHAR(255));")
+            self.cursor.execute("CREATE TABLE if not exists accommodations (mailid varchar(20) PRIMARY KEY, name VARCHAR(255) NOT NULL, description TEXT, location VARCHAR(255), phno varchar(20), price DECIMAL(10, 2), rating FLOAT, image_url VARCHAR(255));")
             self.db.commit()
         except Exception as e:
             if self.db:
@@ -23,7 +23,7 @@ class acm:
             self.cursor.execute("select mailid from accommodations where mailid=%s",(Inn_json['mailid'],))
             if self.cursor.fetchone() is not None:
                 return False
-            self.cursor.execute("Insert into accommodations values (%s,%s,%s,%s,%s,%s,%s,%s)",(Inn_json['mailid'],Inn_json['name'],Inn_json['decription'],Inn_json['location'],Inn_json['phno'],Inn_json['price'],None,Inn_json['imgurl']))
+            self.cursor.execute("Insert into accommodations values (%s,%s,%s,%s,%s,%s,%s,%s)",(Inn_json['mailid'],Inn_json['name'],Inn_json['description'],Inn_json['location'],Inn_json['phno'],Inn_json['price'],None,Inn_json['imgurl']))
             self.db.commit()
         except Exception as e:
             self.db.rollback()
@@ -36,7 +36,7 @@ class acm:
             result_dict = {
                 "mailid": acm[0],
                 "name": acm[1],
-                "decription": acm[2],
+                "description": acm[2],
                 "location": acm[3],
                 "phno": acm[4],
                 "price": acm[5],

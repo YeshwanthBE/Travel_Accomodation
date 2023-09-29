@@ -6,7 +6,7 @@ app=Flask(__name__)
 @app.route('/register/',methods=['POST'])
 def reg():
     try:
-        obj=acm(os.getcwd()+'\\User_Profile\\Process_api\\config.yaml')
+        obj=acm(os.getcwd()+'\\Accomodations\\Process_api\\config.yaml')
         data=request.get_json()
         #obj.sendmail(app,data['mailid'],"Welcome to Oneyes Explora",render_template('registration.txt',username=data['mailid'].split('@')[0],loginlink="www.abc.com"))
         jwt=request.headers.get('Authorization')
@@ -18,7 +18,7 @@ def reg():
 @app.route('/acm/op/',methods=['GET','POST','DELETE','PATCH'])
 def acmop():
     try:
-        obj=acm(os.getcwd()+"\\User_Profile\\Process_api\\config.yaml")
+        obj=acm(os.getcwd()+"\\Accomodations\\Process_api\\config.yaml")
         jwt=request.headers.get('Authorization')
         if request.method=='GET':
             response=obj.showacm(jwt)
@@ -41,7 +41,7 @@ def acmop():
 @app.route("/acm/searchall/")
 def srchall():
     try:
-         obj=acm(os.getcwd()+"\\User_Profile\\Process_api\\config.yaml")
+         obj=acm(os.getcwd()+"\\Accomodations\\Process_api\\config.yaml")
          response=obj.searchacm(request.args)
          return jsonify(response.json()),response.statuscode
     except Exception as e:

@@ -18,12 +18,14 @@ def token_required(f):
             return jsonify({'message': 'Token has expired'}), 401
         except jwt.DecodeError:
             return jsonify({'message': 'Token is invalid'}), 401
+        except:
+            return  jsonify({'message': 'Token error'}), 500
         return f(mailid, *args, **kwargs)
     return decorated
 
 @app.route('/acm/ad/',methods=['GET','POST','DELETE','PATCH'])
 @token_required
-def acm(mailid):
+def acmtools(mailid):
     try:
         obj=acm()
         obj.connect(os.getcwd()+"\\Accomodations\\System_api\\config.yaml")
