@@ -23,7 +23,7 @@ class acm:
             self.cursor.execute("select mailid from accommodations where mailid=%s",(Inn_json['mailid'],))
             if self.cursor.fetchone() is not None:
                 return False
-            self.cursor.execute("Insert into accommodations values (%s,%s,%s,%s,%s,%s,%s,%s)",(Inn_json['mailid'],Inn_json['name'],Inn_json['decription'],Inn_json['location'],Inn_json['phno'],Inn_json['price'],Inn_json['rating'],Inn_json['imgurl']))
+            self.cursor.execute("Insert into accommodations values (%s,%s,%s,%s,%s,%s,%s,%s)",(Inn_json['mailid'],Inn_json['name'],Inn_json['decription'],Inn_json['location'],Inn_json['phno'],Inn_json['price'],None,Inn_json['imgurl']))
             self.db.commit()
         except Exception as e:
             self.db.rollback()

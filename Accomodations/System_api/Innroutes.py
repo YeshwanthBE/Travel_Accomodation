@@ -21,9 +21,9 @@ def token_required(f):
         return f(mailid, *args, **kwargs)
     return decorated
 
-@app.route('/acm/ad',methods=['GET','POST','DELETE','PATCH'])
+@app.route('/acm/ad/',methods=['GET','POST','DELETE','PATCH'])
 @token_required
-def profile(mailid):
+def acm(mailid):
     try:
         obj=acm()
         obj.connect(os.getcwd()+"\\Accomodations\\System_api\\config.yaml")
@@ -49,10 +49,10 @@ def srch():
     try:
         obj=acm()
         obj.connect(os.getcwd()+"\\Accomodations\\System_api\\config.yaml")
-        data=request.get_json()
-        return jsonify(obj.searchacm(data["location"],data['minp'],data['maxp'],data['sort'],data['desc'])),200
+        data=request.args
+        return jsonify(obj.searchacm(data.get("location"),data.get('minp'),data.get('maxp'),data.get('sort'),data.get('desc'))),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     
 if __name__ == '__main__':
-   app.run(debug = True)  
+   app.run(debug = True,port=8082)  

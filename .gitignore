@@ -9,3 +9,5 @@ User_Profile/Process_api/__pycache__/User.cpython-311.pyc
 User_Profile/Process_api/user.json
 User_Profile/Process_api/test.py
 User_Profile/System_api/deleted_code
+Accomodations/System_api/__pycache__/InnDatabase.cpython-311.pyc
+User_Profile/System_api/__pycache__/UserDatabase.cpython-311.pyc
