@@ -1,0 +1,16 @@
+database:
+  host: localhost
+  port: 3306
+  username: root
+  password: admin
+  dbname: test
+  connection_timeout: 10
+accomodation:
+  url: http://127.0.0.1:8082/acm/op
+mail:
+  server: "smtp.gmail.com"
+  port: 587
+  ssl: False
+  tls: True
+  username: "oneyesexplora19@gmail.com"
+  password: "admin@1yes"
