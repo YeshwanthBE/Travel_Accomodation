@@ -19,20 +19,21 @@ def token_required(f):
         except jwt.DecodeError:
             return jsonify({'message': 'Token is invalid'}), 401
         except:
-            return  jsonify({'message': 'Token error'}), 500
-        return f(mailid, *args, **kwargs)
+            return  jsonify({'message': 'Unauthorized'}), 401
+        return f(*args, **kwargs)
     return decorated
 
 @app.route('/acm/ad/',methods=['GET','POST','DELETE','PATCH'])
 @token_required
-def acmtools(mailid):
+def acmtools():
     try:
         obj=acm()
+        qp=request.args
         obj.connect(os.getcwd()+"\\Accomodations\\System_api\\config.yaml")
         if request.method=='GET':
-            return jsonify(obj.show_acm(mailid))
+            return jsonify(obj.show_acm(qp.get('mailid')))
         elif request.method=='DELETE':
-            obj.del_acm(mailid)
+            obj.del_acm(qp.get('mailid'))
             return jsonify({"message": "Accomodation Deleted Successfully"}), 200
         elif request.method=='POST':
             if obj.add_acm(request.get_json()) is not False:
@@ -41,7 +42,7 @@ def acmtools(mailid):
                 return jsonify({"message": "accommodation already exist"}), 401
         else:
             data=request.get_json()
-            obj.update_acm(mailid,data)
+            obj.update_acm(qp.get('mailid'),data)
             return jsonify({"message": "Accomodation Updated Successfully"}), 200  
     except Exception as e:
         return jsonify({"Exception": str(e)}),500

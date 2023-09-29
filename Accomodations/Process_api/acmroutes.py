@@ -21,10 +21,10 @@ def acmop():
         obj=acm(os.getcwd()+"\\Accomodations\\Process_api\\config.yaml")
         jwt=request.headers.get('Authorization')
         if request.method=='GET':
-            response=obj.showacm(jwt)
+            response=obj.showacm(jwt,request.args)
             return jsonify(response.json()),response.status_code
         elif request.method=='DELETE':
-            response=obj.delacm(jwt)
+            response=obj.delacm(jwt,request.args)
             return jsonify(response.json()),response.status_code
         elif request.method=='POST':
             data=request.get_json()
@@ -33,7 +33,7 @@ def acmop():
             return jsonify(response.json()),response.status_code
         else:
             data=request.get_json()
-            response=obj.modifyacm(data,jwt)  
+            response=obj.modifyacm(data,jwt,request.args)  
             return jsonify(response.json()),response.status_code
     except Exception as e:
         return jsonify({"Exception": str(e)}),500

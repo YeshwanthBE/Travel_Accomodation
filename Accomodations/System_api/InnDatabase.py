@@ -33,6 +33,8 @@ class acm:
         try:
             self.cursor.execute("Select * from accommodations where mailid=%s",(mailid,))
             acm=self.cursor.fetchone() 
+            if acm is None:
+                return json.dumps({"Message" : "accommodations Not found"})
             result_dict = {
                 "mailid": acm[0],
                 "name": acm[1],
@@ -43,15 +45,16 @@ class acm:
                 "rating": acm[6],
                 "imgurl": acm[7]
                 }
-            return json.dumps(result_dict, indent=4)
+            return result_dict
         except Exception as e:
             raise e
     
     def del_acm(self,mailid:str):
         try:
             self.db.start_transaction()
-            self.cursor.execute(f'select * from accomodations where mailid=%s for update',(mailid,))
-            self.cursor.execute(f"delete from accomotaions where mailid=%s;",(mailid,))
+            self.cursor.execute(f'select * from accommodations where mailid=%s for update',(mailid,))
+            self.cursor.fetchone()
+            self.cursor.execute(f"delete from accommodations where mailid=%s;",(mailid,))
             self.db.commit()
         except Exception as e:
             self.db.rollback()
@@ -60,9 +63,10 @@ class acm:
     def update_acm(self,mailid,Inn_json):
         try:
             self.db.start_transaction()
-            self.cursor.execute(f'select * from accomotaions where mailid=%s for update',(mailid,))
+            self.cursor.execute(f'select * from accommodations where mailid=%s for update',(mailid,))
+            self.cursor.fetchone()
             for i in Inn_json:
-                self.cursor.execute(f"update accomotaions set {i}={Inn_json[i]} where mailid=%s",(mailid,))
+                self.cursor.execute(f"update accommodations set {i}=%s where mailid=%s",(Inn_json[i],mailid))
             self.db.commit()
         except Exception as e:
             self.db.rollback()
@@ -70,7 +74,7 @@ class acm:
     
     def searchacm(self,location=None,minp=None,maxp=None,sort=None,desc=False):
         try:
-            query=f"select name,description from accomotaions where location={location},price>{minp}"
+            query=f"select name,description from accommodations where location={location},price>{minp}"
             if maxp is not None:
                 query+=f' and price<{maxp}'
             if sort is not None:

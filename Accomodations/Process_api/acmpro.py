@@ -27,17 +27,17 @@ class acm:
         header={"Authorization": jwt}
         return requests.post(f'{self.baseurl}/ad',headers=header,json=inn_json)
     
-    def showacm(self,jwt):
+    def showacm(self,jwt,params):
         header={"Authorization": jwt}
-        return requests.get(f'{self.baseurl}/ad',headers=header)
+        return requests.get(f'{self.baseurl}/ad',headers=header,params=params)
     
-    def modifyacm(self,inn_json,jwt):
+    def modifyacm(self,inn_json,jwt,params):
         header={"Authorization": jwt}
-        return requests.patch(f'{self.baseurl}/ad',json=inn_json,headers=header)
+        return requests.patch(f'{self.baseurl}/ad',json=inn_json,headers=header,params=params)
     
-    def delac(self,jwt):
+    def delacm(self,jwt,params):
         header={"Authorization": jwt}
-        return requests.delete(f'{self.baseurl}/ad',headers=header)
+        return requests.delete(f'{self.baseurl}/ad',headers=header,params=params)
 
     def searchacm(self,params):
         return requests.get(f'{self.baseurl}/',params=params)
