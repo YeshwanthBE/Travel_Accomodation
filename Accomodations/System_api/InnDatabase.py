@@ -72,15 +72,17 @@ class acm:
             self.db.rollback()
             raise e
     
-    def searchacm(self,location=None,minp=None,maxp=None,sort=None,desc=False):
+    def searchacm(self,location,minp,maxp,sort,desc):
         try:
-            query=f"select name,description from accommodations where location={location},price>{minp}"
-            if maxp is not None:
+            query=f"select name,description from accommodations where price>{minp}"
+            if maxp:
                 query+=f' and price<{maxp}'
-            if sort is not None:
+            if location:
+                query+=f' and location="{location}"'
+            if sort:
                 query+=f' order by {sort}'
             if desc:
-                query+=' desc'
+                query+=' desc;'
             else:
                 query+=';'
             self.cursor.execute(query)

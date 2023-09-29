@@ -35,18 +35,18 @@ def register():
         "imgurl": image_url
         }
         response=requests.post(baseurl+"/register",json=data,headers={"Authorization": cred['jwt']})
-        flash(response.json)
+        flash(response.json())
         if response.status_code ==200:
             redirect(url_for("show"))
 
-@app.route("/acm/mod",methods=['GET','DELETE','PATCH'])
+@app.route("/acm/mod/",methods=['GET','DELETE','PATCH'])
 def acm():
     cred=json.loads(request.cookies.get("usr"))
     if request.method=='GET':
-        data=requests.get(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']})
+        data=requests.get(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},params=request.args)
         render_template("singleacm.html")
     elif request.method=='DELETE':
-        requests.delete(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']})
+        requests.delete(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},params=request.args)
         return redirect(url_for("showall"))
     else:
         data={
@@ -54,7 +54,7 @@ def acm():
         "phno": request.form["phno"],
         "price": request.form["price"]
         }
-        requests.patch(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},json=data)
+        requests.patch(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},json=data,params=request.args)
         return redirect(url_for("acm"))
 
 @app.route("/uploads/<filename>")

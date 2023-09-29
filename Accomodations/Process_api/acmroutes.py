@@ -43,7 +43,7 @@ def srchall():
     try:
          obj=acm(os.getcwd()+"\\Accomodations\\Process_api\\config.yaml")
          response=obj.searchacm(request.args)
-         return jsonify(response.json()),response.statuscode
+         return jsonify(response.json()),response.status_code
     except Exception as e:
          return jsonify({"Exception": str(e)}),500
 
