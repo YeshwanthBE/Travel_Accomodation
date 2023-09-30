@@ -12,7 +12,7 @@ class rr:
                 self.db = mc.connect(host=db_config['host'],user=db_config['username'],password=db_config['password'],database=db_config['dbname'])
             self.db.start_transaction()
             self.cursor=self.db.cursor()
-            self.cursor.execute(f"CREATE TABLE IF NOT EXISTS reviews (CREATE TABLE IF NOT EXISTS reviews (review_id INT AUTO_INCREMENT PRIMARY KEY, userid VARCHAR(255), acmid VARCHAR(255), rating DECIMAL(3, 2), review TEXT, datetime DATETIME, FOREIGN KEY (userid) REFERENCES users(mailid), FOREIGN KEY (acmid) REFERENCES accommodations(mailid));")
+            self.cursor.execute(f"CREATE TABLE IF NOT EXISTS reviews (review_id INT AUTO_INCREMENT PRIMARY KEY, userid VARCHAR(255), acmid VARCHAR(255), rating DECIMAL(3, 2), review TEXT, datetime DATETIME, FOREIGN KEY (userid) REFERENCES users(mailid), FOREIGN KEY (acmid) REFERENCES accommodations(mailid));")
             self.db.commit()
         except Exception as e:
             if self.db:
@@ -66,6 +66,8 @@ class rr:
                 "datetime": str(i[5])
                 }
                 lst.append(result_dict)
+            print(lst)
             return(json.dumps(lst))
         except Exception as e:
+            print(e)
             raise e

@@ -23,7 +23,7 @@ def token_required(f):
         return f(mailid,*args, **kwargs)
     return decorated
 
-@app.route('/dbbk/',methods=['POST','DELETE','PATCH'])
+@app.route('/dbreviews/',methods=['POST','DELETE','PATCH'])
 @token_required
 def booking(mailid):
     try:
@@ -34,7 +34,7 @@ def booking(mailid):
             return jsonify(obj.mod(request.json()))
         elif request.method=='DELETE':
             obj.delete(qp.get('rid'))
-            return jsonify({"message": "review Cancelled Successfully"}), 200
+            return jsonify({"message": "review deleted Successfully"}), 200
         else:
             if obj.add(mailid,request.get_json()) is not False:
                 return jsonify({"message": "review added Successfully"}), 201
@@ -43,15 +43,15 @@ def booking(mailid):
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     
-@app.route('/dbbk/allbk/')
+@app.route('/dballreviews/')
 @token_required
 def show(mailid):
     try:
         obj=rr()
         obj.connect(os.getcwd()+"\\Reviews_Ratings\\System_api\\config.yaml")
-        return jsonify(obj.showallbk(request.json())),200
+        return jsonify(obj.showall(request.get_json())),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     
 if __name__ == '__main__':
-   app.run(debug = True,port=8090)  
+   app.run(debug = True,port=8091)  
