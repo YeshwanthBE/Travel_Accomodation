@@ -4,6 +4,7 @@ import yaml
 import json
 from flask_mail import Mail,Message
 from flask import make_response
+from datetime import datetime as dt
 class bking:
     def __init__(self,filepath):
         with open(filepath, 'r') as file:
@@ -27,19 +28,22 @@ class bking:
 
     def booking(self,inn_json,jwt):
         header={"Authorization": jwt}
+        acm=requests.get(f"{self.accom}",params={"mailid":inn_json['acmid']},headers=header).json()
+        inn_json['price']=float(acm['price'])*int((dt.strptime(inn_json['checkout'], "%Y-%m-%d")-dt.strptime(inn_json['checkin'], "%Y-%m-%d")).days+1)
         response=requests.post(f'{self.baseurl}/dbbk/',headers=header,json=inn_json)
         data=response.json()
-        data["acmid"]=requests.get(f"{self.accom}/acm/op/",params={"mailid":data['acmid']})
+        
+        data["acmid"]=acm['name']
+        print(data)
         return data,response.status_code
 
     def showbk(self,jwt,params):
         header={"Authorization": jwt}
         return requests.get(f'{self.baseurl}/dbbk/',headers=header,params=params)
     
-    
     def delbk(self,jwt,params):
         header={"Authorization": jwt}
         return requests.delete(f'{self.baseurl}/dbbk/',headers=header,params=params)
 
-    def searchbk(self,params):
-        return requests.get(f'{self.baseurl}/dbbk/allbk/',params=params)
+    def searchbk(self,params,jwt):
+        return requests.get(f'{self.baseurl}/dbbk/allbk/',params=params,headers={"Authorization": jwt})

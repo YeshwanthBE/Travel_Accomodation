@@ -43,7 +43,7 @@ def booking(mailid):
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     
-@app.route('/dbbk/allbk')
+@app.route('/dbbk/allbk/')
 @token_required
 def show(mailid):
     try:
