@@ -15,3 +15,4 @@ Accomodations/Process_api/__pycache__/acmpro.cpython-311.pyc
 Booking/System_api/__pycache__/dbbook.cpython-311.pyc
 Booking/Process_api/__pycache__/booking.cpython-311.pyc
 Reviews_Ratings/System_api/__pycache__/dbratrev.cpython-311.pyc
+Reviews_Ratings/Process_api/__pycache__/Reviews.cpython-311.pyc
