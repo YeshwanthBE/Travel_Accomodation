@@ -4,7 +4,7 @@ import json
 import yaml
 import os 
 app=Flask(__name__)
-with open(os.getcwd()+'\\User_Profile\\Experience_api\\config.yaml', 'r') as file:
+with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r') as file:
     global baseurl
     config=yaml.safe_load(file)
     baseurl= config['url']['domainurl']

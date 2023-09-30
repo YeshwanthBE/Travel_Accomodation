@@ -29,7 +29,7 @@ def acmtools():
     try:
         obj=acm()
         qp=request.args
-        obj.connect(os.getcwd()+"\\Accomodations\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\SrcCode\\Accomodations\\System_api\\config.yaml")
         if request.method=='GET':
             return jsonify(obj.show_acm(qp.get('mailid')))
         elif request.method=='DELETE':
@@ -51,7 +51,7 @@ def acmtools():
 def srch():
     try:
         obj=acm()
-        obj.connect(os.getcwd()+"\\Accomodations\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\SrcCode\\Accomodations\\System_api\\config.yaml")
         data=request.args
         return jsonify(obj.searchacm(data.get("location"),data.get('minp',default=0),data.get('maxp'),data.get('sort'),data.get('desc'))),200
     except Exception as e:

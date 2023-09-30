@@ -29,7 +29,7 @@ def booking(mailid):
     try:
         obj=bk()
         qp=request.args
-        obj.connect(os.getcwd()+"\\Booking\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
         if request.method=='GET':
             return jsonify(obj.show_bk(qp.get('bid')))
         elif request.method=='DELETE':
@@ -48,7 +48,7 @@ def booking(mailid):
 def show(mailid):
     try:
         obj=bk()
-        obj.connect(os.getcwd()+"\\Booking\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
         return jsonify(obj.showallbk(mailid)),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500

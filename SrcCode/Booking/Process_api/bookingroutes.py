@@ -7,7 +7,7 @@ app=Flask(__name__)
 @app.route('/pr/booking/',methods=['GET','POST','DELETE'])
 def bkop():
     try:
-        obj=bking(os.getcwd()+"\\Booking\\Process_api\\config.yaml")
+        obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
         jwt=request.headers.get('Authorization')
         if request.method=='GET':
             response=obj.showbk(jwt,request.args)
@@ -26,7 +26,7 @@ def bkop():
 @app.route("/pr/searchall/")
 def srchall():
     try:
-         obj=bking(os.getcwd()+"\\Booking\\Process_api\\config.yaml")
+         obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
          jwt=request.headers.get('Authorization')
          response=obj.searchbk(request.args,jwt)
          return jsonify(response.json()),response.status_code
