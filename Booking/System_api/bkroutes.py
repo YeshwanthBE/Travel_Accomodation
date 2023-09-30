@@ -20,12 +20,12 @@ def token_required(f):
             return jsonify({'message': 'Token is invalid'}), 401
         except:
             return  jsonify({'message': 'Unauthorized'}), 401
-        return f(*args, **kwargs)
+        return f(mailid,*args, **kwargs)
     return decorated
 
 @app.route('/dbbk/',methods=['GET','POST','DELETE'])
 @token_required
-def booking():
+def booking(mailid):
     try:
         obj=bk()
         qp=request.args
@@ -36,7 +36,7 @@ def booking():
             obj.del_bk(qp.get('bid'))
             return jsonify({"message": "booking Cancelled Successfully"}), 200
         else:
-            if obj.booking(request.get_json()) is not False:
+            if obj.booking(mailid,request.get_json()) is not False:
                 return jsonify({"message": "booked Successfully"}), 201
             else:
                 return jsonify({"message": "Booking Failed"}), 401 
@@ -44,12 +44,12 @@ def booking():
         return jsonify({"Exception": str(e)}),500
     
 @app.route('/dbbk/allbk')
-def show():
+@token_required
+def show(mailid):
     try:
         obj=bk()
         obj.connect(os.getcwd()+"\\Booking\\System_api\\config.yaml")
-        data=request.args
-        return jsonify(obj.searchacm(data['mailid'])),200
+        return jsonify(obj.showallbk(mailid)),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     
