@@ -17,14 +17,13 @@ def register():
         render_template("booking.html")
     else:
         cred=json.loads(request.cookies.get("usr"))
+        qp=request.args
         data={
-        "acmid": request.form["mailid"],
-        "userid": request.form["name"],
-        "price": request.form["description"],
-        "checkin": request.form["location"],
-        "checkout": request.form["phno"],
+        "acmid": qp.get('acmid'),
+        "checkin": request.form["checkin"],
+        "checkout": request.form["checkout"],
         }
-        response=requests.post(baseurl+"/register",json=data,headers={"Authorization": cred['jwt']})
+        response=requests.post(baseurl+"/pr/booking/",json=data,headers={"Authorization": cred['jwt']})
         flash(response.json())
         if response.status_code ==200:
             redirect(url_for("show"))
@@ -42,7 +41,7 @@ def bkg():
 @app.route("/searchall/")
 def showall():
     cred=json.loads(request.cookies.get("usr"))
-    data=requests.get(f"{baseurl}/pr/searchall/",params=request.args,headers={"Authorization": cred['jwt']})
+    data=requests.get(f"{baseurl}/pr/searchall/",headers={"Authorization": cred['jwt']})
     render_template("display.html",json=data)
     
 if __name__ == '__main__':
