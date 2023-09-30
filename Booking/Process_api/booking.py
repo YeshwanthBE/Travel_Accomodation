@@ -31,10 +31,8 @@ class bking:
         acm=requests.get(f"{self.accom}",params={"mailid":inn_json['acmid']},headers=header).json()
         inn_json['price']=float(acm['price'])*int((dt.strptime(inn_json['checkout'], "%Y-%m-%d")-dt.strptime(inn_json['checkin'], "%Y-%m-%d")).days+1)
         response=requests.post(f'{self.baseurl}/dbbk/',headers=header,json=inn_json)
-        data=response.json()
-        
+        data=response.json()       
         data["acmid"]=acm['name']
-        print(data)
         return data,response.status_code
 
     def showbk(self,jwt,params):

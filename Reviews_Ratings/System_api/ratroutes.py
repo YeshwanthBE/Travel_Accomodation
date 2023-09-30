@@ -25,13 +25,14 @@ def token_required(f):
 
 @app.route('/dbreviews/',methods=['POST','DELETE','PATCH'])
 @token_required
-def booking(mailid):
+def review(mailid):
     try:
         obj=rr()
         qp=request.args
         obj.connect(os.getcwd()+"\\Reviews_Ratings\\System_api\\config.yaml")
         if request.method=='PATCH':
-            return jsonify(obj.mod(request.json()))
+            obj.mod(request.get_json())
+            return jsonify({"message": "review updated Successfully"}), 200
         elif request.method=='DELETE':
             obj.delete(qp.get('rid'))
             return jsonify({"message": "review deleted Successfully"}), 200

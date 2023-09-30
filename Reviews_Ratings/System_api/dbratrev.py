@@ -32,7 +32,7 @@ class rr:
     def mod(self,rr_json:json) :
         try:
             self.db.start_transaction()
-            self.cursor.execute(f"update reviews set rating=%s,reviews=%s where review_id=%s",(rr_json['rating'],rr_json['review'],rr_json['rid']))
+            self.cursor.execute(f"update reviews set rating=%s,review=%s where review_id=%s",(rr_json['rating'],rr_json['review'],rr_json['rid']))
             self.db.commit()
         except Exception as e:
             self.db.rollback()
@@ -52,13 +52,13 @@ class rr:
     def showall(self,rr_json):
         try:
             query=f'select * from reviews where acmid=%s order by {rr_json["sort"]}'
-            if rr_json.get('desc'):
+            if not rr_json.get('asc'):
                 query+=" desc;"
             self.cursor.execute(query,(rr_json['acmid'],))
             lst=[]
             for i in self.cursor.fetchall():
                 result_dict = {
-                "bookingid": i[0],
+                "reviewid": i[0],
                 "userid": i[1],
                 "acmid": i[2],
                 "rating": float(i[3]),
