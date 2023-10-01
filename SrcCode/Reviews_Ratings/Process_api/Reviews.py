@@ -12,7 +12,6 @@ class reviews:
 
     def add(self,inn_json,jwt):
         header={"Authorization": jwt}
-        print(f'{self.baseurl}/dbreviews/')
         return requests.post(f'{self.baseurl}/dbreviews/',headers=header,json=inn_json)
 
     def delete(self,jwt,params):

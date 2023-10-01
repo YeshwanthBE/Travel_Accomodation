@@ -100,7 +100,7 @@ def tokenauth(ap):
 
 @app.route('/dbprofile/<int:ap>/promote/',methods=['POST'])
 @token_required
-def auth(mailid):
+def promote(mailid,ap):
     try:
         data=request.get_json()
         obj=User()
@@ -110,9 +110,9 @@ def auth(mailid):
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
 
-@app.route('/showallusers/')
+@app.route('/dbprofile/<int:ap>/showallusers/')
 @token_required
-def showall(mailid):
+def showall(mailid,ap):
     try:
         obj=User()
         obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")

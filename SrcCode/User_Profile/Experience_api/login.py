@@ -116,7 +116,7 @@ def promote():
 def showal():
     qp=request.args
     cred=json.loads(request.cookies.get("usr"))
-    requests.post(f'{baseurl}/showusers/',headers={"Authorization": cred['jwt']},params=qp)
+    requests.get(f'{baseurl}/showusers/',headers={"Authorization": cred['jwt']},params=qp)
     render_template("showusers.html")
 
 if __name__ == '__main__':

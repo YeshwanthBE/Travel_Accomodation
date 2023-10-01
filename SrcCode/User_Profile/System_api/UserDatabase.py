@@ -126,7 +126,7 @@ class User:
     def promote(self,mailid):
         try:
             self.db.start_transaction()
-            self.cursor.execute(f'INSERT INTO admin select * from users where ,mailid=%s',(mailid,))
+            self.cursor.execute(f'INSERT INTO admin select * from users where mailid=%s',(mailid,))
             self.db.commit()
         except Exception as e:
             self.db.rollback()
@@ -136,14 +136,12 @@ class User:
         try:
             if mailid:
                 return self.show_user(mailid)
-            self.cursor.execute("select * from users")
+            self.cursor.execute("select mailid,name from users")
             lst=[]
             for user in self.cursor.fetchall():
                 result_dict = {
                     "mailid": user[0],
-                    "name": user[3],
-                    "address": user[4],
-                    "phno": user[5]
+                    "name": user[1],
                     }
                 lst.append(result_dict)
             return json.dumps(lst, indent=4)
