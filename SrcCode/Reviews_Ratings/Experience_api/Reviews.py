@@ -5,7 +5,7 @@ import yaml
 import os 
 import uuid
 app=Flask(__name__)
-with open(os.getcwd()+'\\SrcCode\\Accomodations\\Experience_api\\config.yaml', 'r') as file:
+with open(os.getcwd()+'\\SrcCode\\Reviews_Ratings\\Experience_api\\config.yaml', 'r') as file:
     global baseurl
     config=yaml.safe_load(file)
     baseurl= config['url']['domainurl']
@@ -33,13 +33,13 @@ def reviews():
         requests.post(baseurl+"/reviews/",json=data,headers={"Authorization": cred['jwt']})
     elif request.method=="PATCH":
         data={
-        "rid": qp.get('acmid'),
+        "rid": qp.get('rid'),
         "review": request.form["review"],
         "rating": request.form["rating"],
         }
         requests.patch(baseurl+"/reviews/",json=data,headers={"Authorization": cred['jwt']})
     else:
-        requests.patch(baseurl+"/reviews/",params=request.args,headers={"Authorization": cred['jwt']})
+        requests.delete(baseurl+"/reviews/",params=request.args,headers={"Authorization": cred['jwt']})
     redirect(url_for("show"))    
 
 if __name__ == '__main__':
