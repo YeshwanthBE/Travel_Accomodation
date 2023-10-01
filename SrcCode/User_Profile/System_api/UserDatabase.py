@@ -122,4 +122,30 @@ class User:
                 return json.dumps({"tk":response[0],"expiry":str(response[1])},indent=4)
         except Exception as e:
             raise e
-        
+    
+    def promote(self,mailid):
+        try:
+            self.db.start_transaction()
+            self.cursor.execute(f'INSERT INTO admin select * from users where ,mailid=%s',(mailid,))
+            self.db.commit()
+        except Exception as e:
+            self.db.rollback()
+            raise e
+    
+    def showall(self,mailid=None):
+        try:
+            if mailid:
+                return self.show_user(mailid)
+            self.cursor.execute("select * from users")
+            lst=[]
+            for user in self.cursor.fetchall():
+                result_dict = {
+                    "mailid": user[0],
+                    "name": user[3],
+                    "address": user[4],
+                    "phno": user[5]
+                    }
+                lst.append(result_dict)
+            return json.dumps(lst, indent=4)
+        except Exception as e:
+            raise e

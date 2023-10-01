@@ -74,5 +74,25 @@ def rp(ap):
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     
+@app.route('/adminpriv/<int:ap>/',methods=['POST'])
+def promote(ap):
+    try:
+        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",ap)
+        jwt=request.headers.get('Authorization')
+        response=obj.promote(request.get_json(),jwt)
+        return jsonify(response.json()),response.status_code
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
+
+@app.route('/showusers/')
+def showall():
+    try:
+        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",1)
+        jwt=request.headers.get('Authorization')
+        response=obj.showall(request.args,jwt)
+        return jsonify(response.json()),response.status_code
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
+
 if __name__ == '__main__':
    app.run(debug = True,port=8080)  

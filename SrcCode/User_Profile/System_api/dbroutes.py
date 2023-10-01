@@ -98,5 +98,28 @@ def tokenauth(ap):
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
 
+@app.route('/dbprofile/<int:ap>/promote/',methods=['POST'])
+@token_required
+def auth(mailid):
+    try:
+        data=request.get_json()
+        obj=User()
+        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.promote(data['mailid'])
+        return jsonify({"message":"promoted as admin"}),401
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
+
+@app.route('/showallusers/')
+@token_required
+def showall(mailid):
+    try:
+        obj=User()
+        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        data=request.args
+        return jsonify(obj.showall(data.get('mailid'))),200
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
+    
 if __name__ == '__main__':
    app.run(debug = True)  

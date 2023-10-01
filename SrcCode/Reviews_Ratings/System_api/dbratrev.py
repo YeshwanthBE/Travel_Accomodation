@@ -66,8 +66,6 @@ class rr:
                 "datetime": str(i[5])
                 }
                 lst.append(result_dict)
-            print(lst)
             return(json.dumps(lst))
         except Exception as e:
-            print(e)
             raise e

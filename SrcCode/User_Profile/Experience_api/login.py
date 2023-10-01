@@ -105,5 +105,19 @@ def delete():
     response.delete_cookie("usr")
     return response
 
+@app.route('/adminprev/',methods=['POST'])
+def promote():
+    data=request.get_json()
+    cred=json.loads(request.cookies.get("usr"))
+    requests.post(f'{baseurl}/adminpriv/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
+    response=make_response(redirect(url_for("showall")))
+
+@app.route('/showusers/')
+def showal():
+    qp=request.args
+    cred=json.loads(request.cookies.get("usr"))
+    requests.post(f'{baseurl}/showusers/',headers={"Authorization": cred['jwt']},params=qp)
+    render_template("showusers.html")
+
 if __name__ == '__main__':
    app.run(debug = True,port=8081)  

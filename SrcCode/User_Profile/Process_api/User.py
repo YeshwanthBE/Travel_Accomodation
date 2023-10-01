@@ -55,3 +55,9 @@ class Profile:
 
     def rstpwd(self,pwd,jwt):
         return requests.post(f'{self.baseurl}/',json=pwd,headers={"Authorization": jwt})
+
+    def promote(self,mailid:json,jwt):
+        return requests.post(f'{self.baseurl}/promote/',json=mailid,headers={"Authorization": jwt})
+    
+    def showall(self,mailid:json,jwt):
+        return requests.get(f'{self.baseurl}/showallusers/',params=mailid,headers={"Authorization": jwt})
