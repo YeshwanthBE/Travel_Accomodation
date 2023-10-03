@@ -11,7 +11,7 @@ with open(os.getcwd()+'\\SrcCode\\Reviews_Ratings\\Experience_api\\config.yaml',
     baseurl= config['url']['domainurl']
     app.secret_key=config['app']['key']
 
-@app.route('/booking/',methods=['GET','POST','PATCH',"DELETE"])
+@app.route('/reviews/',methods=['GET','POST','PATCH',"DELETE"])
 def reviews():
     cred=json.loads(request.cookies.get("usr"))
     qp=request.args

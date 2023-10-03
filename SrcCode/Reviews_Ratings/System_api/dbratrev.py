@@ -32,7 +32,7 @@ class rr:
     def mod(self,rr_json:json) :
         try:
             self.db.start_transaction()
-            self.cursor.execute(f"update reviews set rating=%s,review=%s where review_id=%s",(rr_json['rating'],rr_json['review'],rr_json['rid']))
+            self.cursor.execute(f"update reviews set rating=%s,review=%s where review_id=%s;",(rr_json['rating'],rr_json['review'],rr_json['rid']))
             self.db.commit()
         except Exception as e:
             self.db.rollback()
