@@ -12,15 +12,21 @@ body{
     background-repeat: no-repeat;
     
 }
+.Profilebuttons{
+    display: flex;
+}
 .button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff; /* Button background color */
-    color: #fff; /* Button text color */
-    text-decoration: none; /* Remove underlines from links */
-    border: none; /* Remove button border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Add a pointer cursor on hover */
+    background-color: #007bff;
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    height: 35px;
+    margin: 10px;
+    font-size: 12px;
 }
 .Header{
     display: flex;

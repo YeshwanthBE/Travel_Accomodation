@@ -13,9 +13,13 @@
         <div>
             <h1 class="Heading">OneyesExplora!!</h1>
         </div>
-        <div>
+        <div class="Profilebuttons">
             {% if show_profile_button %}
-                <a href="{{url_for('promote')}}" class="button">Profile</a>
+                <a href="{{url_for('promote')}}" class="button" >Profile</a>
+                <form id="postForm" method="post" action="{{url_for('logout')}}">
+                    <input type="hidden">
+                    <button type="submit" class="button">Logout</button>
+                </form>
             {% else %}
                 <a href="{{url_for('login')}}" class="button">Login</a>
             {% endif %}
