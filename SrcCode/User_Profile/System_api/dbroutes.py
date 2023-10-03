@@ -106,7 +106,7 @@ def promote(mailid,ap):
         obj=User()
         obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
         obj.promote(data['mailid'])
-        return jsonify({"message":"promoted as admin"}),401
+        return jsonify({"message":"promoted as admin"}),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
 

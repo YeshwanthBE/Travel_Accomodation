@@ -53,9 +53,11 @@ class User:
     
     def del_user(self,mailid:str,ap=0):
         try:
+            self.db.commit()
             self.db.start_transaction()
             table= "admin" if ap else "users"
             self.cursor.execute(f'select * from {table} where mailid=%s for update',(mailid,))
+            self.cursor.fetchone()
             self.cursor.execute(f"delete from {table} where mailid=%s;",(mailid,))
             self.db.commit()
         except Exception as e:
@@ -90,7 +92,6 @@ class User:
         
     def Auth(self,mailid,password,ap=0):
         try:
-            self.db.start_transaction()
             table= "admin" if ap else "users"
             self.cursor.execute(f"select salt from {table} where mailid=%s",(mailid,))
             salt=self.cursor.fetchone()[0]
