@@ -4,6 +4,7 @@ import json
 import yaml
 import os 
 app=Flask(__name__)
+app.static_folder = 'static'
 with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r') as file:
     global baseurl
     config=yaml.safe_load(file)
@@ -12,14 +13,14 @@ with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r
 @app.route('/')
 def Homepage():
     if request.cookies.get('usr'):
-        render_template("index.html")
+        return render_template("index.html")
     else: 
-        render_template("homepage.html")
+        return render_template("homepage.html")
 
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if request.method=="GET":
-        render_template("Sign_up.html")
+        return render_template("signup.html")
     else:
         data={
         "mailid": request.form["mailid"],
@@ -29,14 +30,14 @@ def signup():
         "phno": request.form["phno"]
         }
         response=requests.post(baseurl+"/profile/0/register",json=data)
-        flash(response.json)
-        if response.status_code ==200:
-            redirect(url_for("login"))
+        flash(response.json())
+        if response.status_code ==201:
+            return redirect(url_for("login"))
 
 @app.route("/login/",methods=['GET','POST'])
 def login():
    if request.method=="GET":
-        render_template("Login.html")
+        return render_template("login.html")
    else:
         data={
         "mailid": request.form["mailid"],

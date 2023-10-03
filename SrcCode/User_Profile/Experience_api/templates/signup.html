@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Signup-oneyesExplora</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}"> 
+</head>
+<body>
+    <div class="center">
+        <h1>Signup</h1>
+        <form method="post" action="{{ url_for('signup') }}"> 
+            <div class="txt_field">
+                <input type="text" name="mailid" required>
+                <span></span>
+                <label>Email</label> 
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="confirm_password" required>
+                <span></span>
+                <label>Confirm Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" name="name" required>
+                <span></span>
+                <label>Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" name="address" required>
+                <span></span>
+                <label>Address</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" name="phno" required>
+                <span></span>
+                <label>Phone Number</label>
+            </div>
+            <input type="submit" value="Signup">
+            <div class="login_link">
+                Already a member? <a href="{{ url_for('login') }}?ap=1">Login</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

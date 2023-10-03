@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+body{
+    height: 100vh;
+    overflow: hidden;
+    background-image: url(Images/hpbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    text-decoration: none; /* Remove underlines from links */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+}
+.Header{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    align-items: center;
+    padding-top: 30px;
+}
+.Heading{
+    font-family: 'Young Serif', serif;
+    font-size: 50px;
+    color: rgb(41, 89, 223);
+    background-color: rgba(21, 70, 204, 0.295);
+    border-radius: 50px;
+}
