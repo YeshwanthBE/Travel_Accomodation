@@ -12,10 +12,8 @@ with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r
     app.secret_key=config['app']['key']
 @app.route('/')
 def Homepage():
-    if request.cookies.get('usr'):
-        return render_template("index.html")
-    else: 
-        return render_template("homepage.html")
+    spb='usr' in request.cookies
+    return render_template("homepage.html",show_profile_button=spb)
 
 @app.route('/signup/',methods=['GET','POST'])
 def signup():

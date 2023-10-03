@@ -7,7 +7,10 @@
 </head>
 <body>
     <div class="center">
-        <h1>Signup</h1>
+        <div class="boxhead">
+            <a href="{{url_for('Homepage')}}"><img src="{{ url_for('static', filename='css/Images/icon.png') }}"></a>
+            <h1 style="flex: 1;">Signup</h1>
+          </div>
         <form method="post" action="{{ url_for('signup') }}"> 
             <div class="txt_field">
                 <input type="text" name="mailid" required>

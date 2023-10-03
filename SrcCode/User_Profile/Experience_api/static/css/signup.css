@@ -15,6 +15,16 @@ body{
   background-size: cover;
   background-repeat: no-repeat;
 }
+.boxhead{
+  display: flex;
+  border-bottom: 1px solid silver;
+  align-items: center;
+}
+.boxhead img{
+  padding-top: 3px;
+  padding-left: 10px;
+  width: 67px;
+}
 .center{
   position: absolute;
   top: 50%;
@@ -27,8 +37,8 @@ body{
 }
 .center h1{
   text-align: center;
-  padding: 10px 0;
-  border-bottom: 1px solid silver;
+  padding: 20px 0px;
+  padding-right: 60px;
 }
 .center form{
   padding: 0 40px;
@@ -96,6 +106,7 @@ input[type="submit"]{
   font-weight: 700;
   cursor: pointer;
   outline: none;
+  margin-bottom: 10px;
 }
 input[type="submit"]:hover{
   border-color: #2691d9;

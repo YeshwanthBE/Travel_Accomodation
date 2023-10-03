@@ -14,7 +14,11 @@
             <h1 class="Heading">OneyesExplora!!</h1>
         </div>
         <div>
-            <a href="{{url_for('login')}}" class="button">Login</a>
+            {% if show_profile_button %}
+                <a href="{{url_for('promote')}}" class="button">Profile</a>
+            {% else %}
+                <a href="{{url_for('login')}}" class="button">Login</a>
+            {% endif %}
         </div>
     </div>
 </body>
