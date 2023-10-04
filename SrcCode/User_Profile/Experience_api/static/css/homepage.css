@@ -5,6 +5,8 @@
     font-family: "Poppins", sans-serif;
   }
 body{
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     overflow: hidden;
     background-image: url(Images/hpbg.jpg);
@@ -54,6 +56,7 @@ body{
     font-size: 12px;
 }
 .Header{
+    flex:1;
     display: flex;
     justify-content: space-between;
     padding-left: 25px;
@@ -61,10 +64,66 @@ body{
     align-items: center;
     padding-top: 30px;
 }
+.acmbody{
+    display: flex;
+    justify-content: center;
+}
 .Heading{
     font-family: 'Young Serif', serif;
     font-size: 50px;
     color: rgb(41, 89, 223);
     background-color: rgba(21, 70, 204, 0.295);
     border-radius: 50px;
+}
+.acms{
+    flex: 1;
+    margin: 50px;
+    background-color: #ffffff58;
+    border-radius: 25px;
+    padding: 10px;
+    overflow-y:auto;
+    height: 60%;
+    max-width: 90%;
+}
+
+.acm{
+    display: flex;
+    background-color: rgba(228, 228, 228, 0.931);
+    border-radius: 20px;
+    margin: 10px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    justify-content: space-between;
+    
+}
+.hotelnamesubmit{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+.acmimg{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.acminfo{
+    flex: 4;
+    font-size: 25px;
+    padding-left: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.acminfo h3{
+    color: #fe0000;
+    font-family: 'Cinzel Decorative', cursive;
+}
+.acminfo p{
+    font-size: 15px;
+    color: #895500;
+}
+.imgsrc{
+    width: 250px;
+    border-radius: 20px;
+    padding: 10px;
 }

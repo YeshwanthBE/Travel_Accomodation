@@ -8,8 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div>
     <div class="Header">
         <div>
             <h1 class="Heading">OneyesExplora!!</h1>
@@ -32,23 +34,21 @@
             <button type="submit" class="searchbutton"><img src="{{ url_for('static', filename='css/Images/searchicon.png') }}" class="searchicon"></button>
         </form>
     </div>
-    <div>
+    </div>
+    <div class="acmbody">
+    <div class="acms">
         {% for accommodation in accommodations %}
             <div class="acm">
                 <div class="acmimg">
-                    <img src="{{ accommodation.image }}" alt="Accommodation Image">
+                    <img src="{{ accommodation.image }}" alt="Accommodation Image" class="imgsrc">
                 </div>
                 <div class="acminfo">
-                    <ul>
-                        <li>
-                            <strong>Name:</strong> {{ accommodation.name }}<br>
-                            <strong>Location:</strong> {{ accommodation.location }}<br>
-                            <strong>Price:</strong> ${{ accommodation.price }}<br>
-                        </li>
-                    </ul>
+                    <h3>{{ accommodation.name }}<h3>
+                    <p>{{ accommodation.description }}</p>
                 </div>
+                <button class="button">Book</button>
             </div>
         {% endfor %}
-
     </div>
+    
 </body>

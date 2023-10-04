@@ -74,7 +74,7 @@ class acm:
     
     def searchacm(self,location,minp,maxp,sort,desc):
         try:
-            query=f"select name,description from accommodations where price>{minp}"
+            query=f"select name,description,image_url from accommodations where price>{minp}"
             if maxp:
                 query+=f' and price<{maxp}'
             if location:
@@ -88,7 +88,12 @@ class acm:
             self.cursor.execute(query)
             lst=[]
             for i in self.cursor.fetchall():
-                lst.append({i[0]:i[1]})
+                data={
+                    "name":i[0],
+                    "description":i[1],
+                    "image":i[2]
+                }
+                lst.append(data)
             return(json.dumps(lst))
         except Exception as e:
             raise e
