@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
 </head>
 <body>
     <div class="Header">
@@ -24,5 +25,30 @@
                 <a href="{{url_for('login')}}" class="button">Login</a>
             {% endif %}
         </div>
+    </div>
+    <div class="Searchbar">
+        <form action="/search" method="get" class="Searchform">
+            <input type="text" name="query" placeholder="Search..." class="Search">
+            <button type="submit" class="searchbutton"><img src="{{ url_for('static', filename='css/Images/searchicon.png') }}" class="searchicon"></button>
+        </form>
+    </div>
+    <div>
+        {% for accommodation in accommodations %}
+            <div class="acm">
+                <div class="acmimg">
+                    <img src="{{ accommodation.image }}" alt="Accommodation Image">
+                </div>
+                <div class="acminfo">
+                    <ul>
+                        <li>
+                            <strong>Name:</strong> {{ accommodation.name }}<br>
+                            <strong>Location:</strong> {{ accommodation.location }}<br>
+                            <strong>Price:</strong> ${{ accommodation.price }}<br>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+
     </div>
 </body>

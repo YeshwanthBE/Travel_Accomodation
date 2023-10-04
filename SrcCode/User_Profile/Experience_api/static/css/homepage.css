@@ -14,6 +14,31 @@ body{
 }
 .Profilebuttons{
     display: flex;
+}.Searchbar{
+    display: flex;
+    align-items: baseline;
+}
+.Searchform{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.searchicon{
+    padding-top: 25px;
+    width: 25px;
+    margin-left: -50px;
+}
+.searchbutton{
+    border: none;
+}
+.Search{
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 10px;
+    max-width: 600px;
+    flex: 1;
+   
 }
 .button {
     display: inline-block;
