@@ -44,14 +44,16 @@ def register():
 
 @app.route("/acm/mod/",methods=['GET','DELETE','PATCH'])
 def acm():
-    cred=json.loads(request.cookies.get("usr"))
+
     if request.method=='GET':
-        data=requests.get(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},params=request.args)
-        render_template("singleacm.html")
+        data=requests.get(f'{baseurl}/acm/op/',params=request.args)
+        return data.json()
     elif request.method=='DELETE':
+        cred=json.loads(request.cookies.get("usr"))
         requests.delete(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},params=request.args)
         return redirect(url_for("showall"))
     else:
+        cred=json.loads(request.cookies.get("usr"))
         data={
         "description": request.form["description"],
         "phno": request.form["phno"],
