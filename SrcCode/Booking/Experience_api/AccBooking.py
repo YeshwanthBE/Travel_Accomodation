@@ -6,7 +6,7 @@ import os
 import uuid
 app=Flask(__name__)
 with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as file:
-    global baseurl
+    global baseurl,config
     config=yaml.safe_load(file)
     baseurl= config['url']['domainurl']
     app.secret_key=config['app']['key']
@@ -14,7 +14,9 @@ with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as
 @app.route('/booking/',methods=['GET','POST'])
 def register():
     if request.method=="GET":
-        render_template("booking.html")
+         acm=requests.get(config['url']['acmurl']+"/acm/mod/",params=request.args)
+         print(acm.json())
+         return render_template("booking.html")
     else:
         cred=json.loads(request.cookies.get("usr"))
         qp=request.args
@@ -45,4 +47,4 @@ def showall():
     render_template("display.html",json=data)
     
 if __name__ == '__main__':
-   app.run(debug = True,port=8083)  
+   app.run(debug = True,port=8093)  

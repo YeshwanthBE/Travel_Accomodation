@@ -27,9 +27,8 @@ class acm:
         header={"Authorization": jwt}
         return requests.post(f'{self.baseurl}/ad',headers=header,json=inn_json)
     
-    def showacm(self,jwt,params):
-        header={"Authorization": jwt}
-        return requests.get(f'{self.baseurl}/ad',headers=header,params=params)
+    def showacm(self,params):
+        return requests.get(f'{self.baseurl}/ad',params=params)
     
     def modifyacm(self,inn_json,jwt,params):
         header={"Authorization": jwt}

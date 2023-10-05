@@ -23,16 +23,20 @@ def token_required(f):
         return f(*args, **kwargs)
     return decorated
 
-@app.route('/acm/ad/',methods=['GET','POST','DELETE','PATCH'])
+@app.route('/acm/ad/')
+def getacm():
+    obj=acm()
+    qp=request.args
+    obj.connect(os.getcwd()+"\\SrcCode\\Accomodations\\System_api\\config.yaml")
+    return jsonify(obj.show_acm(qp.get('acmid')))
+@app.route('/acm/ad/',methods=['POST','DELETE','PATCH'])
 @token_required
 def acmtools():
     try:
         obj=acm()
         qp=request.args
         obj.connect(os.getcwd()+"\\SrcCode\\Accomodations\\System_api\\config.yaml")
-        if request.method=='GET':
-            return jsonify(obj.show_acm(qp.get('mailid')))
-        elif request.method=='DELETE':
+        if request.method=='DELETE':
             obj.del_acm(qp.get('mailid'))
             return jsonify({"message": "Accomodation Deleted Successfully"}), 200
         elif request.method=='POST':

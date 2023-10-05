@@ -21,7 +21,7 @@ def acmop():
         obj=acm(os.getcwd()+"\\SrcCode\\Accomodations\\Process_api\\config.yaml")
         jwt=request.headers.get('Authorization')
         if request.method=='GET':
-            response=obj.showacm(jwt,request.args)
+            response=obj.showacm(request.args)
             return jsonify(response.json()),response.status_code
         elif request.method=='DELETE':
             response=obj.delacm(jwt,request.args)
