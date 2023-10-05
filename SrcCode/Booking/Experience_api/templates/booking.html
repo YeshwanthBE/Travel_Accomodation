@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div>
+            <div class="Header">
+                <div>
+                    <h1 class="Heading">OneyesExplora!!</h1>
+                </div>
+                <div class="Profilebuttons">
+                        <a href="{{url_for('register')}}" class="button" >Profile</a>
+                        <form id="postForm" method="post" action="{{url_for('register')}}">
+                            <input type="hidden">
+                            <button type="submit" class="button">Logout</button>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div class="descbody">
+            <div class="acminfo">
+                <div class="hotel">
+                    <div class="imgdesc">
+                        <img src="{{ acm.imgurl }}" alt="Accommodation Image" class="imgsrc">
+                        <div>   <div class="namedesc">
+                            <h3>{{ acm.name }}<h3>
+                            <p>{{ acm.description }}</p>
+                        </div>
+                        <div class="impdetails">
+                            <p>Location:{{acm.location}}</p>
+                            <p>{{acm.rating}}&#128970;</p>
+                            <p>Contact:{{acm.phno}}</p>
+                            <p>&#x20B9;{{acm.price}}/Day</p>
+                        </div></div>
+                    </div>
+                    <div>
+                        <p>hello</p>
+                    </div>
+                </div>
+                <div class="booking">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

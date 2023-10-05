@@ -15,8 +15,7 @@ with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as
 def register():
     if request.method=="GET":
          acm=requests.get(config['url']['acmurl']+"/acm/mod/",params=request.args)
-         print(acm.json())
-         return render_template("booking.html")
+         return render_template("booking.html",acm=acm.json())
     else:
         cred=json.loads(request.cookies.get("usr"))
         qp=request.args

@@ -1,4 +1,4 @@
-from flask import Flask,render_template,url_for,request,flash,redirect,make_response
+from flask import Flask,render_template,url_for,request,flash,redirect,make_response,session
 import requests
 import json
 import yaml
@@ -6,7 +6,7 @@ import os
 app=Flask(__name__)
 app.static_folder = 'static'
 with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r') as file:
-    global baseurl
+    global baseurl,config
     config=yaml.safe_load(file)
     baseurl= config['url']['domainurl']
     app.secret_key=config['app']['key']
@@ -123,5 +123,12 @@ def logout():
     response.delete_cookie("usr")
     return response
 
+@app.route("/booking/",methods=['GET'])
+def booking():
+    if 'usr' not in request.cookies:
+        return redirect(url_for("login"))
+    else:
+        return redirect(config['url']['bookingurl']+f"?acmid={request.args.get('acmid')}")
+    
 if __name__ == '__main__':
    app.run(debug = True,port=8081)  

@@ -46,9 +46,9 @@
                     <h3>{{ accommodation.name }}<h3>
                     <p>{{ accommodation.description }}</p>
                 </div>
-                <button class="button">Book</button>
+                <a href="{{url_for('booking')}}?acmid={{accommodation.acmid}}" class="button">Book</a>
             </div>
         {% endfor %}
     </div>
-    
+    </div>
 </body>

@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url(Images/hpbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.Profilebuttons{
+    display: flex;
+}
+.Header{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    align-items: center;
+    padding-top: 30px;
+}
+.Heading{
+    font-family: 'Young Serif', serif;
+    font-size: 50px;
+    color: rgb(41, 89, 223);
+    background-color: rgba(21, 70, 204, 0.295);
+    border-radius: 50px;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    height: 35px;
+    margin: 10px;
+    font-size: 12px;
+}
+.acminfo{
+    
+    flex: 1;
+    display: flex;
+    margin: 50px;
+    background-color: #39acff58;
+    border-radius: 25px;
+    padding: 10px;
+    max-height: 90%;
+    max-width: 90%;
+    
+}
+.descbody{
+    flex:1;
+    display: flex;
+    justify-content: center;
+}
+.imgsrc{
+    flex: 1;
+    height: 300px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(121, 179, 234, 0.931);
+    margin: 10px;
+}
+.namedesc{
+    flex: 4;
+    font-size: 28px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column; 
+    background-color: rgba(121, 179, 234, 0.931);
+    height: fit-content;
+    border-radius: 25px;
+    margin: 10px;
+    padding: 10px;
+}
+.namedesc h3{
+    color: #fe0000;
+    font-family: 'Cinzel Decorative', cursive;
+}
+.namedesc p{
+    font-size: 20px;
+    color: #895500;
+}
+.hotel{
+    flex: 3;
+}
+.booking{
+    flex: 1;
+}
+.imgdesc{
+    display: flex;
+}
+.impdetails{
+    display: flex;
+    background-color: rgba(121, 179, 234, 0.931);
+    height: fit-content;
+    border-radius: 25px;
+    margin: 10px;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+.impdetails p{
+    background-color: #ffffffc4;
+    margin: 5px 0px;
+    padding: 5px;
+    border-radius: 12px;
+    font-family: 'Young Serif', serif;
+    font-size: 25px;
+    color: #007bff;
+}

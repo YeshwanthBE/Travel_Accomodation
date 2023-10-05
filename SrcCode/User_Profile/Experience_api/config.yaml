@@ -1,4 +1,5 @@
 url:
   domainurl: "http://127.0.0.1:8080"
+  bookingurl: "http://127.0.0.1:8093/booking/"
 app:
   key: 'a'
