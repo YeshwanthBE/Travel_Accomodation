@@ -25,11 +25,10 @@ def review():
 def srchall():
     try:
          obj=reviews(os.getcwd()+"\\SrcCode\\Reviews_Ratings\\Process_api\\config.yaml")
-         jwt=request.headers.get('Authorization')
          data=request.get_json()
          if not data.get('sort'):
              data['sort']="rating"
-         response=obj.searchall(data,jwt)
+         response=obj.searchall(data)
          return jsonify(response.json()),response.status_code
     except Exception as e:
          return jsonify({"Exception": str(e)}),500

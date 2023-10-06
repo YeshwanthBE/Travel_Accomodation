@@ -45,8 +45,7 @@ def review(mailid):
         return jsonify({"Exception": str(e)}),500
     
 @app.route('/dballreviews/')
-@token_required
-def show(mailid):
+def show():
     try:
         obj=rr()
         obj.connect(os.getcwd()+"\\SrcCode\\Reviews_Ratings\\System_api\\config.yaml")

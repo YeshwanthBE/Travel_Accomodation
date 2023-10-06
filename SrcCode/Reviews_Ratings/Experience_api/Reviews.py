@@ -13,7 +13,6 @@ with open(os.getcwd()+'\\SrcCode\\Reviews_Ratings\\Experience_api\\config.yaml',
 
 @app.route('/reviews/',methods=['GET','POST','PATCH',"DELETE"])
 def reviews():
-    cred=json.loads(request.cookies.get("usr"))
     qp=request.args
     if request.method=="GET":
         data={
@@ -21,10 +20,10 @@ def reviews():
         "sort": qp.get('sort'),
         "asc": qp.get('asc')
         }
-        response=requests.get(baseurl+"/reviews/searchall/",json=data,headers={"Authorization": cred['jwt']})
-        return render_template("review.html",json=response),200
-        
-    elif request.method=="POST":
+        response=requests.get(baseurl+"/reviews/searchall/",json=data)
+        return response.json()
+    cred=json.loads(request.cookies.get("usr"))
+    if request.method=="POST":
         data={
         "acmid": qp.get('acmid'),
         "review": request.form["review"],

@@ -14,8 +14,9 @@ with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as
 @app.route('/booking/',methods=['GET','POST'])
 def register():
     if request.method=="GET":
-         acm=requests.get(config['url']['acmurl']+"/acm/mod/",params=request.args)
-         return render_template("booking.html",acm=acm.json())
+         acm=requests.get(config['url']['acmurl']+"/acm/mod/",params=request.args).json()
+         reviews=requests.get(config['url']['revurl']+"/reviews/",params=request.args).json()
+         return render_template("booking.html",acm=acm,reviews=reviews)
     else:
         cred=json.loads(request.cookies.get("usr"))
         qp=request.args

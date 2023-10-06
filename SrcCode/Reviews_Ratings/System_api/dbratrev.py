@@ -59,7 +59,7 @@ class rr:
             for i in self.cursor.fetchall():
                 result_dict = {
                 "reviewid": i[0],
-                "userid": i[1],
+                "userid": i[1].split('@')[0],
                 "acmid": i[2],
                 "rating": float(i[3]),
                 "review": i[4],

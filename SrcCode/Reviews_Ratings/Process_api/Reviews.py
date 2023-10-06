@@ -22,5 +22,5 @@ class reviews:
         header={"Authorization": jwt}
         return requests.patch(f'{self.baseurl}/dbreviews/',headers=header,json=inn_json)
 
-    def searchall(self,inn_json,jwt):
-        return requests.get(f'{self.baseurl}/dballreviews/',json=inn_json,headers={"Authorization": jwt})
+    def searchall(self,inn_json):
+        return requests.get(f'{self.baseurl}/dballreviews/',json=inn_json)
