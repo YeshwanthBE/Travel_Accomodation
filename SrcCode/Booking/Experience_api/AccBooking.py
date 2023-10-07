@@ -4,6 +4,7 @@ import json
 import yaml
 import os 
 import uuid
+from datetime import date, timedelta,datetime
 app=Flask(__name__)
 with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as file:
     global baseurl,config
@@ -16,7 +17,18 @@ def register():
     if request.method=="GET":
          acm=requests.get(config['url']['acmurl']+"/acm/mod/",params=request.args).json()
          reviews=requests.get(config['url']['revurl']+"/reviews/",params=request.args).json()
-         return render_template("booking.html",acm=acm,reviews=reviews)
+         min_date=str(date.today()+timedelta(days=1))
+         max_date=str(date.today()+timedelta(days=365))
+         print(type(min_date),max_date)
+         blockeddates=json.loads(requests.get(baseurl+'/allacmbks',params=request.args).json())
+         bdates=list()
+         for i in blockeddates:
+             checkin = datetime.strptime(i['checkin'], "%Y-%m-%d")
+             checkout = datetime.strptime(i['checkout'], "%Y-%m-%d")
+             while checkin <= checkout:
+                bdates.append(checkin.strftime("%Y-%m-%d"))
+                checkin += timedelta(days=1)
+         return render_template("booking.html",acm=acm,reviews=reviews,bdates=bdates,min_date=min_date,max_date=max_date)
     else:
         cred=json.loads(request.cookies.get("usr"))
         qp=request.args
@@ -26,6 +38,7 @@ def register():
         "checkout": request.form["checkout"],
         }
         response=requests.post(baseurl+"/pr/booking/",json=data,headers={"Authorization": cred['jwt']})
+        return response.json()
         flash(response.json())
         if response.status_code ==200:
             redirect(url_for("show"))

@@ -6,19 +6,22 @@
         <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}">
         <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+        <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
     </head>
     <body>
         <div>
             <div class="Header">
                 <div>
-                    <h1 class="Heading">OneyesExplora!!</h1>
+                    <a href="http://127.0.0.1:8081"><h1 class="Heading">OneyesExplora!!</h1></a>
                 </div>
                 <div class="Profilebuttons">
                         <a href="{{url_for('register')}}" class="button" >Profile</a>
                         <form id="postForm" method="post" action="{{url_for('register')}}">
                             <input type="hidden">
-                            <button type="submit" class="button">Logout</button>
+                            <button type="submit" class="button">Logout</button>    
                         </form>
                 </div>
             </div>
@@ -55,19 +58,18 @@
                 <div class="booking">
                     <form method="post">
                         <div class="txt_field">
-                          <input type="text"name="mailid" required>
-                          <span></span>
-                          <label>Username</label>
+                          <label>Checkin</label>
+                          <input type="date" name="checkin" id="checkin" min={{min_date}} max={{max_date}} required>
+                          <script>
+                            var blockedDates = '{{ bdates | tojson | safe }}';
+                        </script>
                         </div>
                         <div class="txt_field">
-                          <input type="password" name="password" required>
-                          <span></span>
-                          <label>Password</label>
+                            <label>Checkout</label>
+                            <input type="date" name="checkout" id="checkout" min={{min_date}} max={{max_date}} required>
                         </div>
-                        <div class="pass">Forgot Password?</div>
                         <div class="submitbuttons">
-                          <input type="submit" value="Login" formaction="http://127.0.0.1:8081/login/?ap=0">
-                          <input type="submit" value="Admin" formaction="http://127.0.0.1:8081/login/?ap=1">
+                          <input type="submit" value="Book" formaction="http://127.0.0.1:8081/login/?ap=0">
                         </div>
                       </form>
                 </div>

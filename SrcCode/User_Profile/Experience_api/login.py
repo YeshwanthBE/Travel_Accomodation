@@ -13,8 +13,9 @@ with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r
 @app.route('/')
 def Homepage():
     accommodation=requests.get("http://127.0.0.1:8083/searchall/").json()
+    query=request.args.get('query')
     spb='usr' in request.cookies
-    return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation)
+    return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation,query=query)
 
 @app.route('/signup/',methods=['GET','POST'])
 def signup():

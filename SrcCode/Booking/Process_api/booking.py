@@ -28,7 +28,7 @@ class bking:
 
     def booking(self,inn_json,jwt):
         header={"Authorization": jwt}
-        acm=requests.get(f"{self.accom}",params={"mailid":inn_json['acmid']},headers=header).json()
+        acm=requests.get(f"{self.accom}",params={"acmid":inn_json['acmid']},headers=header).json()
         inn_json['price']=float(acm['price'])*int((dt.strptime(inn_json['checkout'], "%Y-%m-%d")-dt.strptime(inn_json['checkin'], "%Y-%m-%d")).days+1)
         response=requests.post(f'{self.baseurl}/dbbk/',headers=header,json=inn_json)
         data=response.json()       
@@ -45,3 +45,6 @@ class bking:
 
     def searchbk(self,params,jwt):
         return requests.get(f'{self.baseurl}/dbbk/allbk/',params=params,headers={"Authorization": jwt})
+    
+    def allacmbks(self,params):
+        return requests.get(f'{self.baseurl}/dbbk/acmbks/',params=params)

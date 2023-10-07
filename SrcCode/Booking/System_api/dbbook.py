@@ -78,3 +78,17 @@ class bk:
             return(json.dumps(lst))
         except Exception as e:
             raise e
+
+    def showallacmbk(self,acmid):
+        try:
+            self.cursor.execute('select checkin,checkout from bookings where acmid=%s',(acmid,))
+            lst=[]
+            for i in self.cursor.fetchall():
+                result_dict = {
+                "checkin": str(i[0]),
+                "checkout": str(i[1])
+                }
+                lst.append(result_dict)
+            return(json.dumps(lst))
+        except Exception as e:
+            raise e

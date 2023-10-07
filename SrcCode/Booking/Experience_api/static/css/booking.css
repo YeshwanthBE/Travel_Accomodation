@@ -3,7 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+
   }
+a{
+    text-decoration: none;
+}
 body{
     display: flex;
     flex-direction: column;
@@ -125,6 +129,7 @@ body{
     padding: 10px;;
     overflow-y:scroll;
     max-height: 50%;
+    
 }
 .reviews{
     background-color: #ffffffc4;
@@ -146,6 +151,13 @@ body{
     margin: 3px;
     text-transform: uppercase;
 }
+.booking{
+    background-color: #ffffffc4;
+    border-radius: 25px;
+    margin: 10px 0px;
+    padding: 10px;
+    display: flex;
+}
 .rev{
     display: flex;
     border-radius: 10px;
@@ -154,4 +166,44 @@ body{
     padding: 5px;
     align-items: center;
     margin: 5px;
+    font-family: 'Cinzel Decorative', cursive;
 }
+.booking form{
+    flex: 1;
+}
+  .txt_field{
+    flex: 1;
+    border-radius: 17px;
+    background-color: white;
+    margin:10px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: space-around;
+  }
+  .txt_field label{
+    margin: 5px;
+    font-size: 35px;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+  .txt_field input{
+    font-size: 25px;
+    border-radius: 10px;
+    height:fit-content;
+
+  }
+  .submitbuttons{
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+  }
+  .submitbuttons input{
+    font-size: 25px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+  }

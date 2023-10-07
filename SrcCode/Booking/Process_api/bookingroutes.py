@@ -33,5 +33,13 @@ def srchall():
     except Exception as e:
          return jsonify({"Exception": str(e)}),500
 
+@app.route('/allacmbks')
+def acmbks():
+    try:
+         obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
+         response=obj.allacmbks(request.args)
+         return jsonify(response.json()),response.status_code
+    except Exception as e:
+         return jsonify({"Exception": str(e)}),500
 if __name__ == '__main__':
    app.run(debug = True,port=8085)  

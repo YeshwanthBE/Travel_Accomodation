@@ -14,7 +14,7 @@
     <div>
     <div class="Header">
         <div>
-            <h1 class="Heading">OneyesExplora!!</h1>
+            <a href="http://127.0.0.1:8081"><h1 class="Heading">OneyesExplora!!</h1></a>
         </div>
         <div class="Profilebuttons">
             {% if show_profile_button %}
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="Searchbar">
-        <form action="/search" method="get" class="Searchform">
+        <form action="{{url_for('Homepage')}}" method="get" class="Searchform">
             <input type="text" name="query" placeholder="Search..." class="Search">
             <button type="submit" class="searchbutton"><img src="{{ url_for('static', filename='css/Images/searchicon.png') }}" class="searchicon"></button>
         </form>
@@ -38,16 +38,20 @@
     <div class="acmbody">
     <div class="acms">
         {% for accommodation in accommodations %}
+        {% if query is none or accommodation.name.lower().startswith(query) %}   
             <div class="acm">
                 <div class="acmimg">
                     <img src="{{ accommodation.image }}" alt="Accommodation Image" class="imgsrc">
                 </div>
                 <div class="acminfo">
-                    <h3>{{ accommodation.name }}<h3>
+                    
+                    <h3>{{ accommodation.name }}</h3>
                     <p>{{ accommodation.description }}</p>
+                    
                 </div>
                 <a href="{{url_for('booking')}}?acmid={{accommodation.acmid}}" class="button">Book</a>
             </div>
+            {% endif %}
         {% endfor %}
     </div>
     </div>

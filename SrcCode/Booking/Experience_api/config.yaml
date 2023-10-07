@@ -2,5 +2,6 @@ url:
   domainurl: "http://127.0.0.1:8085"
   acmurl:  "http://127.0.0.1:8083"
   revurl: "http://127.0.0.1:8096"
+  homepage: "http://127.0.0.0:8081"
 app:
   key: 'a'
