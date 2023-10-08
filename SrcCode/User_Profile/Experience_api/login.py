@@ -12,11 +12,10 @@ with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r
     app.secret_key=config['app']['key']
 @app.route('/')
 def Homepage():
-    accommodation=requests.get("http://127.0.0.1:8083/searchall/").json()
-    query=request.args.get('query')
+    query=request.args.get('Name')
+    accommodation=json.loads(requests.get(baseurl+f'/showacms/',params=request.args).json())
     spb='usr' in request.cookies
     return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation,query=query)
-
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if request.method=="GET":

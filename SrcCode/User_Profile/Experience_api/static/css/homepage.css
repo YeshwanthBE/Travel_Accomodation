@@ -12,7 +12,7 @@ body{
     background-image: url(Images/hpbg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    
+    position: relative;
 }
 a{
     text-decoration: none;
@@ -30,13 +30,14 @@ a{
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.77);
     align-items: center;
-    padding: 5px 10px;
+    padding: 5px 40px;
     max-width: 750px;
     flex:1;
     position: relative;
-    padding-right: 40px;
+    z-index: 1;
+    margin-top: 20px;
 }
-.searchicon{
+.searchicon,.filtericon{
     width: 25px;
 }
 .searchbutton{
@@ -75,7 +76,6 @@ a{
     padding-right: 25px;
     align-items: center;
     padding-top: 30px;
-    
 }
 .acmbody{
     flex:1;
@@ -92,12 +92,13 @@ a{
 .acms{
     flex: 1;
     margin: 50px;
+    margin-top: 20px;
     background-color: #ffffff58;
     border-radius: 25px;
     padding: 10px;
     overflow-y:auto;
     height: fit-content;
-    max-height: 90%;
+    max-height: 92%;
     max-width: 90%;
 }
 
@@ -142,4 +143,25 @@ a{
     width: 250px;
     border-radius: 20px;
     padding: 10px;
+}
+.filter{
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    background-color: rgba(211, 211, 211, 0.64);
+    padding: 10px;
+    border-radius: 25px;
+    font-weight:600;
+    opacity: 0;
+    transition: opacity 0.01s ease-in-out;
+}
+
+.filter.visible {
+    opacity: 1;
+}
+.filtericon{
+    position: absolute;
+    background-color: white;
+    left: 10px;
+    border: none;
 }

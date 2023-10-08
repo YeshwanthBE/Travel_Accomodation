@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/filter.js') }}"></script>
 </head>
 <body>
     <div>
@@ -30,6 +31,17 @@
     </div>
     <div class="Searchbar">
         <form action="{{url_for('Homepage')}}" method="get" class="Searchform">
+           <img src="{{ url_for('static', filename='css/Images/filter.png') }}" class="filtericon">
+            <script src="script.js"></script>
+            <div class="filter">
+                <input type="radio" id="priceip" name="sorting" value="priceip">
+                <label for="priceip">Price &#8593;</label><br>
+                <input type="radio" id="pricedn" name="sorting" value="pricedn">
+                <label for="pricedn">Price &#8595;</label><br>
+                <input type="radio" id="rating" name="sorting" value="rating">
+                <label for="rating">Rating &#8595;</label><br>
+            </div>
+            <input type="text" name="Name" placeholder="Name" class="Search">
             <input type="text" name="location" placeholder="Location" class="Search">
             <input type="date" name="checkin" placeholder="Checkin..." class="Search">
             <input type="date" name="checkout" placeholder="Checkout..." class="Search">
