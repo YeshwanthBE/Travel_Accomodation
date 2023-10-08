@@ -13,9 +13,10 @@ with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r
 @app.route('/')
 def Homepage():
     query=request.args.get('Name')
+    print(request.args)
     accommodation=json.loads(requests.get(baseurl+f'/showacms/',params=request.args).json())
     spb='usr' in request.cookies
-    return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation,query=query)
+    return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation,query=query,length=len(accommodation))
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if request.method=="GET":

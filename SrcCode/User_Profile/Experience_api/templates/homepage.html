@@ -34,23 +34,26 @@
            <img src="{{ url_for('static', filename='css/Images/filter.png') }}" class="filtericon">
             <script src="script.js"></script>
             <div class="filter">
-                <input type="radio" id="priceip" name="sorting" value="priceip">
+                <input type="radio" id="priceip" name="sort" value="price">
                 <label for="priceip">Price &#8593;</label><br>
-                <input type="radio" id="pricedn" name="sorting" value="pricedn">
+                <input type="radio" id="pricedn" name="sort" value="price desc">
                 <label for="pricedn">Price &#8595;</label><br>
-                <input type="radio" id="rating" name="sorting" value="rating">
+                <input type="radio" id="rating" name="sort" value="rating desc">
                 <label for="rating">Rating &#8595;</label><br>
             </div>
             <input type="text" name="Name" placeholder="Name" class="Search">
             <input type="text" name="location" placeholder="Location" class="Search">
             <input type="date" name="checkin" placeholder="Checkin..." class="Search">
-            <input type="date" name="checkout" placeholder="Checkout..." class="Search">
+            <input type="date" name="checkout" placeholder="Checkout..." class="Searchdate">
             <button type="submit" class="searchbutton"><img src="{{ url_for('static', filename='css/Images/searchicon.png') }}" class="searchicon"></button>
         </form>
     </div>
     </div>
     <div class="acmbody">
     <div class="acms">
+        {%if length ==0 %}
+            <p class="filteredout">All Accommodations Filtered Out!!</p>
+        {% endif %}
         {% for accommodation in accommodations %}
         {% if query is none or accommodation.name.lower().startswith(query) %}   
             <div class="acm">
@@ -63,7 +66,11 @@
                     <p>{{ accommodation.description }}</p>
                     
                 </div>
-                <a href="{{url_for('booking')}}?acmid={{accommodation.acmid}}" class="button">Book</a>
+                <div class="acmend">
+                    <p>{{ accommodation.rating }}&#128970;</p>
+                    <a href="{{url_for('booking')}}?acmid={{accommodation.acmid}}" class="button">Book</a>
+                </div>
+                
             </div>
             {% endif %}
         {% endfor %}

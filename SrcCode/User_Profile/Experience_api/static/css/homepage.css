@@ -46,14 +46,18 @@ a{
     border: none;
     background-color: #fff;
 }
-.Search{
+.Search,.Searchdate{
     flex: 1;
     border-top: none;
     border-bottom: none;
     border-left: none;
-    padding: 15px 10px;
+    padding: 15px 10px;  
     border-right-color: lightgray;
     border-right-width:1px;  
+    width: 50%;
+}
+.Searchdate{
+    border: none;
 }
 .button {
     display: inline-block;
@@ -131,12 +135,12 @@ a{
     flex-direction: column;
 }
 .acminfo h3{
-    color: #fe0000;
+    color: #26045a;
     font-family: 'Cinzel Decorative', cursive;
 }
 .acminfo p{
     font-size: 20px;
-    color: #895500;
+    color: #b2120a;
 }
 .imgsrc{
     height: 150px;
@@ -164,4 +168,25 @@ a{
     background-color: white;
     left: 10px;
     border: none;
+}
+.acmend{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    font-family: 'Young Serif', serif;
+    font-size: 25px;
+}
+.acmend p{
+    color:rgb(94, 0, 128);
+    background-color: rgba(255, 127, 80, 0.719);
+    border-radius: 25px;
+    padding: 5px 8px;
+}
+.filteredout{
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Young Serif', serif;
+    color: rgb(16, 37, 107);
 }

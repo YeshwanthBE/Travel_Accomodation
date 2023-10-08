@@ -74,17 +74,14 @@ class acm:
     
     def searchacm(self,location,minp,maxp,sort,desc):
         try:
-            query=f"select name,description,image_url,mailid from accommodations where price>{minp}"
+            query=f"select name,description,image_url,mailid,rating from accommodations where price>{minp}"
             if maxp:
                 query+=f' and price<{maxp}'
             if location:
                 query+=f' and location="{location}"'
             if sort:
                 query+=f' order by {sort}'
-            if desc:
-                query+=' desc;'
-            else:
-                query+=';'
+            query+=';'
             self.cursor.execute(query)
             lst=[]
             for i in self.cursor.fetchall():
@@ -92,7 +89,8 @@ class acm:
                     "name":i[0],
                     "description":i[1],
                     "image":i[2],
-                    "acmid":i[3]
+                    "acmid":i[3],
+                    "rating":i[4]
                 }
                 lst.append(data)
             return(json.dumps(lst))
