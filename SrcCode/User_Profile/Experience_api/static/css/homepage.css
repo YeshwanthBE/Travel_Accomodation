@@ -22,28 +22,37 @@ a{
 }.Searchbar{
     display: flex;
     align-items: baseline;
-}
-.Searchform{
-    flex: 1;
-    display: flex;
     justify-content: center;
 }
+.Searchform{
+    background-color: #fff;
+    display: flex;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.77);
+    align-items: center;
+    padding: 5px 10px;
+    max-width: 750px;
+    flex:1;
+    position: relative;
+    padding-right: 40px;
+}
 .searchicon{
-    padding-top: 25px;
     width: 25px;
-    margin-left: -50px;
 }
 .searchbutton{
+    position: absolute;
+    right:10px;
     border: none;
+    background-color: #fff;
 }
 .Search{
-    border: none;
-    border-radius: 20px;
-    margin-top: 20px;
-    padding: 15px 10px;
-    max-width: 600px;
     flex: 1;
-   
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    padding: 15px 10px;
+    border-right-color: lightgray;
+    border-right-width:1px;  
 }
 .button {
     display: inline-block;
@@ -66,6 +75,7 @@ a{
     padding-right: 25px;
     align-items: center;
     padding-top: 30px;
+    
 }
 .acmbody{
     flex:1;
@@ -85,7 +95,7 @@ a{
     background-color: #ffffff58;
     border-radius: 25px;
     padding: 10px;
-    overflow-y:scroll;
+    overflow-y:auto;
     height: fit-content;
     max-height: 90%;
     max-width: 90%;

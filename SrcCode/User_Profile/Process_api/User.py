@@ -8,6 +8,7 @@ class Profile:
     def __init__(self,filepath,ap):
         self.ap=ap
         with open(filepath, 'r') as file:
+            global config
             config=yaml.safe_load(file)
             db=config['database']['baseurl']
             self.baseurl=f'{db}/dbprofile/{ap}' 
@@ -61,3 +62,6 @@ class Profile:
     
     def showall(self,mailid:json,jwt):
         return requests.get(f'{self.baseurl}/showallusers/',params=mailid,headers={"Authorization": jwt})
+    
+    def accommodations(self,params):
+        return requests.get(f"{config['url']['acmurl']}",params=params)

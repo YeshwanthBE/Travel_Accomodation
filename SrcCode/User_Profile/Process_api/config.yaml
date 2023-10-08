@@ -1,5 +1,7 @@
 database:
   baseurl: "http://127.0.0.1:5000"
+url:
+  acmurl: "http://127.0.0.1:8084/acm/searchall/"
 mail:
   server: "smtp.gmail.com"
   port: 587

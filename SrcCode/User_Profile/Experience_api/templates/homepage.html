@@ -30,7 +30,9 @@
     </div>
     <div class="Searchbar">
         <form action="{{url_for('Homepage')}}" method="get" class="Searchform">
-            <input type="text" name="query" placeholder="Search..." class="Search">
+            <input type="text" name="location" placeholder="Location" class="Search">
+            <input type="date" name="checkin" placeholder="Checkin..." class="Search">
+            <input type="date" name="checkout" placeholder="Checkout..." class="Search">
             <button type="submit" class="searchbutton"><img src="{{ url_for('static', filename='css/Images/searchicon.png') }}" class="searchicon"></button>
         </form>
     </div>

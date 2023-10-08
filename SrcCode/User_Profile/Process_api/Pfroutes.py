@@ -94,5 +94,14 @@ def showall():
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
 
+@app.route('/showacms/')
+def accommodations():
+    try:
+        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",1)
+        response=obj.accommodations(request.args)
+        return jsonify(response.json()),response.status_code
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
+    
 if __name__ == '__main__':
    app.run(debug = True,port=8080)  
