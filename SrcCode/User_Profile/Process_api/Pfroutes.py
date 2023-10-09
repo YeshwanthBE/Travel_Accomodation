@@ -99,7 +99,7 @@ def accommodations():
     try:
         obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",1)
         response=obj.accommodations(request.args)
-        return jsonify(response.json()),response.status_code
+        return jsonify(response),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     

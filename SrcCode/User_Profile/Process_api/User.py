@@ -64,4 +64,8 @@ class Profile:
         return requests.get(f'{self.baseurl}/showallusers/',params=mailid,headers={"Authorization": jwt})
     
     def accommodations(self,params):
-        return requests.get(f"{config['url']['acmurl']}",params=params)
+        acms=json.loads(requests.get(f"{config['url']['acmurl']}",params=params).json())
+        bk= json.loads(requests.get(f"{config['url']['bkurl']}",params=params).json())
+        acmids_to_remove = [acm_id[0] for acm_id in bk["acmid"]]
+        acms_filtered = [acm for acm in acms if acm["acmid"] not in acmids_to_remove]
+        return json.dumps(acms_filtered)

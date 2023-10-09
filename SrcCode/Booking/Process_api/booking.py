@@ -48,3 +48,5 @@ class bking:
     
     def allacmbks(self,params):
         return requests.get(f'{self.baseurl}/dbbk/acmbks/',params=params)
+    def acms(self,params):
+        return requests.get(f'{self.baseurl}/dbbk/acms/',params=params)
