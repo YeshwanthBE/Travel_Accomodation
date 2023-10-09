@@ -19,7 +19,8 @@ a{
 }
 .Profilebuttons{
     display: flex;
-}.Searchbar{
+}
+.Searchbar{
     display: flex;
     align-items: baseline;
     justify-content: center;

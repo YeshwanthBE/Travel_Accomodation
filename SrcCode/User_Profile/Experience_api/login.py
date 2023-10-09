@@ -3,6 +3,7 @@ import requests
 import json
 import yaml
 import os 
+from datetime import date, timedelta,datetime
 app=Flask(__name__)
 app.static_folder = 'static'
 with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r') as file:
@@ -13,10 +14,11 @@ with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r
 @app.route('/')
 def Homepage():
     query=request.args.get('Name')
-    print(request.args)
+    min_date=str(date.today()+timedelta(days=1))
+    max_date=str(date.today()+timedelta(days=365))
     accommodation=json.loads(requests.get(baseurl+f'/showacms/',params=request.args).json())
     spb='usr' in request.cookies
-    return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation,query=query,length=len(accommodation))
+    return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation,query=query,length=len(accommodation),min_date=min_date,max_date=max_date)
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if request.method=="GET":
@@ -124,12 +126,19 @@ def logout():
     response.delete_cookie("usr")
     return response
 
-@app.route("/booking/",methods=['GET'])
+@app.route("/booking/")
 def booking():
     if 'usr' not in request.cookies:
         return redirect(url_for("login"))
     else:
         return redirect(config['url']['bookingurl']+f"?acmid={request.args.get('acmid')}")
-    
+
+@app.route("/Dashboard/")    
+def dashboard():
+    cred=json.loads(request.cookies.get("usr"))
+    user=json.loads(requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']}).json())
+    if request.method=='GET':
+        return render_template("dashboard.html",user=user)
+
 if __name__ == '__main__':
    app.run(debug = True,port=8081)  

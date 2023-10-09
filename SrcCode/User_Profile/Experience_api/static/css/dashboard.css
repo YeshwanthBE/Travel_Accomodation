@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  a{
+    text-decoration: none;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.Header{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    align-items: center;
+    padding-top: 30px;
+}
+.Heading{
+    font-family: 'Young Serif', serif;
+    font-size: 50px;
+    color: rgb(41, 89, 223);
+    background-color: rgba(21, 70, 204, 0.295);
+    border-radius: 50px;
+}
+.Profilebuttons{
+    display: flex;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    height: 35px;
+    margin: 10px;
+    font-size: 12px;
+}
+
+.fhd{
+    position: fixed;
+    left: 10px;
+    right:10px;
+    display: flex;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+}
+.profilebts{
+    position: absolute;
+    top: 125px;
+    display: flex;
+    align-items: center ;
+}
+.pfbuttons{
+    background-color:  rgba(223, 204, 204, 0.862);
+    border-radius: 15px;
+    margin-left: 10px;
+}
+.profile {
+    padding: 10px 12px;
+    background-color:  rgba(223, 204, 204, 0.862);
+    width:fit-content;
+    text-align: center;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.profile p{
+    background-color: rgb(41, 90, 223);
+    border-radius: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    align-items: center;
+    word-wrap:break-word;
+    margin: 0 10px;
+}
+
+.item{
+    background-color: #ffffffaa;
+    border-radius: 3px;
+    padding: 5px 0;
+    opacity: 0.9;
+    transition: opacity ease-in-out;
+    margin: 0.5px;
+}
+.item:hover{
+    opacity: 1;
+    border-width: 2px;
+    margin: -2px -1px;
+    border-color: rgb(39, 39, 39);
+    border-style: solid;
+}
+.item hr{
+    margin: 5px 0;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(39, 39, 39, 0.824);  
+}

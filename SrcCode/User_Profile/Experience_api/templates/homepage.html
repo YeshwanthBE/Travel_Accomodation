@@ -19,7 +19,7 @@
         </div>
         <div class="Profilebuttons">
             {% if show_profile_button %}
-                <a href="{{url_for('promote')}}" class="button" >Profile</a>
+                <a href="{{url_for('dashboard')}}" class="button" >DashBoard</a>
                 <form id="postForm" method="post" action="{{url_for('logout')}}">
                     <input type="hidden">
                     <button type="submit" class="button">Logout</button>
@@ -43,8 +43,8 @@
             </div>
             <input type="text" name="Name" placeholder="Name" class="Search">
             <input type="text" name="location" placeholder="Location" class="Search">
-            <input type="date" name="checkin" placeholder="Checkin..." class="Search">
-            <input type="date" name="checkout" placeholder="Checkout..." class="Searchdate">
+            <input type="date" name="checkin" placeholder="Checkin..." class="Search" min={{min_date}} max={{max_date}} >
+            <input type="date" name="checkout" placeholder="Checkout..." class="Searchdate" min={{min_date}} max={{max_date}} >
             <button type="submit" class="searchbutton"><img src="{{ url_for('static', filename='css/Images/searchicon.png') }}" class="searchicon"></button>
         </form>
     </div>

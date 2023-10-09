@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Dashboard
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="fhd">
+            <div class="Header">
+                <div>
+                    <a href="http://127.0.0.1:8081"><h1 class="Heading">OneyesExplora!!</h1></a>
+                </div>
+                <div class="Profilebuttons">
+                        <form id="postForm" method="post" action="{{url_for('Homepage')}}">
+                            <input type="hidden">
+                            <button type="submit" class="button">Logout</button>    
+                        </form>
+                </div>
+            </div>
+            <div class="profilebts">
+            <div class="profile">
+                <div class="item">
+                    <p>Mailid</p>
+                    <hr>
+                    <p>{{user.mailid}}</p>  
+                </div>
+                <div class="item">
+                    <p>Name</p>
+                    <hr>
+                    <p>{{user.name}}</p>  
+                </div>
+                <div class="item">
+                    <p>Address</p>
+                    <hr>
+                    <p>{{user.address}}</p>  
+                </div>
+                <div class="item">
+                    <p>PhoneNo</p>
+                    <hr>
+                    <p>{{user.phno}}</p>  
+                </div>
+            </div>
+            <div class="pfbuttons">
+                <form id="postForm" method="post" action="{{url_for('Homepage')}}">
+                    <input type="hidden">
+                    <button type="submit" class="button">Modify</button>    
+                </form>
+            </div>
+        </div>
+        </div>
+        <div>
+
+        </div>
+    </body>
+</html>
