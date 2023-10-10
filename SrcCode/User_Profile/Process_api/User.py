@@ -65,7 +65,10 @@ class Profile:
     
     def accommodations(self,params):
         acms=json.loads(requests.get(f"{config['url']['acmurl']}",params=params).json())
-        bk= json.loads(requests.get(f"{config['url']['bkurl']}",params=params).json())
+        response=requests.get(f"{config['url']['bkurl']}",params=params)
+        if response.status_code==500:
+            return json.dumps(acms)
+        bk=json.loads(response.json())
         acmids_to_remove = [acm_id[0] for acm_id in bk["acmid"]]
         acms_filtered = [acm for acm in acms if acm["acmid"] not in acmids_to_remove]
         return json.dumps(acms_filtered)

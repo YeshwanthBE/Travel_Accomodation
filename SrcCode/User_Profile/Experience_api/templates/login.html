@@ -32,6 +32,10 @@
         </div>
       </form>
     </div>
-
+    {% if invalid %}
+      <script>
+        alert("Invalid Credentials")
+      </script>
+    {% endif %}
   </body>
 </html>

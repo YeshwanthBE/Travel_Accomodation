@@ -52,7 +52,7 @@ def login():
             res.set_cookie("usr",ck)
             return res
         else:
-            flash(response.json())
+            return render_template("login.html",invalid=1)
 
 @app.route("/acntrec/",methods=['GET','POST'])
 def rstpwd():
@@ -136,9 +136,11 @@ def booking():
 @app.route("/Dashboard/")    
 def dashboard():
     cred=json.loads(request.cookies.get("usr"))
-    user=json.loads(requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']}).json())
+    header={"Authorization": cred['jwt']}
+    user=json.loads(requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers=header).json())
+    prevbk=json.loads(requests.get(f"{config['url']['previousbkurl']}/pr/searchall/",headers=header,params={"ap":0}).json())
     if request.method=='GET':
-        return render_template("dashboard.html",user=user)
+        return render_template("dashboard.html",user=user,prevbk=prevbk)
 
 if __name__ == '__main__':
    app.run(debug = True,port=8081)  
