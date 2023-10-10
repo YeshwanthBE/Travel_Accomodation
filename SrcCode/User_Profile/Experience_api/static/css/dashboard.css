@@ -115,7 +115,6 @@ body{
 .previousbkbody{
     background-color:rgba(169, 169, 169, 0.498);
     width: 99%;
-    height: 3000px;
     top: 275px;
     left: 10px;
     position: absolute;
@@ -166,4 +165,17 @@ body{
     font-weight: 700;
     height: fit-content;
     
+}
+.nobks{
+    text-align: center;
+    font-size: 45px;
+    font-family: 'Young Serif', serif;
+}
+.deleteaccount{
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    justify-content: center;
+    border-radius: 25px;
+    margin:5px 0 -15px 0;
 }

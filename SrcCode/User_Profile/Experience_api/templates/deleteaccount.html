@@ -2,34 +2,34 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Login-oneyesExplora</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <title>Delete My Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deleteaccount.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
   </head>
   <body>
+    <div>
+      <a href="http://127.0.0.1:8081"><h1 class="Heading">OneyesExplora!!</h1></a>
+    </div>
     <div class="center">
       <div class="boxhead">
         <a href="{{url_for('Homepage')}}"><img src="{{ url_for('static', filename='css/Images/icon.png') }}"></a>
-        <h1 style="flex: 1;">Login</h1>
+        <h1 style="flex: 1;">Delete My Account</h1>
       </div>
-      <form method="post">
-        <div class="txt_field">
-          <input type="text"name="mailid" required>
-          <span></span>
-          <label>Username</label>
-        </div>
+      <form method="POST">
+        <h3 class="ID">{{user.user}}</h3>
         <div class="txt_field">
           <input type="password" name="password" required>
           <span></span>
           <label>Password</label>
         </div>
-        <div class="pass">Forgot Password?</div>
-        <div class="submitbuttons">
-          <input type="submit" value="Login" formaction="http://127.0.0.1:8081/login/?ap=0">
-          <input type="submit" value="Admin" formaction="http://127.0.0.1:8081/login/?ap=1">
+        <div class="txt_field">
+          <input type="password" name="password" required>
+          <span></span>
+          <label>Confirm Password</label>
         </div>
-        <div class="signup_link">
-          Not a member? <a href="{{url_for('signup')}}">Signup</a>
+        <div class="submitbuttons">
+          <input type="submit" value="Delete My Account" formaction="{{url_for('delete')}}?user={{user.user}}">
         </div>
       </form>
     </div>

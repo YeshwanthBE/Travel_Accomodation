@@ -99,12 +99,18 @@ def mod():
     requests.patch(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
     return redirect(url_for("show"))
 
-@app.route("/delete/",methods=['DELETE'])
+@app.route("/delete/",methods=['GET','POST'])
 def delete():
-    data={"password": request.form["password"]}
-    cred=json.loads(request.cookies.get("usr"))
-    requests.delete(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
-    logout()
+    if request.method=="GET":
+        return render_template("deleteaccount.html",user=request.args)
+    else:
+        data={"password": request.form["password"]}
+        cred=json.loads(request.cookies.get("usr"))
+        response=requests.delete(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
+        if response.status_code!=200:
+            return render_template("deleteaccount.html",invalid=1,user=request.args)
+        else:
+            logout()
 
 @app.route('/adminprev/',methods=['POST'])
 def promote():
