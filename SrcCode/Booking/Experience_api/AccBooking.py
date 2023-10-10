@@ -19,7 +19,6 @@ def register():
          reviews=requests.get(config['url']['revurl']+"/reviews/",params=request.args).json()
          min_date=str(date.today()+timedelta(days=1))
          max_date=str(date.today()+timedelta(days=365))
-         print(type(min_date),max_date)
          blockeddates=json.loads(requests.get(baseurl+'/allacmbks',params=request.args).json())
          bdates=list()
          for i in blockeddates:
@@ -38,20 +37,17 @@ def register():
         "checkout": request.form["checkout"],
         }
         response=requests.post(baseurl+"/pr/booking/",json=data,headers={"Authorization": cred['jwt']})
-        return response.json()
-        flash(response.json())
         if response.status_code ==200:
-            redirect(url_for("show"))
+            redirect(config['url']['homepage']+"/Dashboard/")
+        else:
+            redirect(url_for("register"))
 
-@app.route("/prevbooking/",methods=['GET','DELETE'])
+@app.route("/prevbooking/")
 def bkg():
-    cred=json.loads(request.cookies.get("usr"))
     if request.method=='GET':
+        cred=json.loads(request.cookies.get("usr"))
         data=requests.get(f'{baseurl}/pr/booking/',headers={"Authorization": cred['jwt']},params=request.args)
         render_template("booking.html")
-    else:
-        requests.delete(f'{baseurl}/pr/booking/',headers={"Authorization": cred['jwt']},params=request.args)
-        return redirect(url_for("showall"))
 
 @app.route("/searchall/")
 def showall():

@@ -1,6 +1,6 @@
 url:
   domainurl: "http://127.0.0.1:8080"
-  bookingurl: "http://127.0.0.1:8093/booking/"
+  bookingurl: "http://127.0.0.1:8093"
   previousbkurl: "http://127.0.0.1:8085"
 app:
   key: 'a'

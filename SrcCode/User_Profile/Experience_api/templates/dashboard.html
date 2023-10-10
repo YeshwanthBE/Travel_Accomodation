@@ -57,13 +57,17 @@
         </div>
         </div>
         <div class="previousbkbody">
-            <div class="bkattributes">
-                <h3>Booking_ID</h3>
-                <h3>Booking_Date</h3>
-                <h3>Price</h3>
-                <h3>Checkin</h3>
-                <h3>Checkout</h3>
-            </div>
+            {% if length !=0 %}    
+                <div class="bkattributes">
+                    <h3>Booking_ID</h3>
+                    <h3>Booking_Date</h3>
+                    <h3>Price</h3>
+                    <h3>Checkin</h3>
+                    <h3>Checkout</h3>
+                </div>
+            {% else %}
+                <h3>No Bookings Have Been Made!!</h3>
+            {% endif %}
             {% for bk in prevbk %}
                 <div class="booking">
                     <div class="bkinfo">
@@ -74,7 +78,10 @@
                         <p>{{bk.checkout}}</p>
                     </div>
                     <div class="bkbuttons">
-                        <a href="{{url_for('delete')}}" class="delbutton">Cancel</a>
+                        <form method="post" action="{{ url_for('dashboard') }}">
+                            <input type="hidden" name="bid" value={{bk.bookingid}}>
+                            <button type="submit" class="delbutton">Cancel</button>
+                        </form>
                     </div>
                 </div>
             {% endfor %}

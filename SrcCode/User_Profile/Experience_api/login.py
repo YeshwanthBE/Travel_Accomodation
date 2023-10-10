@@ -131,16 +131,20 @@ def booking():
     if 'usr' not in request.cookies:
         return redirect(url_for("login"))
     else:
-        return redirect(config['url']['bookingurl']+f"?acmid={request.args.get('acmid')}")
+        return redirect(config['url']['bookingurl']+f"/booking/?acmid={request.args.get('acmid')}")
 
-@app.route("/Dashboard/")    
+@app.route("/Dashboard/",methods=['GET','POST'])    
 def dashboard():
     cred=json.loads(request.cookies.get("usr"))
     header={"Authorization": cred['jwt']}
     user=json.loads(requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers=header).json())
     prevbk=json.loads(requests.get(f"{config['url']['previousbkurl']}/pr/searchall/",headers=header,params={"ap":0}).json())
     if request.method=='GET':
-        return render_template("dashboard.html",user=user,prevbk=prevbk)
+        return render_template("dashboard.html",user=user,prevbk=prevbk,length=len(prevbk))
+    else:
+        requests.delete(config['url']['previousbkurl']+"/pr/booking/",headers=header,params={"bid":request.form.get('bid')})
+        return redirect(url_for("dashboard"))
+    
 
 if __name__ == '__main__':
    app.run(debug = True,port=8081)  

@@ -24,7 +24,6 @@ def register():
             full_path =os.path.join(upload_path , unique_filename)
             image_file.save(full_path)
             image_url = url_for("uploaded_file", filename=unique_filename, _external=True)
-            print(image_url)
         else:
             image_url="Not Found"
         data={
