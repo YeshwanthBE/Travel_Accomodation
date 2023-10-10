@@ -110,7 +110,7 @@ def delete():
         if response.status_code!=200:
             return render_template("deleteaccount.html",invalid=1,user=request.args)
         else:
-            logout()
+            return logout()
 
 @app.route('/adminprev/',methods=['POST'])
 def promote():
@@ -141,6 +141,8 @@ def booking():
 
 @app.route("/Dashboard/",methods=['GET','POST'])    
 def dashboard():
+    if 'usr' not in request.cookies:
+        return redirect(url_for("login"))
     cred=json.loads(request.cookies.get("usr"))
     header={"Authorization": cred['jwt']}
     user=json.loads(requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers=header).json())
