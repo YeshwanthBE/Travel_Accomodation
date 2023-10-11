@@ -66,5 +66,10 @@ def addreviews():
         }
     requests.post(config['url']['addrev']+"/reviews/",headers={"Authorization": cred['jwt']},json=data)
     return redirect(url_for("register",acmid=qp.get('acmid')))
+
+@app.route('/home/<int:v>')
+def home(v):
+    url=config['url']['homepage']+('/Dashboard/' if v else '/')
+    return redirect(url)
 if __name__ == '__main__':
    app.run(debug = True,port=8093)  
