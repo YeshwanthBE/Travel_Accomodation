@@ -11,6 +11,8 @@
         <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     </head>
     <body>
         <div class="fhd">
@@ -35,24 +37,22 @@
                 <div class="item">
                     <p>Name</p>
                     <hr>
-                    <p>{{user.name}}</p>  
+                    <p><span id="name" contenteditable="false">{{ user.name }}</span></p>
                 </div>
                 <div class="item">
                     <p>Address</p>
                     <hr>
-                    <p>{{user.address}}</p>  
+                    <p><span id="address" contenteditable="false">{{ user.address }}</span></p>  
                 </div>
                 <div class="item">
                     <p>PhoneNo</p>
                     <hr>
-                    <p>{{user.phno}}</p>  
+                    <p><span id="phno" contenteditable="false">{{ user.phno }}</span></p>  
                 </div>
             </div>
             <div class="pfbuttons">
-                <form id="postForm" method="post" action="{{url_for('Homepage')}}">
-                    <input type="hidden">
-                    <button type="submit" class="button">Modify</button>    
-                </form>
+                <div><button type="button" class="button" id="modifyButton">Modify</button></div>
+                <div><button type="button" id=savebutton class="savebutton" data-mod-url="{{ url_for('mod') }}">Save</button></div>    
             </div>
         </div>
         </div>

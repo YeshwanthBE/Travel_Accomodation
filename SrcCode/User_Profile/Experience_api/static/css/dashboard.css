@@ -34,7 +34,7 @@ body{
 .Profilebuttons{
     display: flex;
 }
-.button,.delbutton {
+.button,.delbutton,.savebutton {
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -47,7 +47,9 @@ body{
     margin: 10px;
     font-size: 12px;
 }
-
+.savebutton{
+    visibility: hidden;
+}
 .fhd{
     width: 100%;
     position: fixed;
@@ -70,10 +72,13 @@ body{
     border-radius: 15px;
     margin-left: 10px;
 }
+.pfbuttons button{
+    width: 80%;
+}
 .profile {
     padding: 10px 12px;
     background-color:  rgba(223, 204, 204, 0.862);
-    width:fit-content;
+    width:fit-content;  
     text-align: center;
     border-radius: 15px;
     display: flex;
@@ -178,4 +183,10 @@ body{
     justify-content: center;
     border-radius: 25px;
     margin:5px 0 -15px 0;
+}
+.modify{
+    background-color: #fff;
+    color:black;
+    padding:10px;
+    border-radius: 5px;
 }
