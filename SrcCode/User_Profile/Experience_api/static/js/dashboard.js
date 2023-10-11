@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addressSpan = document.getElementById("address");
     const phnoSpan = document.getElementById("phno");
     const saveButton = document.getElementById("savebutton");
-
+    const pfButtons = document.querySelector(".pfbuttons");
     function toggleContentAndVisibility() {
         toggleContentEditable(nameSpan);
         toggleContentEditable(addressSpan);
@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function toggleVisibility(element) {
         element.style.visibility = element.style.visibility === "visible" ? "hidden" : "visible";
+        pfButtons.style.height = pfButtons.style.height === "112px"? "56px" :" 112px";
     }
     saveButton.addEventListener("click", function() {
         modifiedname=getcontent(nameSpan)

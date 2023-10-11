@@ -29,7 +29,8 @@ body{
     font-size: 50px;
     color: rgb(41, 89, 223);
     background-color: rgba(21, 70, 204, 0.295);
-    border-radius: 50px;
+    border-radius: 30px;
+    padding: 5px;
 }
 .Profilebuttons{
     display: flex;
@@ -71,6 +72,7 @@ body{
     background-color:  rgba(223, 204, 204, 0.862);
     border-radius: 15px;
     margin-left: 10px;
+    height: 56px;
 }
 .pfbuttons button{
     width: 80%;
