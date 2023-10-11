@@ -3,5 +3,6 @@ url:
   acmurl:  "http://127.0.0.1:8083"
   revurl: "http://127.0.0.1:8096"
   homepage: "http://127.0.0.1:8081"
+  addrev: "http://127.0.0.1:8087"
 app:
   key: 'a'

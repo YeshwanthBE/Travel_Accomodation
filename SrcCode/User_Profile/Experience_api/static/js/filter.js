@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var filter = document.querySelector('.filter');
     
     filterIcon.addEventListener('click', function() {
-        if (filter.style.opacity === '0') {
-            filter.style.opacity = '1';
-        } else {
+        if (filter.style.opacity === '1') {
             filter.style.opacity = '0';
+        } else {
+            filter.style.opacity = '1';
         }
     });
 });

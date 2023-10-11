@@ -40,7 +40,7 @@ def register():
         if response.status_code ==201:
             return redirect(config['url']['homepage']+"/Dashboard/")
         else:
-            return redirect(url_for("register"))
+            return redirect(url_for("register",acmid=qp.get('acmid')))
 
 @app.route("/prevbooking/")
 def bkg():
@@ -55,5 +55,16 @@ def showall():
     data=requests.get(f"{baseurl}/pr/searchall/",headers={"Authorization": cred['jwt']})
     render_template("display.html",json=data)
     
+@app.route("/reviews/",methods=['POST'])
+def addreviews():
+    cred=json.loads(request.cookies.get("usr"))
+    qp=request.args
+    data={
+        "acmid": qp.get('acmid'),
+        "review": request.form["userreview"],
+        "rating": request.form["rating"],
+        }
+    requests.post(config['url']['addrev']+"/reviews/",headers={"Authorization": cred['jwt']},json=data)
+    return redirect(url_for("register",acmid=qp.get('acmid')))
 if __name__ == '__main__':
    app.run(debug = True,port=8093)  

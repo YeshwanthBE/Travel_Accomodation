@@ -42,6 +42,31 @@
                         </div></div>
                     </div>
                     <div class="rr">
+                        <div class="reviews">
+                            <form method="post" action="{{url_for('addreviews', acmid=acm.mailid)}}">
+                                <div class="rating">
+                                    <label for="rating1">
+                                        <input type="radio" name="rating" id="rating1" value="1"> 1&#128970;
+                                    </label>
+                                    <label for="rating2">
+                                        <input type="radio" name="rating" id="rating2" value="2"> 2&#128970;
+                                    </label>
+                                    <label for="rating3">
+                                        <input type="radio" name="rating" id="rating3" value="3"> 3&#128970;
+                                    </label>
+                                    <label for="rating4">
+                                        <input type="radio" name="rating" id="rating4" value="4"> 4&#128970;
+                                    </label>
+                                    <label for="rating5">
+                                        <input type="radio" name="rating" id="rating5" value="5"> 5&#128970;
+                                    </label>
+                                </div>
+                                <textarea name="userreview" id="myText" placeholder="Write your review!!" class="userrev"></textarea>
+                                <input type="submit" value="Submit" class="revbutton">
+                            </form>
+                                                          
+                            
+                        </div>
                         {% for review in reviews %}
                             <div class="reviews">
                                 <div class="rating">
