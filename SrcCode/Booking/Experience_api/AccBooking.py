@@ -37,10 +37,10 @@ def register():
         "checkout": request.form["checkout"],
         }
         response=requests.post(baseurl+"/pr/booking/",json=data,headers={"Authorization": cred['jwt']})
-        if response.status_code ==200:
-            redirect(config['url']['homepage']+"/Dashboard/")
+        if response.status_code ==201:
+            return redirect(config['url']['homepage']+"/Dashboard/")
         else:
-            redirect(url_for("register"))
+            return redirect(url_for("register"))
 
 @app.route("/prevbooking/")
 def bkg():

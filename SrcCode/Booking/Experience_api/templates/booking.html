@@ -69,7 +69,7 @@
                             <input type="date" name="checkout" id="checkout" min={{min_date}} max={{max_date}} required>
                         </div>
                         <div class="submitbuttons">
-                          <input type="submit" value="Book" formaction="http://127.0.0.1:8081/login/?ap=0">
+                          <input type="submit" value="Book" formaction="{{url_for('register')}}?acmid={{acm.mailid}}">
                         </div>
                       </form>
                 </div>
