@@ -88,16 +88,11 @@ def show():
     cred=json.loads(request.cookies.get("usr"))
     data=requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']})
     render_template("profile.html")
-@app.route("/modify/",methods=["PATCH"])
+@app.route("/modify/",methods=["POST"])
 def mod():
     cred=json.loads(request.cookies.get("usr"))
-    data={
-        "name": request.form["name"],
-        "address": request.form["address"],
-        "phno": request.form["phno"]
-        }
-    requests.patch(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
-    return redirect(url_for("show"))
+    response=requests.patch(f'{baseurl}/profile/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=request.get_json())
+    return response.json(),response.status_code
 
 @app.route("/delete/",methods=['GET','POST'])
 def delete():

@@ -70,6 +70,7 @@ class User:
             table= "admin" if ap else "users"
             query="update {} set {}=%s,{}=%s,{}=%s where mailid=%s;".format(table,'name','address','phno')
             self.cursor.execute(f'select * from {table} where mailid=%s for update',(mailid,))
+            self.cursor.fetchall()
             self.cursor.execute(query,(user_json['name'],user_json['address'],user_json['phno'],mailid))
             self.db.commit()
         except Exception as e:

@@ -5,12 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const phnoSpan = document.getElementById("phno");
     const saveButton = document.getElementById("savebutton");
 
-    modifyButton.addEventListener("click", function () {
+    function toggleContentAndVisibility() {
         toggleContentEditable(nameSpan);
         toggleContentEditable(addressSpan);
         toggleContentEditable(phnoSpan);
         toggleVisibility(saveButton);
-    });
+    }
+
+    modifyButton.addEventListener("click", toggleContentAndVisibility);
 
     function toggleContentEditable(element) {
         element.contentEditable = element.contentEditable === "true" ? "false" : "true";
@@ -38,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log(response);
             }
         });
+        toggleContentAndVisibility();
     });
     function getcontent(element){
         element.contentEditable="false";
