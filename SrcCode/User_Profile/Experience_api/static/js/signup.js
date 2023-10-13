@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameInput = document.getElementById("name");
     const submit = document.getElementById("submit");
     var ue =document.getElementById('username-error')
+    var ne =document.getElementById('name-error')
     submitbutton=true;
     nameInput.addEventListener("input", function () {
         let name = nameInput.value;
@@ -79,15 +80,24 @@ document.addEventListener("DOMContentLoaded", function () {
             ue.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Mailid is required';
             flag=false;
           }
+          if (nameInput.value.trim() === '') {
+            togglevisiblity(ne,true);
+            ne.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Username is required';
+            flag=false;
+          }
         if (!submitbutton) {
             togglevisiblity(passwordErrors,true);
             flag=false;
         }
+
         if(!flag){
             event.preventDefault();
         }
     usernameInput.addEventListener("click",function(){
         togglevisiblity(ue,false);
+    });
+    nameInput.addEventListener("click",function(){
+        togglevisiblity(ne,false);
     });
     });
     
