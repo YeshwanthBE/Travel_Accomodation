@@ -15,10 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (usernameInput.value.trim() === '') {
         event.preventDefault();
+        ue.style.opacity=1;
         ue.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Username is required';
       }
       if (passwordInput.value.trim() === '') {
         event.preventDefault();
+        pe.style.opacity=1;
         pe.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Password is required';
       }
     });
