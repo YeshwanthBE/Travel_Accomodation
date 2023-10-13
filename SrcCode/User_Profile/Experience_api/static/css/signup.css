@@ -153,3 +153,20 @@ input[type="submit"]:hover{
   right: -337px;
   bottom:-23px;
 }
+.error-message{
+  position: absolute;
+  opacity : 0;
+  left: 25px;
+  bottom: -26px;
+  width: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: rgb(255, 0, 0);
+  padding: 5px;
+  transition: ease-in-out 0.05;
+  color: rgb(77, 77, 77);
+  font-size: 17px;
+  font-weight: 500;
+}
