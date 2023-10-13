@@ -130,3 +130,21 @@ input[type="submit"]:hover{
   padding-bottom: 10px;
   font-size: 18px;
 }
+.passerror{
+  position: absolute;
+  opacity : 0;
+  left: 326px;
+  right: -338px;
+  bottom: -108px;
+  height: fit-content;
+  width: fit-content;
+  background-color: rgb(255, 255, 255); 
+  border-style: solid;
+  border-radius: 5px;
+  border-color: rgb(255, 0, 0);
+  padding: 5px;
+  transition: ease-in-out 0.05;
+  color: rgb(77, 77, 77);
+  font-size: 17px;
+  font-weight: 600;
+}
