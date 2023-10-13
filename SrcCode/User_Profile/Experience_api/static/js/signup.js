@@ -1,7 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById("password");
     const passwordErrors = document.getElementById("password-errors");
+    const cnfpwdip= document.getElementById("confirm_password");
+    const cnfpwdErrors = document.getElementById("cnfpwd-errors");
 
+    // Event listener for the confirm password field to check for a match
+    cnfpwdip.addEventListener("input", function () {
+        const password = passwordInput.value;
+        const confirmPassword = cnfpwdip.value;
+
+        if (password !== confirmPassword) {
+            cnfpwdErrors.innerHTML = "<i class='fa fa-exclamation-triangle'></i>Passwords do not match!!";
+            cnfpwdErrors.style.opacity=1;cnfpwdErrors.style.zIndex=1;
+            
+        } else {
+            cnfpwdErrors.innerHTML = "";
+            cnfpwdErrors.style.opacity=0;cnfpwdErrors.style.zIndex=-1;
+        }
+    });
     passwordInput.addEventListener("input", function () {
         const password = passwordInput.value;
         let errors = ["<i class='fa fa-exclamation-triangle'></i>Must Contain at least &nbsp;"];

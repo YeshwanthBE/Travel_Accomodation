@@ -130,7 +130,7 @@ input[type="submit"]:hover{
   padding-bottom: 10px;
   font-size: 18px;
 }
-.passerror{
+.passerror,.cnfpasserror{
   position: absolute;
   opacity : 0;
   left: 326px;
@@ -147,4 +147,9 @@ input[type="submit"]:hover{
   color: rgb(77, 77, 77);
   font-size: 17px;
   font-weight: 600;
+}
+.cnfpasserror{
+  left: 324px;
+  right: -337px;
+  bottom:-23px;
 }
