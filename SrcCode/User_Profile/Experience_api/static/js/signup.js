@@ -15,20 +15,23 @@ document.addEventListener("DOMContentLoaded", function () {
     cnfpwdip.addEventListener("input", function () {
         const password = passwordInput.value;
         const confirmPassword = cnfpwdip.value;
-        passwordErrors.style.opacity=0;passwordErrors.style.zIndex=-1;
+        togglevisiblity(passwordErrors,false)
         if (password !== confirmPassword) {
             cnfpwdErrors.innerHTML = "<i class='fa fa-exclamation-triangle'></i>Passwords do not match!!";
-            cnfpwdErrors.style.opacity=1;cnfpwdErrors.style.zIndex=1;
+            togglevisiblity(cnfpwdErrors,true)
             
         } else {
             cnfpwdErrors.innerHTML = "";
-            cnfpwdErrors.style.opacity=0;cnfpwdErrors.style.zIndex=-1;
+            togglevisiblity(cnfpwdErrors,false)
         }
+        setTimeout(function () {
+            togglevisiblity(cnfpwdErrors,false);
+        }, 5000);
     });
     passwordInput.addEventListener("input", function () {
         const password = passwordInput.value;
         let errors = ["<i class='fa fa-exclamation-triangle'></i>Must Contain at least &nbsp;"];
-        cnfpwdErrors.style.opacity=0;cnfpwdErrors.style.zIndex=-1;
+        togglevisiblity(cnfpwdErrors,false)
         if (password.length < 8) {
             errors.push("<pre>     &bull; 8 characters.</pre>");
         }
@@ -48,9 +51,20 @@ document.addEventListener("DOMContentLoaded", function () {
             errors.push("<i class='fa fa-exclamation-triangle'></i>Password should not contain your username.</pre>");
         }
         if(errors.length===1)
-            {passwordErrors.style.opacity=0;passwordErrors.style.zIndex=-1;}
+            {togglevisiblity(passwordErrors,false)}
         else
-            {passwordErrors.style.opacity=1;passwordErrors.style.zIndex=1;}
+            {togglevisiblity(passwordErrors,true)}
         passwordErrors.innerHTML = errors.join("");
+        setTimeout(function () {
+            togglevisiblity(passwordErrors,false);
+        }, 5000);
     });
+    function togglevisiblity(element,flag){
+        if(flag){element.style.opacity=1;
+        element.style.zIndex=1;}
+        else{element.style.opacity=0;
+            element.style.zIndex=-1;
+        submitbutton=flag;
+        }
+    }
 });

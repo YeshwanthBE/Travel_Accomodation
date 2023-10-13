@@ -143,7 +143,7 @@ input[type="submit"]:hover{
   border-radius: 5px;
   border-color: rgb(255, 0, 0);
   padding: 5px;
-  transition: ease-in-out 0.05s;
+  transition: ease-in-out 1s;
   color: rgb(77, 77, 77);
   font-size: 17px;
   font-weight: 600;
