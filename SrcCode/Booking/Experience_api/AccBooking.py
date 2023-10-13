@@ -6,6 +6,7 @@ import os
 import uuid
 from datetime import date, timedelta,datetime
 app=Flask(__name__)
+app.static_folder = 'static'
 with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as file:
     global baseurl,config
     config=yaml.safe_load(file)
