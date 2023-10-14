@@ -13,7 +13,7 @@ body{
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
-    background-image: url(Images/hpbg.jpg);
+    
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -128,7 +128,8 @@ body{
     margin: 10px;
     padding: 10px;;
     overflow-y:scroll;
-    max-height: 65%;
+    max-height: 50%;
+    position: relative;
     
 }
 .reviews{
@@ -224,4 +225,15 @@ body{
 }
 .rating{
     font-size: 20px;
+}
+.filters {
+    display: flex;
+}
+.filters button{
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 25px;
+    background-color: blue;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #dadada;
 }

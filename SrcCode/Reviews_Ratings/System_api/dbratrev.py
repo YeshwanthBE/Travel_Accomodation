@@ -66,6 +66,6 @@ class rr:
                 "datetime": str(i[5])
                 }
                 lst.append(result_dict)
-            return(json.dumps(lst))
+            return(json.dumps({"reviews":lst}))
         except Exception as e:
             raise e

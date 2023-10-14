@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
         <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/filter.js') }}"></script>
     </head>
     <body>
         <div>
@@ -45,6 +46,11 @@
                         </div></div>
                     </div>
                     <div class="rr">
+                        <div class="filters">
+                            <button class="button" id="sortByRatingButton">Rating &uarr;</button>
+                            <button class="button" id="sortByRatingdButton">Rating &darr;</button>
+                            <button class="button" id="sortByDateButton">Recent</button>
+                        </div>
                         <div class="reviews">
                             <form method="post" action="{{url_for('addreviews', acmid=acm.mailid)}}">
                                 <div class="rating">
@@ -67,20 +73,13 @@
                                 <textarea name="userreview" id="myText" placeholder="Write your review!!" class="userrev"></textarea>
                                 <input type="submit" value="Submit" class="revbutton">
                             </form>
-                                                          
-                            
                         </div>
-                        {% for review in reviews %}
-                            <div class="reviews">
-                                <div class="rating">
-                                    <h4>{{review.userid}}</h4>
-                                    <h4>{{review.rating}}&#128970;</h4>
-                                </div>
-                                <div class="rev">
-                                    <p>{{review.review}}</p>
-                                </div>
-                            </div>
-                        {% endfor %}
+                        <script>
+                            var reviews = '{{ reviews | tojson | safe }}';
+                        </script>
+                        <div id="reviewsContainer">
+                            <!-- Reviews will be displayed here -->
+                        </div>
                     </div>
                 </div>
                 <div class="booking">
