@@ -30,7 +30,7 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width:fit-content;
   background: white;
   border-radius: 10px;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
@@ -41,13 +41,16 @@ body{
   padding-right: 60px;
 }
 .center form{
-  padding: 0 40px;
+  padding: 50px 40px 30px 40px;
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 40px;
 }
 form .txt_field{
   position: relative;
   border-bottom: 2px solid #adadad;
-  margin: 30px 0;
 }
 .txt_field input{
   width: 100%;
@@ -121,10 +124,10 @@ input[type="submit"]:hover{
 .passerror,.cnfpasserror{
   position: absolute;
   opacity : 0;
-  left: 326px;
-  right: -338px;
-  bottom: -108px;
-  height: fit-content;
+  left: -243px;
+  right: 338px;
+  bottom: -169px  ;
+  height: 200px;
   width: fit-content;
   background-color: rgb(255, 255, 255); 
   border-style: solid;
@@ -137,15 +140,16 @@ input[type="submit"]:hover{
   font-weight: 600;
 }
 .cnfpasserror{
-  left: 324px;
-  right: -337px;
-  bottom:-23px;
+  left: 243px;
+  right: -400px;
+  bottom: -13px;
+  height:fit-content ;
 }
 .error-message{
   position: absolute;
   opacity : 0;
-  left: 25px;
-  bottom: -26px;
+  left: 59px;
+  bottom: -20px;
   width: fit-content;
   background-color: rgb(255, 255, 255);
   border-width: 5px;
@@ -153,7 +157,7 @@ input[type="submit"]:hover{
   border-radius: 5px;
   border-color: rgb(255, 0, 0);
   padding: 5px;
-  transition: ease-in-out 0.05;
+  transition: ease-in-out 1s;
   color: rgb(77, 77, 77);
   font-size: 17px;
   font-weight: 500;
@@ -164,7 +168,6 @@ input[type="submit"]:hover{
   padding: 5px;
   font-size: 17px;
   width: 100%;
-}
-.sdbreak{
-  margin:10px;
+  text-align: center;
+  font-weight: 500;
 }

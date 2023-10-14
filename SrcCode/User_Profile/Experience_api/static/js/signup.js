@@ -6,9 +6,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const cnfpwdErrors = document.getElementById("cnfpwd-errors");
     const nameInput = document.getElementById("name");
     const submit = document.getElementById("submit");
+    const phno = document.getElementById("phno");
     var ue =document.getElementById('username-error')
     var ne =document.getElementById('name-error')
+    var pe=document.getElementById('phno-error')
     submitbutton=true;
+    phno.addEventListener("input", function () {
+        let ph = phno.value;
+    ph = ph.replace(/\D/g, '');
+    if (!/^[6-9]/.test(ph)) {
+        ph = ph.substring(1);
+    }
+    phno.value = ph;
+    }); 
     nameInput.addEventListener("input", function () {
         let name = nameInput.value;
         name = name.replace(/[^A-Za-z]/g, '');
@@ -28,9 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
             cnfpwdErrors.innerHTML = "";
             togglevisiblity(cnfpwdErrors,false);
         }
-        setTimeout(function () {
-            togglevisiblity(cnfpwdErrors,false);
-        }, 5000);
     });
     passwordInput.addEventListener("input", function () {
         const password = passwordInput.value;
@@ -54,19 +61,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (password.includes(userName)) {
             errors.push("<i class='fa fa-exclamation-triangle'></i>Password should not contain your username.</pre>");
         }
-        if(errors.length===1)
-            {togglevisiblity(passwordErrors,false);}
-        else
+        if(errors.length>1)
             {togglevisiblity(passwordErrors,true);submitbutton=false;}
         passwordErrors.innerHTML = errors.join("");
-        setTimeout(function () {
-            togglevisiblity(passwordErrors,false);
-        }, 5000);
     });
     function togglevisiblity(element,flag){
         console.log("toggles")
         if(flag){element.style.opacity=1;
-        element.style.zIndex=1;}
+        element.style.zIndex=1;
+        setTimeout(function () {
+            togglevisiblity(element,false);
+        }, 2000);
+    }
         else{element.style.opacity=0;
             element.style.zIndex=-1;
         }
@@ -85,6 +91,11 @@ document.addEventListener("DOMContentLoaded", function () {
             ne.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Username is required';
             flag=false;
           }
+          if (phno.value.trim() === '') {
+            togglevisiblity(pe,true);
+            pe.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Phone No is required';
+            flag=false;
+          }
         if (!submitbutton) {
             togglevisiblity(passwordErrors,true);
             flag=false;
@@ -98,6 +109,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     nameInput.addEventListener("click",function(){
         togglevisiblity(ne,false);
+    });
+    phno.addEventListener("click",function(){
+        togglevisiblity(pe,false);
     });
     });
     const sd = JSON.parse(sdjson).states;
@@ -115,7 +129,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedState = stateDropdown.value;
         const selectedStateData = sd.find(stateData => stateData.state === selectedState);
         districtDropdown.innerHTML = '';
-    
+        const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.text = 'Select a district';
+    districtDropdown.appendChild(defaultOption);
         if (selectedStateData) {
             for (const district of selectedStateData.districts) {
                 const option = document.createElement('option');

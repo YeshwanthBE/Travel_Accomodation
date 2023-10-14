@@ -15,7 +15,7 @@
             <h1 style="flex: 1;">Signup</h1>
           </div>
         <form method="post" action="{{ url_for('signup') }}"> 
-            <div class="txt_field">
+            <div class="txt_field" style="grid-column: span 2;">
                 <input type="text" id="mailid" name="mailid">
                 <span id="username-error" class="error-message"></span>
                 <label for="mailid">Email</label> 
@@ -38,6 +38,11 @@
                 <label>Name</label>
             </div>
             <div class="txt_field">
+                <input type="text" id="phno" maxlength="10" name="phno" >
+                <span id="phno-error" class="error-message"></span>
+                <label>Phone Number</label>
+            </div>
+            <div class="txt_field" style="grid-column: span 2;">
                 <input type="text" name="address" >
                 <span></span>
                 <label>Address</label>
@@ -49,20 +54,16 @@
             <select id="stateDropdown">
                 <option value="">Select a state</option>
             </select>
-            <span class="sdbreak"><br></span>
+            </div>
+            <div class="sd">
             <select id="districtDropdown">
                 <option value="">Select a district</option>
             </select>
             </div>
-            <div class="txt_field">
-                <input type="text" pattern="^[6-9][0-9]{9}$" maxlength="10" name="phno" >
-                <span></span>
-                <label>Phone Number</label>
-            </div>
-            <input type="submit" value="Signup" id="submit">
             <div class="login_link">
                 Already a member? <a href="{{ url_for('login') }}?ap=1">Login</a>
             </div>
+            <input type="submit" value="Signup" id="submit">
         </form>
     </div>
 </body>
