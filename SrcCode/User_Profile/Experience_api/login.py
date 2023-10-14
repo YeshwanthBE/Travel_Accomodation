@@ -30,9 +30,10 @@ def signup():
         "mailid": request.form["mailid"],
         "password": request.form["password"],
         "name": request.form["name"],
-        "address": request.form["address"]+request.form['district']+request.form['state'],
+        "address": request.form["address"]+","+request.form["district"]+"."+request.form["state"],
         "phno": request.form["phno"]
         }
+        print(data)
         response=requests.post(baseurl+"/profile/0/register",json=data)
         flash(response.json())
         if response.status_code ==201:

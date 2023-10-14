@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var ne =document.getElementById('name-error')
     var pe=document.getElementById('phno-error')
     submitbutton=true;
+    cnfbutton=true;
     phno.addEventListener("input", function () {
         let ph = phno.value;
     ph = ph.replace(/\D/g, '');
@@ -27,19 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     cnfpwdip.addEventListener("input", function () {
+        cnfbutton=true;
         const password = passwordInput.value;
         const confirmPassword = cnfpwdip.value;
         togglevisiblity(passwordErrors,false)
         if (password !== confirmPassword) {
             cnfpwdErrors.innerHTML = "<i class='fa fa-exclamation-triangle'></i>Passwords do not match!!";
             togglevisiblity(cnfpwdErrors,true);
-            submitbutton=false;        
-        } else {
-            cnfpwdErrors.innerHTML = "";
-            togglevisiblity(cnfpwdErrors,false);
+            cnfbutton=false;        
         }
     });
     passwordInput.addEventListener("input", function () {
+        submitbutton=true;
         const password = passwordInput.value;
         let errors = ["<i class='fa fa-exclamation-triangle'></i>Must Contain at least &nbsp;"];
         togglevisiblity(cnfpwdErrors,false)
@@ -61,12 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (password.includes(userName)) {
             errors.push("<i class='fa fa-exclamation-triangle'></i>Password should not contain your username.</pre>");
         }
+        console.log(submitbutton)
         if(errors.length>1)
-            {togglevisiblity(passwordErrors,true);submitbutton=false;}
+            {console.log("in password error class");togglevisiblity(passwordErrors,true);submitbutton=false;}
         passwordErrors.innerHTML = errors.join("");
     });
     function togglevisiblity(element,flag){
-        console.log("toggles")
         if(flag){element.style.opacity=1;
         element.style.zIndex=1;
         setTimeout(function () {
@@ -96,8 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
             pe.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Phone No is required';
             flag=false;
           }
+          if(passwordErrors)
+        console.log(submitbutton)
         if (!submitbutton) {
             togglevisiblity(passwordErrors,true);
+            flag=false;
+        }
+        if (!cnfbutton) {
+            togglevisiblity(cnfpwdErrors,true);
             flag=false;
         }
 
