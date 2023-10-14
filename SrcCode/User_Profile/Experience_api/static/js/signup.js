@@ -100,5 +100,32 @@ document.addEventListener("DOMContentLoaded", function () {
         togglevisiblity(ne,false);
     });
     });
+    const sd = JSON.parse(sdjson).states;
+    const stateDropdown = document.getElementById('stateDropdown');
+    const districtDropdown = document.getElementById('districtDropdown');
+    function populateStateDropdown() {
+        for (const state of sd) {
+            const option = document.createElement('option');
+            option.value = state.state;
+            option.text = state.state;
+            stateDropdown.appendChild(option);
+      }
+    }
+    function populateDistrictDropdown() {
+        const selectedState = stateDropdown.value;
+        const selectedStateData = sd.find(stateData => stateData.state === selectedState);
+        districtDropdown.innerHTML = '';
     
+        if (selectedStateData) {
+            for (const district of selectedStateData.districts) {
+                const option = document.createElement('option');
+                option.value = district;
+                option.text = district;
+                districtDropdown.appendChild(option);
+            }
+        }
+    }
+    document.getElementById('stateDropdown').addEventListener('change', populateDistrictDropdown); 
+      populateStateDropdown();
 });
+

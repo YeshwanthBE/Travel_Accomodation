@@ -22,7 +22,9 @@ def Homepage():
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if request.method=="GET":
-        return render_template("signup.html")
+        with open(app.static_folder+"\\json\\\states-and-districts.json", 'r') as file:
+            data=json.loads(file.read())
+            return render_template("signup.html",sdjson=data)
     else:
         data={
         "mailid": request.form["mailid"],

@@ -42,6 +42,18 @@
                 <span></span>
                 <label>Address</label>
             </div>
+            <script>
+                var sdjson = '{{ sdjson | tojson | safe }}';
+            </script>
+            <div class="sd">
+            <select id="stateDropdown">
+                <option value="">Select a state</option>
+            </select>
+            <span class="sdbreak"><br></span>
+            <select id="districtDropdown">
+                <option value="">Select a district</option>
+            </select>
+            </div>
             <div class="txt_field">
                 <input type="text" pattern="^[6-9][0-9]{9}$" maxlength="10" name="phno" >
                 <span></span>
