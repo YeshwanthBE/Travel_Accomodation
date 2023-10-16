@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
       if (selectedCheckoutDate > selectedCheckinDate) {
-          ;
+        checkoutInput.setCustomValidity("");;
       } else {
         checkoutInput.setCustomValidity("Checkout date must be later than the check-in date.");
 

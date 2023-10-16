@@ -239,12 +239,13 @@ body{
 }
 
 .bill{
-    background-color: rgb(9, 152, 184);
+    background-color: rgb(5, 140, 170);
     text-align: right;
     opacity: 0;
     font-size: 30px;
     border-radius: 25px;
     width: fit-content;
+    color: #ffffff;
     padding: 10px;
 }
 .bill p{
