@@ -5,6 +5,7 @@ import yaml
 import os 
 import uuid
 from datetime import date, timedelta,datetime
+import stripe
 app=Flask(__name__)
 app.static_folder = 'static'
 with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as file:
@@ -12,7 +13,6 @@ with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as
     config=yaml.safe_load(file)
     baseurl= config['url']['domainurl']
     app.secret_key=config['app']['key']
-
 @app.route('/booking/',methods=['GET','POST'])
 def register():
     if request.method=="GET":

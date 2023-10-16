@@ -237,3 +237,26 @@ body{
     font-family: 'Roboto Condensed', sans-serif;
     color: #dadada;
 }
+
+.bill{
+    background-color: rgb(9, 152, 184);
+    text-align: right;
+    opacity: 0;
+    font-size: 30px;
+    border-radius: 25px;
+    width: fit-content;
+    padding: 10px;
+}
+.bill p{
+    font-family:'Young Serif', serif;
+}
+.bill span{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+.bills{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

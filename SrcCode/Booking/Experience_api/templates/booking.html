@@ -95,6 +95,15 @@
                             <label>Checkout</label>
                             <input type="date" name="checkout" id="checkout" min={{min_date}} max={{max_date}} required>
                         </div>
+                        <span class="bills">
+                        <div class="bill" id="bill">
+                            <script>pricePerNight="{{acm.price}}"</script>
+                            <span><p>Price:</p><p id="price"></p></span>
+                            <span><p>18% SGST:</p><p id="SGST"></p></span>
+                            <span><p>18% CGST:</p><p id="CGST"></p></span>
+                            <hr>
+                            <span><p>Total:</p><p id="Totalprice"></p></span>
+                        </div></span>
                         <div class="submitbuttons">
                           <input type="submit" value="Book" formaction="{{url_for('register')}}?acmid={{acm.mailid}}">
                         </div>

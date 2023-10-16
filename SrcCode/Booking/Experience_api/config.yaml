@@ -6,3 +6,6 @@ url:
   addrev: "http://127.0.0.1:8087"
 app:
   key: 'a'
+stripe:
+  pkey: "pk_test_51O0NAxSA0k9xT9rg69HlKBU6ASoSlMTkNjiqgHDSbKDYgYDR0PQB5TPR2GgmF8ALXD2rOOwBDaOIK5Mi1bJPrwzR00gIYKl1GB"
+  skey: "sk_test_51O0NAxSA0k9xT9rgfzyeibVUV630vYrYuMEKTEOI5lUbwx86nhNlhDhrEtD2SXxpmxH5aE0tyXkzyXd4cikbK7Wd00HiN3YPui"
