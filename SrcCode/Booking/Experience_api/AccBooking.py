@@ -29,7 +29,7 @@ def register():
              while checkin <= checkout:
                 bdates.append(checkin.strftime("%Y-%m-%d"))
                 checkin += timedelta(days=1)
-         return render_template("booking.html",acm=acm,reviews=reviews,bdates=bdates,min_date=min_date,max_date=max_date)
+         return render_template("booking.html",acm=acm,reviews=reviews,bdates=bdates,min_date=min_date,max_date=max_date,blockeddates=blockeddates)
 def addbooking(acmid,checkin,checkout):
     cred=json.loads(request.cookies.get("usr"))
     data={

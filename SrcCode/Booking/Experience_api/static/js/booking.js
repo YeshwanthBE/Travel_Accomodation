@@ -5,33 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var CGST = document.getElementById("CGST");
     var SGST = document.getElementById("SGST");
     var Totalprice = document.getElementById("Totalprice");
-
-    function disableDates(event) {
-      var selectedCheckinDate = new Date(checkinInput.value);
-      var selectedCheckoutDate = new Date(checkoutInput.value);
-      var today = new Date();
-      console.log(selectedCheckinDate)
-      console.log(selectedCheckoutDate)
-      if (selectedCheckinDate < today) {
-          checkinInput.setCustomValidity("Check-in date cannot be in the past.");
-      } else {
-          checkinInput.setCustomValidity("");
-      }
-
-      if (selectedCheckoutDate > selectedCheckinDate) {
-        checkoutInput.setCustomValidity("");;
-      } else {
-        checkoutInput.setCustomValidity("Checkout date must be later than the check-in date.");
-
-        // Automatically adjust checkout date to be one day later than check-in date
-        var newCheckoutDate = new Date(selectedCheckinDate);
-        newCheckoutDate.setDate(newCheckoutDate.getDate() + 1);
-
-        // Update the value and the min attribute of the checkout input
-        checkoutInput.value = "";
-        checkoutInput.min = newCheckoutDate.toISOString().split('T')[0];
-      }
-  }
+    bdates=JSON.parse(bdates)
+    blockeddates=JSON.parse(blockeddates)
+    console.log(blockeddates)
+    
     
     function calculatePrice() {
       var checkinDate = new Date(checkinInput.value);
@@ -48,11 +25,35 @@ document.addEventListener("DOMContentLoaded", function() {
       } 
       document.getElementById("bill").style.opacity=1;
     }
+    function bdatesfun(element,event){
+      var selectedDate = element.value;
+      if (bdates.includes(selectedDate)) {
+        element.value = ''; // Clear the input
+  }
+    }
+    checkinInput.addEventListener("input",function(event){
+      var selectedCheckinDate = new Date(checkinInput.value);
+      var selectedCheckoutDate = new Date(checkoutInput.value);
+      if(selectedCheckoutDate && selectedCheckinDate>selectedCheckoutDate)
+            {checkoutInput.value = "";}
+      selectedCheckinDate.setDate(selectedCheckinDate.getDate() + 1);
+      checkoutInput.min = selectedCheckinDate.toISOString().split('T')[0];
+      bdatesfun(checkinInput,event);
 
-    checkinInput.addEventListener("input",disableDates)
+      var selectedCheckinDate = new Date(checkinInput.value);
+      nearestBlockedDate = blockeddates.find(function (blockedDate) {
+      var checkinDate = new Date(blockedDate.checkin);
+      return checkinDate >= selectedCheckinDate;
+    });
+
+    if (nearestBlockedDate) {
+      checkoutInput.max = nearestBlockedDate.checkin;
+    } else {
+      checkoutInput.max = ""; // If no blocked date found, clear the max attribute
+    }
+    })
 
     checkoutInput.addEventListener("input", function(){
-      disableDates();
       calculatePrice();
     });
   });

@@ -88,7 +88,9 @@
                           <label>Checkin</label>
                           <input type="date" name="checkin" id="checkin" min={{min_date}} max={{max_date}} required>
                           <script>
-                            var blockedDates = '{{ bdates | tojson | safe }}';
+                            var bdates = '{{ bdates | tojson | safe }}';
+                            var blockeddates = '{{ blockeddates | tojson | safe }}';
+
                         </script>
                         </div>
                         <div class="txt_field">
