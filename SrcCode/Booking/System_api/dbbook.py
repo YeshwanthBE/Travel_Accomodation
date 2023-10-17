@@ -95,7 +95,7 @@ class bk:
     
     def getacms(self,checkin,checkout):
         try:
-            self.cursor.execute('select acmid from bookings where %s>checkout or %s<checkin',(checkin,checkout))
+            self.cursor.execute('select acmid from bookings where %s>=checkout or %s<=checkin',(checkin,checkout))
             return json.dumps({"acmid":self.cursor.fetchall()})
         except Exception as e:
             raise e
