@@ -119,8 +119,10 @@ def calp(data:json,params:json):
     return totalprice
 
 @app.route('/home/<int:v>')
-def home(v):
+def home(v,y):
     url=config['url']['homepage']+('/Dashboard/' if v else '/')
+    if y:
+        url+='/admindashboard/'
     return redirect(url)
 if __name__ == '__main__':
    app.run(debug = True,port=8093)  

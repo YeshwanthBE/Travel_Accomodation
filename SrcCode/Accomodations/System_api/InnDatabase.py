@@ -74,7 +74,7 @@ class acm:
     
     def searchacm(self,location,minp,maxp,sort,desc):
         try:
-            query=f"select name,description,image_url,mailid,rating from accommodations where price>{minp}"
+            query=f"select name,description,image_url,mailid,rating,phno from accommodations where price>{minp}"
             if maxp:
                 query+=f' and price<{maxp}'
             if location:
@@ -90,7 +90,8 @@ class acm:
                     "description":i[1],
                     "image":i[2],
                     "acmid":i[3],
-                    "rating":i[4]
+                    "rating":i[4],
+                    "phno":i[5]
                 }
                 lst.append(data)
             return(json.dumps(lst))

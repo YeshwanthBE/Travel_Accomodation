@@ -65,6 +65,8 @@ class Profile:
     
     def accommodations(self,params):
         acms=json.loads(requests.get(f"{config['url']['acmurl']}",params=params).json())
+        if params.get('isall'):
+            return json.dumps(acms)
         response=requests.get(f"{config['url']['bkurl']}",params=params)
         if response.status_code==500:
             return json.dumps(acms)

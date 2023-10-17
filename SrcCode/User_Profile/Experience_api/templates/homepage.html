@@ -19,7 +19,7 @@
         </div>
         <div class="Profilebuttons">
             {% if admin=='1' %}
-                <a href="" class="button">Dashboard</a>
+                <a href="{{url_for('admin')}}" class="button">Dashboard</a>
             {% endif %}
             {% if show_profile_button %}
                 <a href="{{url_for('dashboard')}}" class="button" >Profile</a>

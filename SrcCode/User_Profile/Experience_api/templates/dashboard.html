@@ -22,9 +22,9 @@
                 </div>
                 <div class="Profilebuttons">
                         {% if admin=='1' %}
-                        <a href="" class="button">Dashboard</a>
+                        <a href="{{url_for('admin')}}" class="button">Dashboard</a>
                         {% endif %}
-                        <form id="postForm" method="post" action="{{url_for('Homepage')}}">
+                        <form id="postForm" method="post" action="{{url_for('logout')}}">
                             <input type="hidden">
                             <button type="submit" class="button">Logout</button>    
                         </form>

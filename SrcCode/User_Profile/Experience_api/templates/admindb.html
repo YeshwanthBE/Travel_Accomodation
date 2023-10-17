@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Dashboard
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/admindb.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
+        <script src="{{ url_for('static', filename='js/admindb.js') }}"></script>
+    </head>
+    <body>
+        <div class="fhd">
+            <div class="Header">
+                <div>
+                    <a href="http://127.0.0.1:8081"><h1 class="Heading">OneyesExplora!!</h1></a>
+                </div>
+                <div class="Profilebuttons">
+                        <a href="{{url_for('dashboard')}}" class="button" >Profile</a>
+                        <form id="postForm" method="post" action="{{url_for('logout')}}">
+                            <input type="hidden">
+                            <button type="submit" class="button">Logout</button>    
+                        </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var acms='{{ acms | tojson | safe }}';
+            var users='{{ users | tojson | safe }}';
+        </script>
+        <div class="contentbody">
+            <div class="search-bar">
+                <span>
+                    <input type="text" id="searchid" class="search" placeholder="Search...">
+                    <button type="button" class="searchbutton"><img src="{{ url_for('static', filename='css/Images/searchicon.png') }}" class="searchicon"></button>
+                </span>
+                <div class="sbts">
+                <button id="acmsButton" class="sbutton">Show Accommodations</button>
+                <button id="usersButton" class="sbutton">Show Users</button> 
+                <button id="addacmbutton" class="sbutton">Add Accommodations</button>  
+                <button id="addacmbutton" class="sbutton">Add User</button>
+                </div>
+            </div>
+            <div class="contentcontainer">
+                    
+            </div>
+        
+        </div>
+    </body>
+</html>

@@ -23,7 +23,7 @@
                 </div>
                 <div class="Profilebuttons">
                         {% if admin=='1' %}
-                        <a href="" class="button">Dashboard</a>
+                        <a href="{{url_for('home',y=1)}}" class="button">Dashboard</a>
                         {% endif %}
                         <a href="{{url_for('home',v=1)}}" class="button" >Profile</a>
                         <form id="postForm" method="post" action="{{url_for('register')}}">

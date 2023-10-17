@@ -152,6 +152,14 @@ def dashboard():
         requests.delete(config['url']['previousbkurl']+"/pr/booking/",headers=header,params={"bid":request.form.get('bid')})
         return redirect(url_for("dashboard"))
     
-
+@app.route("/admindashboard/")
+def admin():
+    if 'usr' not in request.cookies:
+        return redirect(url_for("login"))
+    cred=json.loads(request.cookies.get("usr"))
+    header={"Authorization": cred['jwt']}
+    acms=json.loads(requests.get(baseurl+f'/showacms/',headers=header,params={"isall":1}).json())
+    allusers=json.loads(requests.get(baseurl+f'/showusers/',headers=header).json())
+    return render_template("admindb.html",acms=acms,users=allusers)
 if __name__ == '__main__':  
    app.run(debug = True,port=8081)  
