@@ -18,7 +18,8 @@ def Homepage():
     max_date=str(date.today()+timedelta(days=365))
     accommodation=json.loads(requests.get(baseurl+f'/showacms/',params=request.args).json())
     spb='usr' in request.cookies
-    return render_template("homepage.html",show_profile_button=spb,accommodations=accommodation,query=query,length=len(accommodation),min_date=min_date,max_date=max_date)
+    ap=json.loads(request.cookies.get("usr"))['ap'] if spb else None
+    return render_template("homepage.html",admin=ap,show_profile_button=spb,accommodations=accommodation,query=query,length=len(accommodation),min_date=min_date,max_date=max_date)
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if request.method=="GET":
@@ -144,13 +145,13 @@ def dashboard():
     cred=json.loads(request.cookies.get("usr"))
     header={"Authorization": cred['jwt']}
     user=json.loads(requests.get(f'{baseurl}/profile/{cred["ap"]}/',headers=header).json())
-    prevbk=json.loads(requests.get(f"{config['url']['previousbkurl']}/pr/searchall/",headers=header,params={"ap":0}).json())
+    prevbk=json.loads(requests.get(f"{config['url']['previousbkurl']}/pr/searchall/",headers=header,params={'ap':cred['ap']}).json())
     if request.method=='GET':
-        return render_template("dashboard.html",user=user,prevbk=prevbk,length=len(prevbk))
+        return render_template("dashboard.html",user=user,prevbk=prevbk,length=len(prevbk),admin=cred['ap'])
     else:
         requests.delete(config['url']['previousbkurl']+"/pr/booking/",headers=header,params={"bid":request.form.get('bid')})
         return redirect(url_for("dashboard"))
     
 
-if __name__ == '__main__':
+if __name__ == '__main__':  
    app.run(debug = True,port=8081)  

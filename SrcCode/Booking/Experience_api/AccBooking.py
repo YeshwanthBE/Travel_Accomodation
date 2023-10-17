@@ -17,6 +17,7 @@ with open(os.getcwd()+'\\SrcCode\\Booking\\Experience_api\\config.yaml', 'r') as
 @app.route('/booking/')
 def register():
     if request.method=="GET":
+         cred=json.loads(request.cookies.get("usr"))
          acm=requests.get(config['url']['acmurl']+"/acm/mod/",params=request.args).json()
          reviews=requests.get(config['url']['revurl']+"/reviews/",params=request.args).json()
          min_date=str(date.today()+timedelta(days=1))
@@ -29,7 +30,7 @@ def register():
              while checkin <= checkout:
                 bdates.append(checkin.strftime("%Y-%m-%d"))
                 checkin += timedelta(days=1)
-         return render_template("booking.html",acm=acm,reviews=reviews,bdates=bdates,min_date=min_date,max_date=max_date,blockeddates=blockeddates)
+         return render_template("booking.html",acm=acm,admin=cred['ap'],reviews=reviews,bdates=bdates,min_date=min_date,max_date=max_date,blockeddates=blockeddates)
 def addbooking(acmid,checkin,checkout):
     cred=json.loads(request.cookies.get("usr"))
     data={
@@ -41,7 +42,7 @@ def addbooking(acmid,checkin,checkout):
     if response.status_code ==201:
         return redirect(config['url']['homepage']+"/Dashboard/")
     else:
-        return redirect(url_for("register",acmid=qp.get('acmid')))   
+        return redirect(url_for("register",acmid=acmid))   
 @app.route("/completedpayment/")
 def cp():
     payment_intent_id = request.args.get('payment_intent')

@@ -21,6 +21,9 @@
                     <a href="http://127.0.0.1:8081"><h1 class="Heading">OneyesExplora!!</h1></a>
                 </div>
                 <div class="Profilebuttons">
+                        {% if admin=='1' %}
+                        <a href="" class="button">Dashboard</a>
+                        {% endif %}
                         <form id="postForm" method="post" action="{{url_for('Homepage')}}">
                             <input type="hidden">
                             <button type="submit" class="button">Logout</button>    

@@ -22,7 +22,10 @@
                     <a href="{{url_for('home',v=0)}}"><h1 class="Heading">OneyesExplora!!</h1></a>
                 </div>
                 <div class="Profilebuttons">
-                        <a href="{{url_for('home',v=1)}}" class="button" >DashBoard</a>
+                        {% if admin=='1' %}
+                        <a href="" class="button">Dashboard</a>
+                        {% endif %}
+                        <a href="{{url_for('home',v=1)}}" class="button" >Profile</a>
                         <form id="postForm" method="post" action="{{url_for('register')}}">
                             <input type="hidden">
                             <button type="submit" class="button">Logout</button>    

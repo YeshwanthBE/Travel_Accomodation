@@ -12,7 +12,7 @@ def token_required(f):
         if not token:
             return jsonify({'message': 'Token is missing'}), 401
         try:
-            algorithm="HS512" if request.args.get('ap')==1 else "HS256"
+            algorithm="HS512" if request.args.get('ap')=='1' else "HS256"
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=algorithm)
             mailid = data['mailid']
         except jwt.ExpiredSignatureError:
