@@ -48,15 +48,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var searchbar=document.getElementById("searchid");
     searchbar.addEventListener("input",function(){
-        var data = (ele === 'a') ? acms : users;
+        var searchText = searchbar.value.toLowerCase();
         contentContainer.innerHTML = '';
-        data.forEach(function (item) {
-            if (item.acmid.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText) || item.phno.toLowerCase().includes(searchText)) {
-                var content = createContentDiv();
-                content.innerHTML = `<p>${item.acmid}</p><p>${item.name}</p><p>${item.phno}</p>`;
-                contentContainer.appendChild(content);
-            }
-        });
+        if (ele==='a'){
+            acms.forEach(function (item) {
+                if (item.acmid.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText) || item.phno.toLowerCase().includes(searchText)) {
+                    var content = createContentDiv();
+                    content.innerHTML = `<p>${item.acmid}</p><p>${item.name}</p><p>${item.phno}</p>`;
+                    contentContainer.appendChild(content);
+                }
+            });
+        }
+        else{
+            users.forEach(function (item) {
+                if (item.mailid.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText) || (item.phno && item.phno.toLowerCase().includes(searchText))) {
+                    var content = createContentDiv();
+                    content.innerHTML = `<p>${item.mailid}</p><p>${item.name}</p><p>${item.phno}</p>`;
+                    contentContainer.appendChild(content);
+                }
+            });
+        } 
         })
 
 });
