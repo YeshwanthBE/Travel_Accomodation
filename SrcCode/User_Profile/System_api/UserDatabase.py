@@ -129,6 +129,8 @@ class User:
         try:
             self.db.start_transaction()
             self.cursor.execute(f'INSERT INTO admin select * from users where mailid=%s',(mailid,))
+            self.cursor.fetchall()
+            self.cursor.execute(f'delete from users where mailid=%s',(mailid,))
             self.db.commit()
         except Exception as e:
             self.db.rollback()
