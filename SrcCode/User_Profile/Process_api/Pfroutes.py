@@ -102,6 +102,16 @@ def accommodations():
         return jsonify(response),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
-    
+
+@app.route('/userdetails/')
+def showus():
+    try:
+        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",1)
+        jwt=request.headers.get('Authorization')
+        if request.method=='GET':
+            response=obj.showuser(jwt,request.args)
+            return jsonify(response.json()),response.status_code
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
 if __name__ == '__main__':
    app.run(debug = True,port=8080)  

@@ -120,6 +120,16 @@ def showall(mailid,ap):
         return jsonify(obj.showall(data.get('mailid'))),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
-    
+@app.route('/dbprofile/<int:ap>/showusers/',)
+@token_required
+def showusers(mailid,ap):
+    try:
+        obj=User()
+        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        if request.method=='GET':
+            return jsonify(obj.show_user(request.args.get("mailid"),request.args.get("ap")))
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
+        
 if __name__ == '__main__':
    app.run(debug = True)  

@@ -38,7 +38,7 @@ class User:
 
     def show_user(self,mailid:str,ap=0) -> json:
         try:
-            table= "admin" if ap else "users"
+            table= "admin" if ap=='1' else "users"
             self.cursor.execute(f"Select * from {table} where mailid=%s",(mailid,))
             user=self.cursor.fetchone() 
             result_dict = {

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         contentContainer.appendChild(content);
         acms.forEach(function(acm) {
             var content = createContentDiv();
-            content.innerHTML = `<p>${acm.acmid}</p><p>${acm.name}</p><p>${acm.phno}</p>`;
+            content.innerHTML = `<p><a href="showuser/?acmid=${acm.acmid}&ap=0">${acm.acmid}</a></p><p>${acm.name}</p><p>${acm.phno}</p>`;
             contentContainer.appendChild(content);
         });
     }
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         contentContainer.appendChild(content);
         users.forEach(function(user) {
             var content = createContentDiv();
-            content.innerHTML = `<p>${user.mailid}</p><p>${user.name}</p><p>${user.phno}</p>`;
+            content.innerHTML = `<p><a href="showuser/?mailid=${user.mailid}&ap=0">${user.mailid}</a></p><p>${user.name}</p><p>${user.phno}</p>`;
             contentContainer.appendChild(content);
         });
     }
@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
         contentContainer.innerHTML = '';
         if (ele==='a'){
             acms.forEach(function (item) {
-                if (item.acmid.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText) || item.phno.toLowerCase().includes(searchText)) {
+                if (item.acmid.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText) ||  (item.phno && item.phno.toLowerCase().includes(searchText))) {
                     var content = createContentDiv();
-                    content.innerHTML = `<p>${item.acmid}</p><p>${item.name}</p><p>${item.phno}</p>`;
+                    content.innerHTML = `<p><a href="showuser/?acmid=${item.acmid}&ap=0">${item.acmid}</a></p><p>${item.name}</p><p>${item.phno}</p>`;
                     contentContainer.appendChild(content);
                 }
             });
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             users.forEach(function (item) {
                 if (item.mailid.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText) || (item.phno && item.phno.toLowerCase().includes(searchText))) {
                     var content = createContentDiv();
-                    content.innerHTML = `<p>${item.mailid}</p><p>${item.name}</p><p>${item.phno}</p>`;
+                    content.innerHTML = `<p><a href="showuser/?mailid=${item.mailid}&ap=0">${item.mailid}</a></p><p>${item.name}</p><p>${item.phno}</p>`;
                     contentContainer.appendChild(content);
                 }
             });

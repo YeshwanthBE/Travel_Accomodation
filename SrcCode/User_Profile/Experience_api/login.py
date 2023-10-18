@@ -161,5 +161,14 @@ def admin():
     acms=json.loads(requests.get(baseurl+f'/showacms/',headers=header,params={"isall":1}).json())
     allusers=json.loads(requests.get(baseurl+f'/showusers/',headers=header).json())
     return render_template("admindb.html",acms=acms,users=allusers)
+
+@app.route("/admindashboard/showuser/",methods=['GET','POST'])
+def usermod():
+    if request.method=='GET':
+        cred=json.loads(request.cookies.get("usr"))
+        header={"Authorization": cred['jwt']}
+        user=json.loads(requests.get(f'{baseurl}/userdetails/',headers=header,params=request.args).json())
+        return json.dumps(user)
+
 if __name__ == '__main__':  
    app.run(debug = True,port=8081)  

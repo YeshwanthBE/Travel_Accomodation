@@ -74,3 +74,6 @@ class Profile:
         acmids_to_remove = [acm_id[0] for acm_id in bk["acmid"]]
         acms_filtered = [acm for acm in acms if acm["acmid"] not in acmids_to_remove]
         return json.dumps(acms_filtered)
+    def showuser(self,jwt,params):
+        header={"Authorization": jwt}
+        return requests.get(f'{self.baseurl}/showusers/',headers=header,params=params)

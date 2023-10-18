@@ -91,12 +91,13 @@ body{
     text-align:center;
     border-width:10px ;
 }
-.content p{
+.content p,.content a{
     font-family: "young-serif";
     font-size: 34px;
+    transition: ease-in-out;
 }
-.content p:hover{
-    opacity: 0.8    ;
+.content a:hover{
+    opacity: 0.8;
 }
 .contenttitle p{
     font-family: "Young Serif";
@@ -151,4 +152,8 @@ body{
 .sbts{
     display: flex;
     justify-content: center;
+}
+.content a{
+    color: white;
+    text-decoration: none;
 }
