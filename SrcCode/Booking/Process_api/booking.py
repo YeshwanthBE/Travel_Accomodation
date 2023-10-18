@@ -50,3 +50,6 @@ class bking:
         return requests.get(f'{self.baseurl}/dbbk/acmbks/',params=params)
     def acms(self,params):
         return requests.get(f'{self.baseurl}/dbbk/acms/',params=params)
+    
+    def searchbkaddb(self,params,jwt):
+        return requests.get(f'{self.baseurl}/dbbk/allbk/addb/',params=params,headers={"Authorization": jwt})

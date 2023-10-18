@@ -28,7 +28,7 @@ def srchall():
     try:
          obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
          jwt=request.headers.get('Authorization')
-         response=obj.searchbk(request.args,jwt)
+         response=obj.searchbkaddb(request.args,jwt) if request.args.get("addb") else obj.searchbk(request.args,jwt)
          return jsonify(response.json()),response.status_code
     except Exception as e:
          return jsonify({"Exception": str(e)}),500

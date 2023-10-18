@@ -12,7 +12,7 @@ class bk:
                 self.db = mc.connect(host=db_config['host'],user=db_config['username'],password=db_config['password'],database=db_config['dbname'])
             self.db.start_transaction()
             self.cursor=self.db.cursor()
-            self.cursor.execute(f"CREATE TABLE IF NOT EXISTS bookings (booking_id INT AUTO_INCREMENT PRIMARY KEY, acmid VARCHAR(255), userid VARCHAR(255), booking_date DATETIME, price DECIMAL(10, 2),checkin date,checkout date, FOREIGN KEY (acmid) REFERENCES accommodations(mailid), FOREIGN KEY (userid) REFERENCES users(mailid));")
+            self.cursor.execute(f"CREATE TABLE IF NOT EXISTS bookings (booking_id INT AUTO_INCREMENT PRIMARY KEY, acmid VARCHAR(255), userid VARCHAR(255), booking_date DATETIME, price DECIMAL(10, 2),checkin date,checkout date, FOREIGN KEY (acmid) REFERENCES accommodations(mailid));")
             self.db.commit()
         except Exception as e:
             if self.db:

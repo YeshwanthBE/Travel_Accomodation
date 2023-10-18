@@ -34,7 +34,7 @@ def signup():
         "address": request.form["address"]+","+request.form["district"]+"."+request.form["state"],
         "phno": request.form["phno"]
         }
-        print(data)
+
         response=requests.post(baseurl+"/profile/0/register",json=data)
         flash(response.json())
         if response.status_code ==201:
@@ -113,10 +113,10 @@ def delete():
 
 @app.route('/adminprev/',methods=['POST'])
 def promote():
-    data=request.get_json()
+    data={"mailid":request.form['mailid']}
     cred=json.loads(request.cookies.get("usr"))
     requests.post(f'{baseurl}/adminpriv/{cred["ap"]}/',headers={"Authorization": cred['jwt']},json=data)
-    response=make_response(redirect(url_for("showall")))
+    return redirect(url_for("admin"))
 
 @app.route('/showusers/')
 def showal():
@@ -168,7 +168,13 @@ def usermod():
         cred=json.loads(request.cookies.get("usr"))
         header={"Authorization": cred['jwt']}
         user=json.loads(requests.get(f'{baseurl}/userdetails/',headers=header,params=request.args).json())
-        return json.dumps(user)
+        params={
+            'ap':cred['ap'],
+            'addb':1,
+            'mailid':request.args.get('mailid')
+        }
+        prevbk=json.loads(requests.get(f"{config['url']['previousbkurl']}/pr/searchall/",headers=header,params=params).json())
+        return render_template("addbusrprofile.html",user=user,prevbk=prevbk,length=len(prevbk),admin=cred['ap'])
 
 if __name__ == '__main__':  
    app.run(debug = True,port=8081)  

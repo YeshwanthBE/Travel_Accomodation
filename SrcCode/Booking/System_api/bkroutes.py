@@ -71,5 +71,17 @@ def acms():
         return jsonify(obj.getacms(request.args.get('checkin'),request.args.get('checkout'))),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
+    
+@app.route('/dbbk/allbk/addb/')
+@token_required
+def showaddbbk(mailid):
+    try:
+        obj=bk()
+        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
+        return jsonify(obj.showallbk(request.args.get("mailid"))),200
+    except Exception as e:
+        return jsonify({"Exception": str(e)}),500
+    
+
 if __name__ == '__main__':
    app.run(debug = True,port=8090)  
