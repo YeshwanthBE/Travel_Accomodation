@@ -1,0 +1,172 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+body{
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+a{
+    text-decoration: none;
+}
+.Profilebuttons{
+    display: flex;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    height: 35px;
+    margin: 10px;
+    font-size: 12px;
+}
+.Header{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    align-items: center;
+    padding-top: 30px;
+}
+.Heading{
+    font-family: 'Young Serif', serif;
+    font-size: 50px;
+    color: rgb(41, 89, 223);
+    background-color: rgba(21, 70, 204, 0.295);
+    border-radius: 50px;
+    padding: 5px;
+}
+.addacm{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #72b4ea;
+    padding: 25 px;
+    border-radius: 20px;
+}
+.addacm form{
+    padding: 50px 40px 30px 40px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+  }
+  form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #ffffff;
+    transition: ease-in-out 2s;
+  }
+  .txt_field input,.txt_field textarea{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    transition: height 2s;
+  }
+  .txt_field textarea:focus{
+    height: fit-content;
+  }
+  .txt_field label{
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    color: #ffffff;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  input[type="submit"]:hover{
+    border-color: #2691d9;
+    transition: .5s;
+  }
+  .error-message{
+    position: absolute;
+    opacity : 0;
+    left: 40px;
+    bottom: -2px;
+    width: fit-content;
+    background-color: rgb(255, 255, 255);
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(255, 0, 0);
+    padding: 5px;
+    transition: ease-in-out 1s;
+    color: rgb(77, 77, 77);
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .sd select{
+    border-color: #2691d9;
+    border-radius: 25px;
+    padding: 5px;
+    font-size: 17px;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+  }
+  .txt_field textarea{
+    resize: none;
+    padding-top: 10px;
+  }
+  .acmimage label{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  .acmimage label:hover {
+    border-color: #2691d9;
+    transition: .5s;
+  }
+  
+  /* Hide the file input element */
+  .acmimage  input{
+    display: none;
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset;
+    background-color: inherit; /* Set to the desired background color */
+  }

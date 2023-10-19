@@ -15,7 +15,11 @@ with open(os.getcwd()+'\\SrcCode\\Accomodations\\Experience_api\\config.yaml', '
 @app.route('/acm/register/',methods=['GET','POST'])
 def register():
     if request.method=="GET":
-        render_template("reg.html")
+        admindburl="http://127.0.0.1:8081/admindashboard/"
+        dashboardurl="http://127.0.0.1:8081/Dashboard/"
+        with open(app.static_folder+"\\json\\\states-and-districts.json", 'r') as file:
+            data=json.loads(file.read())
+            return render_template("reg.html",db=dashboardurl,addb=admindburl,sdjson=data)
     else:
         cred=json.loads(request.cookies.get("usr"))
         if "image" in request.files:
@@ -30,13 +34,13 @@ def register():
         "mailid": request.form["mailid"],
         "name": request.form["name"],
         "description": request.form["description"],
-        "location": request.form["location"],
+        "location": request.form["address"]+","+request.form["district"]+"."+request.form["state"],
         "phno": request.form["phno"],
         "price": request.form["price"],
         "imgurl": image_url
         }
         response=requests.post(baseurl+"/register",json=data,headers={"Authorization": cred['jwt']})
-        return response.json()
+        return redirect(config['url']['homepage']+'/admindashboard/')
         flash(response.json())
         if response.status_code ==200:
             redirect(url_for("show"))

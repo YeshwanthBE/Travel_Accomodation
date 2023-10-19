@@ -175,6 +175,8 @@ def usermod():
         }
         prevbk=json.loads(requests.get(f"{config['url']['previousbkurl']}/pr/searchall/",headers=header,params=params).json())
         return render_template("addbusrprofile.html",user=user,prevbk=prevbk,length=len(prevbk),admin=cred['ap'])
-
+@app.route("/acmreg/")
+def acmreg():
+    return redirect(config['url']['accomurl']+'/acm/register/')
 if __name__ == '__main__':  
    app.run(debug = True,port=8081)  

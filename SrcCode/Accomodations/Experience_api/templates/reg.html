@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        OneyesExplora
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reg.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/reg.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="Header">
+        <div>
+            <a href="http://127.0.0.1:8081"><h1 class="Heading">OneyesExplora!!</h1></a>
+        </div>
+        <div class="Profilebuttons">
+                <a href="{{db}}" class="button">Dashboard</a>
+                <a href="{{addb}}" class="button" >Profile</a>
+        </div>
+    </div>
+    <div class="addacm">
+        <form method="post" action="{{ url_for('register') }}" enctype="multipart/form-data"> 
+            <div class="txt_field" style="grid-column: span 2;">
+                <input type="text" id="mailid" name="mailid">
+                <span id="username-error" class="error-message"></span>
+                <label for="mailid">Email</label> 
+            </div>
+            <div class="txt_field" style="grid-column: span 2;">
+                <input type="text" name="name" id="name" >
+                <span id="name-error" class="error-message"></span>
+                <label>Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="phno" maxlength="10" name="phno" >
+                <span id="phno-error" class="error-message"></span>
+                <label>Phone Number</label>
+            </div>
+            <div class="txt_field">
+                <label for="price">Price per day</label>
+                <span id="price-error" class="error-message"></span>
+                <input type="number" name="price" id="price" min=0>
+            </div>
+            <div class="txt_field" style="grid-column: span 2;">
+                <textarea id="description" name="description" rows="4" maxlength="400"></textarea>
+                <span id="desc-error" class="error-message"></span>
+                <label >Description</label>
+            </div>
+            <div class="txt_field" style="grid-column: span 2;">
+                <input type="text" name="address" id="address">
+                <span id="address-error" class="error-message"></span>
+                <label>Address</label>
+            </div>
+            <script>
+                var sdjson = '{{ sdjson | tojson | safe }}';
+            </script>
+            <div class="sd">
+            <select id="stateDropdown" name="state">
+                <option value="">Select a state</option>
+            </select>
+            </div>
+            <div class="sd">
+            <select id="districtDropdown" name="district">
+                <option value="">Select a district</option>
+            </select>
+            </div>
+            <div class="acmimage">
+                <label for="image">Upload Image</label>
+                <span id="image-error" class="error-message"></span>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <input type="submit" value="Signup" id="submit">
+        </form>
+    </div>
+</body>
