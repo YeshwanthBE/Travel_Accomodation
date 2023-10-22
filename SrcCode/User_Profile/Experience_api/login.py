@@ -178,5 +178,8 @@ def usermod():
 @app.route("/acmreg/")
 def acmreg():
     return redirect(config['url']['accomurl']+'/acm/register/')
+@app.route("/admindashboard/acmmod/")
+def acmmod():
+    return redirect(config['url']['accomurl']+'/acmmod/?acmid='+request.args.get("acmid"))
 if __name__ == '__main__':  
    app.run(debug = True,port=8081)  

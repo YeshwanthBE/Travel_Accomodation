@@ -1,5 +1,6 @@
 url:
   domainurl: "http://127.0.0.1:8084"
   homepage: "http://127.0.0.1:8081"
+  prevbkurl: "http://127.0.0.1:8085"
 app:
   key: 'a'

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         contentContainer.appendChild(content);
         acms.forEach(function(acm) {
             var content = createContentDiv();
-            content.innerHTML = `<p><a href="showuser/?acmid=${acm.acmid}&ap=0">${acm.acmid}</a></p><p>${acm.name}</p><p>${acm.phno}</p>`;
+            content.innerHTML = `<p><a href="acmmod/?acmid=${acm.acmid}&ap=0">${acm.acmid}</a></p><p>${acm.name}</p><p>${acm.phno}</p>`;
             contentContainer.appendChild(content);
         });
     }
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             acms.forEach(function (item) {
                 if (item.acmid.toLowerCase().includes(searchText) || item.name.toLowerCase().includes(searchText) ||  (item.phno && item.phno.toLowerCase().includes(searchText))) {
                     var content = createContentDiv();
-                    content.innerHTML = `<p><a href="showuser/?acmid=${item.acmid}&ap=0">${item.acmid}</a></p><p>${item.name}</p><p>${item.phno}</p>`;
+                    content.innerHTML = `<p><a href="acmmod/?acmid=${item.acmid}&ap=0">${item.acmid}</a></p><p>${item.name}</p><p>${item.phno}</p>`;
                     contentContainer.appendChild(content);
                 }
             });

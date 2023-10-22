@@ -81,12 +81,15 @@ class bk:
 
     def showallacmbk(self,acmid):
         try:
-            self.cursor.execute('select checkin,checkout from bookings where acmid=%s',(acmid,))
+            self.cursor.execute('select checkin,checkout,booking_id,booking_date,price from bookings where acmid=%s',(acmid,))
             lst=[]
             for i in self.cursor.fetchall():
                 result_dict = {
                 "checkin": str(i[0]),
-                "checkout": str(i[1])
+                "checkout": str(i[1]),
+                "bookingid": i[2],
+                "booking_date": str(i[3]),
+                "price": float(i[4]),
                 }
                 lst.append(result_dict)
             return(json.dumps(lst))

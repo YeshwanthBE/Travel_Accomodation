@@ -45,7 +45,7 @@ def register():
         if response.status_code ==200:
             redirect(url_for("show"))
 
-@app.route("/acm/mod/",methods=['GET','DELETE','PATCH'])
+@app.route("/acm/mod/",methods=['GET','DELETE','POST'])
 def acm():
 
     if request.method=='GET':
@@ -74,6 +74,17 @@ def showall():
     data=requests.get(f"{baseurl}/acm/searchall",params=request.args)
     return data.json()
     #render_template("display.html",accomodations=data)
-    
+
+@app.route("/acmmod/")
+def acmmod():
+    acm=requests.get(f'{baseurl}/acm/op/',params=request.args).json()
+    prevbk=json.loads(requests.get(f'{config["url"]["prevbkurl"]}/allacmbks',params={"acmid":request.args.get("acmid")}).json())
+    return render_template("mod.html",acm=acm,prevbk=prevbk,length=len(prevbk))
+
+@app.route('/home/<int:v>')
+def home(v):
+    url=config['url']['homepage']+('/admindashboard/' if v==1 else '/')
+    return redirect(url)
+
 if __name__ == '__main__':
    app.run(debug = True,port=8083)  

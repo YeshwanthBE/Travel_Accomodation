@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Dashboard
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/mod.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{ url_for('static', filename='js/mod.js') }}"></script>
+    </head>
+    <body>
+        <div class="fhd">
+            <div class="Header">
+                <div>
+                    <a href="/home/0"><h1 class="Heading">OneyesExplora!!</h1></a>
+                </div>
+                <div class="Profilebuttons">
+                        <a href="/home/1" class="button">Dashboard</a>
+                </div>
+            </div>
+            <div class="profilebts">
+            <div class="profile">
+                <div class="item">
+                    <p>Mailid</p>
+                    <hr>
+                    <p>{{acm.mailid}}</p>  
+                </div>
+                <div class="item">
+                    <p>Name</p>
+                    <hr>
+                    <p><span id="name" contenteditable="false">{{ acm.name }}</span></p>
+                </div>
+                <div class="item">
+                    <p>Address</p>
+                    <hr>
+                    <p><span id="address" contenteditable="false">{{ acm.location }}</span></p>  
+                </div>
+                <div class="item">
+                    <p>PhoneNo</p>
+                    <hr>
+                    <p><span id="phno" contenteditable="false">{{ acm.phno }}</span></p>  
+                </div>
+            </div>
+            <div class="pfbuttons">
+                <div><button type="button" class="button" id="modifyButton">Modify</button></div>
+                <div><button type="button" id=savebutton class="savebutton" data-mod-url="/acm/mod/">Save</button></div>    
+            </div>
+        </div>
+        </div>
+        <script>
+            console.log("{{prevbk}}")
+        </script>
+        <div class="previousbkbody">
+            {% if length !=0 %}    
+                <div class="bkattributes">
+                    <h3>Booking_ID</h3>
+                    <h3>Booking_Date</h3>
+                    <h3>Price</h3>
+                    <h3>Checkin</h3>
+                    <h3>Checkout</h3>
+                </div>
+            {% else %}
+                <h3 class="nobks">No Bookings Have Been Made!!</h3>
+            {% endif %}
+            {% for bk in prevbk %}
+                <div class="booking">
+                    <div class="bkinfo">
+                        <p>{{bk.bookingid}}</p>
+                        <p>{{bk.booking_date}}</p>
+                        <p>{{bk.price}}</p>
+                        <p>{{bk.checkin}}</p>
+                        <p>{{bk.checkout}}</p>
+                    </div>
+                    <div class="bkbuttons">
+                        <form method="post" action="/home/1">
+                            <input type="hidden" name="bid" value={{bk.bookingid}}>
+                            <button type="submit" class="delbutton">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="deleteaccount">
+                
+            </div>
+        </div>
+        
+    </body>
+</html>

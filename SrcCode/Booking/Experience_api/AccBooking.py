@@ -94,7 +94,6 @@ def payment():
         try:
             data = json.loads(request.data)
             price=float(data.get("price"))*100
-            print(price)
             intent = stripe.PaymentIntent.create(
                 amount=int(price),
                 currency='inr',
