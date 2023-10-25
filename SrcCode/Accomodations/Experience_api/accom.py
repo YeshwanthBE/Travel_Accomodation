@@ -57,11 +57,7 @@ def acm():
         return redirect(url_for("showall"))
     else:
         cred=json.loads(request.cookies.get("usr"))
-        data={
-        "description": request.form["description"],
-        "phno": request.form["phno"],
-        "price": request.form["price"]
-        }
+        data=request.get_json()
         requests.patch(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},json=data,params=request.args)
         return redirect(url_for("acm"))
 

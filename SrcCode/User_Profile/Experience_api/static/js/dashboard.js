@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
             data: JSON.stringify(data),
             contentType: 'application/json',
             success: function(response) {
-                console.log(response);
             }
         });
         toggleContentAndVisibility();

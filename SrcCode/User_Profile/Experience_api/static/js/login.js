@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var ue =document.getElementById('username-error')
     var pe = document.getElementById('password-error')
     form.addEventListener('submit', function (event) {
-        console.log("hello")
       if (usernameInput.value.trim() === '' && passwordInput.value.trim() === '') {
         event.preventDefault();
         ue.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Username is required';

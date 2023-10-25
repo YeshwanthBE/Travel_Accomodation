@@ -3,12 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameSpan = document.getElementById("name");
     const addressSpan = document.getElementById("address");
     const phnoSpan = document.getElementById("phno");
+    const price = document.getElementById("price");
+    const description = document.getElementById("description");
     const saveButton = document.getElementById("savebutton");
-    const pfButtons = document.querySelector(".pfbuttons");
     function toggleContentAndVisibility() {
         toggleContentEditable(nameSpan);
         toggleContentEditable(addressSpan);
         toggleContentEditable(phnoSpan);
+        toggleContentEditable(description);
+        toggleContentEditable(price);
         toggleVisibility(saveButton);
     }
 
@@ -17,19 +20,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function toggleContentEditable(element) {
         element.contentEditable = element.contentEditable === "true" ? "false" : "true";
         element.classList.toggle("modify");
+        
     }
     function toggleVisibility(element) {
         element.style.visibility = element.style.visibility === "visible" ? "hidden" : "visible";
-        pfButtons.style.height = pfButtons.style.height === "112px"? "56px" :" 112px";
     }
     saveButton.addEventListener("click", function() {
         modifiedname=getcontent(nameSpan)
         modiifiedaddress=getcontent(addressSpan)
         modifiedphno=getcontent(phnoSpan)
+        modifiedprice=getcontent(price)
+        modifieddesc=getcontent(description)
         const data = {
             name: modifiedname,
-            address: modiifiedaddress,
-            phno: modifiedphno
+            location: modiifiedaddress,
+            phno: modifiedphno,
+            price: modifiedprice,
+            description: modifieddesc
         };
         var modUrl = document.getElementById('savebutton').getAttribute('data-mod-url');
         $.ajax({
@@ -38,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
             data: JSON.stringify(data),
             contentType: 'application/json',
             success: function(response) {
-                console.log(response);
             }
         });
         toggleContentAndVisibility();

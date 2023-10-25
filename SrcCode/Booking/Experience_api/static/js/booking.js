@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var Totalprice = document.getElementById("Totalprice");
     bdates=JSON.parse(bdates)
     blockeddates=JSON.parse(blockeddates)
-    console.log(blockeddates)
     
     
     function calculatePrice() {

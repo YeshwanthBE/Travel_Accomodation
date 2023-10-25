@@ -61,9 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (password.includes(userName)) {
             errors.push("<i class='fa fa-exclamation-triangle'></i>Password should not contain your username.</pre>");
         }
-        console.log(submitbutton)
         if(errors.length>1)
-            {console.log("in password error class");togglevisiblity(passwordErrors,true);submitbutton=false;}
+            {togglevisiblity(passwordErrors,true);submitbutton=false;}
         passwordErrors.innerHTML = errors.join("");
     });
     function togglevisiblity(element,flag){
@@ -97,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
             flag=false;
           }
           if(passwordErrors)
-        console.log(submitbutton)
         if (!submitbutton) {
             togglevisiblity(passwordErrors,true);
             flag=false;
