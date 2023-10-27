@@ -190,7 +190,8 @@ body{
 .modify{
     background-color: #fff !important;
     color:black !important;
-    padding:10px !important;
+    margin: 5px 0px;
+    padding:5px !important;
     border-radius: 5px !important;
     height: fit-content !important;
 }
@@ -212,11 +213,13 @@ body{
     height: fit-content;
     border-radius: 25px;
     margin: 10px;
+    align-items: center;
     padding: 10px;
 }
 .namedesc h3{
     color: #fe0000;
     font-family: 'Cinzel Decorative', cursive;
+    width: fit-content;
 }
 .namedesc p{
     font-size: 25px;
@@ -251,4 +254,36 @@ p span{
 }
 .pfbuttons1 button{
     width: 100%s;
+}
+.imagediv{
+    position: relative;
+}
+.img-upload{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    
+}
+.img-upload input{
+    display: none;
+}
+.img-upload label{
+    padding: 10px;
+    height: fit-content;
+    display:inherit;   
+}
+.delcon{
+    background: none;
+    border: none;
+}
+.delcon img{
+    height: 30px;
+    border-radius: 20px;
+}
+.uploadd{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
 }

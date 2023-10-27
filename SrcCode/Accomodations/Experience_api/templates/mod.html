@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/mod.css') }}">
-        <link rel="icon" href="{{ url_for('static', filename='css/Images/favicon.png') }}" type="image/x-icon">
+        <link rel="icon" href="{{ url_for('static', filename='css/images/favicon.png') }}" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,7 +25,15 @@
                 </div>
             </div>
             <div class="profile">
-                <div><img src="{{ acm.imgurl }}" alt="Accommodation Image" class="imgsrc"></div>
+                <div class="imagediv">
+                    <img src="{{ acm.imgurl }}" alt="Accommodation Image" class="imgsrc" id="acmimg">
+                    <form id="image-upload-form" class="img-upload" enctype="multipart/form-data">
+                        <input type="file" id="image-file" accept="image/*">
+                        <div class="uploadd"><label class="button" for="image-file">Upload Image</label>
+                            <button id="delcon" type="button" class="delcon"><img src="{{ url_for('static', filename='css/images/deleteIcon.png')}}"></button>
+                        </div>
+                    </form>
+                </div>
                     <div><div class="namedesc">
                         <h3 id="name">{{ acm.name }}<h3>
                         <p id="description">{{ acm.description }}</p>
@@ -34,7 +42,7 @@
                         <p>{{acm.rating}}&#128970;</p>
                         <p id="address">{{acm.location}}</p>
                         <p id="phno">{{acm.phno}}</p>
-                        <p>&#x20B9;<span id=price >{{acm.price}}</span>/Day</p>
+                        <p>&#x20B9;<span id=price>{{acm.price}}</span>/Day</p>
                     </div>
                     </div>
 
