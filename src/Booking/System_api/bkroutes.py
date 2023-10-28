@@ -30,7 +30,7 @@ def booking(mailid):
     try:
         obj=bk()
         qp=request.args
-        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Booking\\System_api\\config.yaml")
         if request.method=='GET':
             return jsonify(obj.show_bk(qp.get('bid')))
         elif request.method=='DELETE':
@@ -49,7 +49,7 @@ def booking(mailid):
 def show(mailid):
     try:
         obj=bk()
-        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Booking\\System_api\\config.yaml")
         return jsonify(obj.showallbk(mailid)),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
@@ -58,7 +58,7 @@ def show(mailid):
 def acmbk():
     try:
         obj=bk()
-        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Booking\\System_api\\config.yaml")
         return jsonify(obj.showallacmbk(request.args.get('acmid'))),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
@@ -67,7 +67,7 @@ def acmbk():
 def acms():
     try:
         obj=bk()
-        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Booking\\System_api\\config.yaml")
         return jsonify(obj.getacms(request.args.get('checkin'),request.args.get('checkout'))),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
@@ -77,7 +77,7 @@ def acms():
 def showaddbbk(mailid):
     try:
         obj=bk()
-        obj.connect(os.getcwd()+"\\SrcCode\\Booking\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Booking\\System_api\\config.yaml")
         return jsonify(obj.showallbk(request.args.get("mailid"))),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500

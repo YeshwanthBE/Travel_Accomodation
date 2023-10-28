@@ -29,7 +29,7 @@ def review(mailid):
     try:
         obj=rr()
         qp=request.args
-        obj.connect(os.getcwd()+"\\SrcCode\\Reviews_Ratings\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Reviews_Ratings\\System_api\\config.yaml")
         if request.method=='PATCH':
             obj.mod(request.get_json())
             return jsonify({"message": "review updated Successfully"}), 200
@@ -48,7 +48,7 @@ def review(mailid):
 def show():
     try:
         obj=rr()
-        obj.connect(os.getcwd()+"\\SrcCode\\Reviews_Ratings\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Reviews_Ratings\\System_api\\config.yaml")
         return jsonify(obj.showall(request.get_json())),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500

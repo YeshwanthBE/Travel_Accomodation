@@ -7,7 +7,7 @@ app=Flask(__name__)
 @app.route('/pr/booking/',methods=['GET','POST','DELETE'])
 def bkop():
     try:
-        obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
+        obj=bking(os.getcwd()+"\\src\\Booking\\Process_api\\config.yaml")
         jwt=request.headers.get('Authorization')
         if request.method=='GET':
             response=obj.showbk(jwt,request.args)
@@ -26,7 +26,7 @@ def bkop():
 @app.route("/pr/searchall/")
 def srchall():
     try:
-         obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
+         obj=bking(os.getcwd()+"\\src\\Booking\\Process_api\\config.yaml")
          jwt=request.headers.get('Authorization')
          response=obj.searchbkaddb(request.args,jwt) if request.args.get("addb") else obj.searchbk(request.args,jwt)
          return jsonify(response.json()),response.status_code
@@ -36,7 +36,7 @@ def srchall():
 @app.route('/allacmbks')
 def acmbks():
     try:
-         obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
+         obj=bking(os.getcwd()+"\\src\\Booking\\Process_api\\config.yaml")
          response=obj.allacmbks(request.args)
          return jsonify(response.json()),response.status_code
     except Exception as e:
@@ -45,7 +45,7 @@ def acmbks():
 @app.route("/acms/")
 def acmsnobk():
     try:
-         obj=bking(os.getcwd()+"\\SrcCode\\Booking\\Process_api\\config.yaml")
+         obj=bking(os.getcwd()+"\\src\\Booking\\Process_api\\config.yaml")
          response=obj.acms(request.args)
          return jsonify(response.json()),response.status_code
     except Exception as e:

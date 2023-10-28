@@ -6,12 +6,12 @@ import os
 import uuid
 app=Flask(__name__)
 app.static_folder = 'static'
-with open(os.getcwd()+'\\SrcCode\\Accomodations\\Experience_api\\config.yaml', 'r') as file:
+with open(os.getcwd()+'\\src\\Accomodations\\Experience_api\\config.yaml', 'r') as file:
     global baseurl
     config=yaml.safe_load(file)
     baseurl= config['url']['domainurl']
     app.secret_key=config['app']['key']
-    upload_path=os.path.join(os.getcwd(), 'SrcCode','Accomodations','Experience_api','static', 'images')
+    upload_path=os.path.join(os.getcwd(), 'src','Accomodations','Experience_api','static', 'images')
 @app.route('/acm/register/',methods=['GET','POST'])
 def register():
     if request.method=="GET":

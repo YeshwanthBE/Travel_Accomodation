@@ -27,7 +27,7 @@ def token_required(f):
 def getacm():
     obj=acm()
     qp=request.args
-    obj.connect(os.getcwd()+"\\SrcCode\\Accomodations\\System_api\\config.yaml")
+    obj.connect(os.getcwd()+"\\src\\Accomodations\\System_api\\config.yaml")
     return jsonify(obj.show_acm(qp.get('acmid')))
 @app.route('/acm/ad/',methods=['POST','DELETE','PATCH'])
 @token_required
@@ -35,7 +35,7 @@ def acmtools():
     try:
         obj=acm()
         qp=request.args
-        obj.connect(os.getcwd()+"\\SrcCode\\Accomodations\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Accomodations\\System_api\\config.yaml")
         if request.method=='DELETE':
             obj.del_acm(qp.get('mailid'))
             return jsonify({"message": "Accomodation Deleted Successfully"}), 200
@@ -55,7 +55,7 @@ def acmtools():
 def srch():
     try:
         obj=acm()
-        obj.connect(os.getcwd()+"\\SrcCode\\Accomodations\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\Accomodations\\System_api\\config.yaml")
         data=request.args
         return jsonify(obj.searchacm(data.get("location"),data.get('minp',default=0),data.get('maxp'),data.get('sort'),data.get('desc'))),200
     except Exception as e:

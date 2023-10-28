@@ -7,7 +7,7 @@ app=Flask(__name__)
 @app.route('/profile/<int:ap>/register',methods=['POST'])
 def SignUp(ap=0):
     try:
-        obj=Profile(os.getcwd()+'\\SrcCode\\User_Profile\\Process_api\\config.yaml',ap)
+        obj=Profile(os.getcwd()+'\\src\\User_Profile\\Process_api\\config.yaml',ap)
         data=request.get_json()
         #obj.sendmail(app,data['mailid'],"Welcome to Oneyes Explora",render_template('registration.txt',username=data['mailid'].split('@')[0],loginlink="www.abc.com"))
         response=obj.register(data)
@@ -18,7 +18,7 @@ def SignUp(ap=0):
 @app.route('/profile/<int:ap>/',methods=['GET','POST','DELETE','PATCH'])
 def profile(ap):
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",ap)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",ap)
         jwt=request.headers.get('Authorization')
         if request.method=='GET':
             response=obj.showprofile(jwt)
@@ -45,7 +45,7 @@ def profile(ap):
 @app.route('/profile/<int:ap>/auth/',methods=['POST'])
 def authentication(ap) ->make_response:
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",ap)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",ap)
         response=obj.auth(request.get_json())
         return jsonify(response.json()),response.status_code
     except Exception as e:
@@ -54,7 +54,7 @@ def authentication(ap) ->make_response:
 @app.route('/profile/<int:ap>/tk/')
 def tkauth(ap)-> make_response:
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",ap)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",ap)
         data=request.args
         jwt=obj.verifytk(data.get("mailid"),data.get("token"))
         if jwt is False:
@@ -67,7 +67,7 @@ def tkauth(ap)-> make_response:
 @app.route('/profile/<int:ap>/rp/',methods=['POST'])
 def rp(ap):
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",ap)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",ap)
         jwt=request.headers.get('Authorization')
         response=obj.rstpwd(request.get_json(),jwt)
         return jsonify(response.json()),response.status_code
@@ -77,7 +77,7 @@ def rp(ap):
 @app.route('/adminpriv/<int:ap>/',methods=['POST'])
 def promote(ap):
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",ap)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",ap)
         jwt=request.headers.get('Authorization')
         response=obj.promote(request.get_json(),jwt)
         return jsonify(response.json()),response.status_code
@@ -87,7 +87,7 @@ def promote(ap):
 @app.route('/showusers/')
 def showall():
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",1)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",1)
         jwt=request.headers.get('Authorization')
         response=obj.showall(request.args,jwt)
         return jsonify(response.json()),response.status_code
@@ -97,7 +97,7 @@ def showall():
 @app.route('/showacms/')
 def accommodations():
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",1)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",1)
         response=obj.accommodations(request.args)
         return jsonify(response),200
     except Exception as e:
@@ -106,7 +106,7 @@ def accommodations():
 @app.route('/userdetails/')
 def showus():
     try:
-        obj=Profile(os.getcwd()+"\\SrcCode\\User_Profile\\Process_api\\config.yaml",1)
+        obj=Profile(os.getcwd()+"\\src\\User_Profile\\Process_api\\config.yaml",1)
         jwt=request.headers.get('Authorization')
         if request.method=='GET':
             response=obj.showuser(jwt,request.args)

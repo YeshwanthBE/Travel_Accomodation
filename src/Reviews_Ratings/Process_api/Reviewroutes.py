@@ -7,7 +7,7 @@ app=Flask(__name__)
 @app.route('/reviews/',methods=['PATCH','POST','DELETE'])
 def review():
     try:
-        obj=reviews(os.getcwd()+"\\SrcCode\\Reviews_Ratings\\Process_api\\config.yaml")
+        obj=reviews(os.getcwd()+"\\src\\Reviews_Ratings\\Process_api\\config.yaml")
         jwt=request.headers.get('Authorization')
         if request.method=='PATCH':
             response=obj.mod(jwt,request.get_json())
@@ -24,7 +24,7 @@ def review():
 @app.route("/reviews/searchall/")
 def srchall():
     try:
-         obj=reviews(os.getcwd()+"\\SrcCode\\Reviews_Ratings\\Process_api\\config.yaml")
+         obj=reviews(os.getcwd()+"\\src\\Reviews_Ratings\\Process_api\\config.yaml")
          data=request.get_json()
          if not data.get('sort'):
              data['sort']="rating"

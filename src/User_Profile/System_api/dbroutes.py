@@ -27,7 +27,7 @@ def token_required(f):
 def signup(ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\User_Profile\\System_api\\config.yaml")
         if obj.add_user(request.get_json(),ap) is not False:
             return jsonify({"message": "User Registered Successfully"}), 201
         else:
@@ -40,7 +40,7 @@ def signup(ap):
 def profile(mailid,ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\User_Profile\\System_api\\config.yaml")
         if request.method=='GET':
             return jsonify(obj.show_user(mailid,ap))
         elif request.method=='DELETE':
@@ -65,7 +65,7 @@ def auth(ap):
     try:
         data=request.get_json()
         obj=User()
-        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\User_Profile\\System_api\\config.yaml")
         if obj.Auth(data['mailid'],data['password'],ap):
             payload={"mailid": data['mailid'],
             "exp": int(time.time())+86400
@@ -81,7 +81,7 @@ def auth(ap):
 def tokenauth(ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\User_Profile\\System_api\\config.yaml")
         if request.method=='GET':
             mailid=request.args.get('mailid')
             payload={"mailid": mailid,
@@ -104,7 +104,7 @@ def promote(mailid,ap):
     try:
         data=request.get_json()
         obj=User()
-        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\User_Profile\\System_api\\config.yaml")
         obj.promote(data['mailid'])
         return jsonify({"message":"promoted as admin"}),200
     except Exception as e:
@@ -115,7 +115,7 @@ def promote(mailid,ap):
 def showall(mailid,ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\User_Profile\\System_api\\config.yaml")
         data=request.args
         return jsonify(obj.showall(data.get('mailid'))),200
     except Exception as e:
@@ -125,7 +125,7 @@ def showall(mailid,ap):
 def showusers(mailid,ap):
     try:
         obj=User()
-        obj.connect(os.getcwd()+"\\SrcCode\\User_Profile\\System_api\\config.yaml")
+        obj.connect(os.getcwd()+"\\src\\User_Profile\\System_api\\config.yaml")
         if request.method=='GET':
             return jsonify(obj.show_user(request.args.get("mailid"),request.args.get("ap")))
     except Exception as e:

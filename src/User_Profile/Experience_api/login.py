@@ -6,7 +6,7 @@ import os
 from datetime import date, timedelta,datetime
 app=Flask(__name__)
 app.static_folder = 'static'
-with open(os.getcwd()+'\\SrcCode\\User_Profile\\Experience_api\\config.yaml', 'r') as file:
+with open(os.getcwd()+'\\src\\User_Profile\\Experience_api\\config.yaml', 'r') as file:
     global baseurl,config
     config=yaml.safe_load(file)
     baseurl= config['url']['domainurl']
