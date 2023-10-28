@@ -3,4 +3,5 @@
 *resetmail.txt
 *__pycache__*
 *config.yaml
-Dummy*
+Dummy
+.vscode
