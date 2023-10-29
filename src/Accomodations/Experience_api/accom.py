@@ -12,6 +12,12 @@ with open(os.getcwd()+'\\src\\Accomodations\\Experience_api\\config.yaml', 'r') 
     baseurl= config['url']['domainurl']
     app.secret_key=config['app']['key']
     upload_path=os.path.join(os.getcwd(), 'src','Accomodations','Experience_api','static', 'images')
+def image(image_file):
+    unique_filename = str(uuid.uuid4()) + os.path.splitext(image_file.filename)[-1]
+    full_path =os.path.join(upload_path , unique_filename)
+    image_file.save(full_path)
+    return url_for("uploaded_file", filename=unique_filename, _external=True)
+
 @app.route('/acm/register/',methods=['GET','POST'])
 def register():
     if request.method=="GET":
@@ -23,11 +29,7 @@ def register():
     else:
         cred=json.loads(request.cookies.get("usr"))
         if "image" in request.files:
-            image_file = request.files["image"]
-            unique_filename = str(uuid.uuid4()) + os.path.splitext(image_file.filename)[-1]
-            full_path =os.path.join(upload_path , unique_filename)
-            image_file.save(full_path)
-            image_url = url_for("uploaded_file", filename=unique_filename, _external=True)
+            image_url = image(request.files["image"])      
         else:
             image_url="Not Found"
         data={
@@ -41,9 +43,6 @@ def register():
         }
         response=requests.post(baseurl+"/register",json=data,headers={"Authorization": cred['jwt']})
         return redirect(config['url']['homepage']+'/admindashboard/')
-        flash(response.json())
-        if response.status_code ==200:
-            redirect(url_for("show"))
 
 @app.route("/acm/mod/",methods=['GET','DELETE','POST'])
 def acm():
@@ -56,10 +55,18 @@ def acm():
         requests.delete(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},params=request.args)
         return redirect(url_for("showall"))
     else:
-        cred=json.loads(request.cookies.get("usr"))
-        data=request.get_json()
+        cred=json.loads(request.cookies.get("usr"))      
+        data={
+        "name": request.form["name"],
+        "description": request.form["description"],
+        "location": request.form["location"],
+        "phno": request.form["phno"],
+        "price": request.form["price"],
+        }
+        if "img" in request.files:
+            data["image_url"] = image(request.files["img"])
         requests.patch(f'{baseurl}/acm/op/',headers={"Authorization": cred['jwt']},json=data,params=request.args)
-        return redirect(url_for("acm"))
+        return data
 
 @app.route("/uploads/<filename>")
 def uploaded_file(filename):

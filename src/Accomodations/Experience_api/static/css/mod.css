@@ -198,6 +198,7 @@ body{
 .imgsrc{
     flex: 1;
     height: 300px;
+    width: 490px;
     border-radius: 20px;
     padding: 10px;
     background-color: rgba(121, 179, 234, 0.931);
@@ -263,7 +264,7 @@ p span{
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    
+
 }
 .img-upload input{
     display: none;

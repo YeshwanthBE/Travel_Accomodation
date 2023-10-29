@@ -17,12 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
         psc=phnoSpan.textContent
         dsc=description.textContent
         prsc=price.textContent
+    }
+    function imginit(){
         img.style.display="block";
         imgform.style.display="none";
         delcon.style.display="none";
     }
     function toggledisplay(element){
-        element.style.display=element.style.display==="block"?"none":"block";
+        element.style.display=element.style.display==="none"?"block":"none";
     }
     imageFileInput.addEventListener("change", function () {
         if (imageFileInput.files.length > 0) {
@@ -63,28 +65,34 @@ document.addEventListener("DOMContentLoaded", function () {
         modifiedphno=getcontent(phnoSpan)
         modifiedprice=getcontent(price)
         modifieddesc=getcontent(description)
-        const data = {
-            name: modifiedname,
-            location: modiifiedaddress,
-            phno: modifiedphno,
-            price: modifiedprice,
-            description: modifieddesc
-        };
+        const data = new FormData();
+        data.append('name', modifiedname);
+        data.append('location', modiifiedaddress);
+        data.append('phno', modifiedphno);
+        data.append('price', modifiedprice);
+        data.append('description', modifieddesc);
+        if (imageFileInput.files.length > 0) {
+            data.append('img', imageFileInput.files[0]);
+        }
         var modUrl = document.getElementById('savebutton').getAttribute('data-mod-url');
         $.ajax({
             url: modUrl, // Replace with the correct URL
             method: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
+            data: data,
+            processData: false,
+            contentType: false,
             success: function(response) {
+
+                if ("image_url" in response)
+                    img.src = response.image_url;
             }
         });
-        toggleContentAndVisibility();
         initialize();
+        toggleContentAndVisibility();
     });
     function getcontent(element){
-        element.contentEditable="false";
         return element.textContent;
     }
     initialize();
+    imginit();
 });
