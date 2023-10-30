@@ -119,9 +119,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     });
     const sd = JSON.parse(sdjson).states;
+    const cd = JSON.parse(cdjson)
+    const pd = JSON.parse(pdjson).India
     const stateDropdown = document.getElementById('stateDropdown');
     const districtDropdown = document.getElementById('districtDropdown');
+    const countryDropdown=document.getElementById("countryDropdown");
+    const pincodeDropdown=document.getElementById("Pincode");
+    function populateCountryDropdown() {
+        for (const country of cd) {
+            const option = document.createElement('option');
+            option.value = country.code;
+            option.text = country.name;
+            countryDropdown.appendChild(option);
+      }
+    }
     function populateStateDropdown() {
+        
+        const selectedcountry=countryDropdown.value;
+        stateDropdown.innerHTML='<option value="">Select a State</option>';
+        populateDistrictDropdown();
+        if (selectedcountry!=="IN")
+            return;
         for (const state of sd) {
             const option = document.createElement('option');
             option.value = state.state;
@@ -134,8 +152,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedStateData = sd.find(stateData => stateData.state === selectedState);
         districtDropdown.innerHTML = '';
         const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.text = 'Select a district';
+        defaultOption.value = '';
+        defaultOption.text = 'Select a district';
+        populatepincodeDropdown();
     districtDropdown.appendChild(defaultOption);
         if (selectedStateData) {
             for (const district of selectedStateData.districts) {
@@ -146,7 +165,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
-    document.getElementById('stateDropdown').addEventListener('change', populateDistrictDropdown); 
-      populateStateDropdown();
+    function populatepincodeDropdown(){
+        const selectedDistrict = districtDropdown.value;
+        const selectedDistrictEntries = Object.values(pd).filter(entry => entry.District === selectedDistrict);
+        pincodeDropdown.innerHTML = '<option value="">Select Pincode</option>';
+        selectedDistrictEntries.forEach(entry => {
+            const option = document.createElement('option');
+            option.value = entry.Pincode;
+            option.text = `${entry.PostOfficeName} - ${entry.Pincode}`;
+            pincodeDropdown.appendChild(option);
+        });
+    }
+    districtDropdown.addEventListener('change',populatepincodeDropdown);
+    stateDropdown.addEventListener('change', populateDistrictDropdown); 
+    countryDropdown.addEventListener('change',populateStateDropdown);
+      populateCountryDropdown();
 });
 

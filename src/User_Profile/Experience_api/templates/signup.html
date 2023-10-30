@@ -49,7 +49,14 @@
             </div>
             <script>
                 var sdjson = '{{ sdjson | tojson | safe }}';
+                let cdjson = '{{ cdjson | tojson | safe }}';
+                let pdjson = '{{ pdjson | tojson | safe }}';
             </script>
+            <div class="sd">
+                <select id="countryDropdown" name="country">
+                    <option value="">Select a country</option>
+                </select>
+                </div>
             <div class="sd">
             <select id="stateDropdown" name="state">
                 <option value="">Select a state</option>
@@ -60,6 +67,11 @@
                 <option value="">Select a district</option>
             </select>
             </div>
+            <div class="sd">
+                <select id="Pincode" name="pincode">
+                    <option value="">Select Pincode</option>
+                </select>
+                </div>
             <div class="login_link">
                 Already a member? <a href="{{ url_for('login') }}?ap=1">Login</a>
             </div>

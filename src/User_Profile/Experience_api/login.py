@@ -25,7 +25,11 @@ def signup():
     if request.method=="GET":
         with open(app.static_folder+"\\json\\\states-and-districts.json", 'r') as file:
             data=json.loads(file.read())
-            return render_template("signup.html",sdjson=data)
+        with open(app.static_folder + "\\json\\countries.json", 'r') as file:
+            countries_data = json.loads(file.read())
+        with open(app.static_folder + "\\json\\pincode.json", 'r', encoding='utf-8-sig') as file:
+                pincode_data = json.loads(file.read())
+        return render_template("signup.html",sdjson=data,cdjson=countries_data,pdjson=pincode_data)
     else:
         data={
         "mailid": request.form["mailid"],
