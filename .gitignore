@@ -6,3 +6,7 @@
 Dummy
 .vscode
 .env
+.gitignore
+.gitignore
+*.cjs
+*.json
