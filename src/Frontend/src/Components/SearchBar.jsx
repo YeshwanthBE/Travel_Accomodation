@@ -1,3 +1,4 @@
+import React from "react";
 import filtericon from "../assets/filter.png";
 import searchicon from "../assets/searchicon.png";
 import "./SearchBar.css";

@@ -2,8 +2,9 @@ import os
 from flask import Flask,request,make_response,jsonify,render_template,url_for
 from User import Profile
 import uuid
+from flask_cors import CORS
 app=Flask(__name__)
-
+CORS(app)
 @app.route('/profile/<int:ap>/register',methods=['POST'])
 def SignUp(ap=0):
     try:

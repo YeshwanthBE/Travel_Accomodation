@@ -1,4 +1,6 @@
+import React from "react";
 import "./PageHeader.css";
+
 export default function PageHeader(props) {
   const dashboard = <button className="button">Dashboard</button>;
   const loggedin = (
