@@ -46,7 +46,7 @@
 .filter {
   position: absolute;
   left: 0;
-  bottom: -60px;
+  bottom: -30px;
   background-color: rgba(211, 211, 211, 0.64);
   padding: 10px;
   border-radius: 25px;
@@ -55,10 +55,7 @@
   transition: opacity 0.01s ease-in-out;
 }
 
-.filter.visible {
-  opacity: 1;
-}
-.filtericon {
+.filterbutton {
   position: absolute;
   background-color: white;
   left: 10px;
@@ -69,4 +66,8 @@
   text-align: center;
   font-family: "Young Serif", serif;
   color: rgb(16, 37, 107);
+}
+
+.filter.visible {
+  opacity: 1;
 }

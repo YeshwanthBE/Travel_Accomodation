@@ -57,7 +57,7 @@ def srch():
         obj=acm()
         obj.connect(os.getcwd()+"\\src\\Accomodations\\System_api\\config.yaml")
         data=request.args
-        return jsonify(obj.searchacm(data.get("name"),data.get("location"),data.get('minp',default=0),data.get('maxp'),data.get('sort'),data.get('desc'))),200
+        return jsonify(obj.searchacm(data.get("name"),data.get("location"),data.get('minp',default=0),data.get('maxp'),data.get('sort'))),200
     except Exception as e:
         return jsonify({"Exception": str(e)}),500
     

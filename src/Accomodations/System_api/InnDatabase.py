@@ -72,7 +72,7 @@ class acm:
             self.db.rollback()
             raise e
     
-    def searchacm(self, name, location, minp, maxp, sort, desc):
+    def searchacm(self, name, location, minp, maxp, sort):
         try:
             query = "SELECT name, description, image_url, mailid, rating, phno FROM accommodations WHERE price > %s"
 

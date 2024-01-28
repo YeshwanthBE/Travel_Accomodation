@@ -4,6 +4,7 @@ import searchicon from "../assets/searchicon.png";
 import "./SearchBar.css";
 
 export default function SearchBar(props) {
+  const [filterVisible, setFilterVisible] = React.useState(false);
   function handleSearchOptions(event) {
     const { name, value } = event.target;
     props.setSearchOptions((oldOptions) => ({
@@ -11,20 +12,43 @@ export default function SearchBar(props) {
       [name]: value,
     }));
   }
+  function toggleFilter(flag = 1) {
+    setFilterVisible((prevVisible) => (flag === 0 ? false : !prevVisible));
+  }
   return (
     <div className="search-div">
       <div className="search-bar">
-        <div className="filter">
-          <input type="radio" id="priceip" name="sort" value="price" />
+        <div className={`filter ${filterVisible ? "visible" : ""}`}>
+          <input
+            type="radio"
+            id="priceip"
+            name="sort"
+            value="price"
+            onChange={handleSearchOptions}
+          />
           <label htmlFor="priceip">Price &#8593;</label>
 
-          <input type="radio" id="pricedn" name="sort" value="price desc" />
+          <input
+            type="radio"
+            id="pricedn"
+            name="sort"
+            value="price desc"
+            onChange={handleSearchOptions}
+          />
           <label htmlFor="pricedn">Price &#8595;</label>
 
-          <input type="radio" id="rating" name="sort" value="rating desc" />
+          <input
+            type="radio"
+            id="rating"
+            name="sort"
+            value="rating desc"
+            onChange={handleSearchOptions}
+          />
           <label htmlFor="rating">Rating &#8595;</label>
         </div>
-        <img src={filtericon} className="filtericon"></img>
+        <button onClick={toggleFilter} className="filterbutton">
+          <img src={filtericon} className="filtericon"></img>
+        </button>
         <input
           type="text"
           name="name"
@@ -49,7 +73,13 @@ export default function SearchBar(props) {
           placeholder="Checkout..."
           onChange={handleSearchOptions}
         ></input>
-        <button className="searchbutton" onClick={props.getData}>
+        <button
+          className="searchbutton"
+          onClick={() => {
+            toggleFilter(0);
+            props.getData();
+          }}
+        >
           <img src={searchicon} className="searchicon"></img>
         </button>
       </div>

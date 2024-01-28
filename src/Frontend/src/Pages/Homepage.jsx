@@ -9,6 +9,9 @@ export default function Homepage(props) {
     location: "",
     checkin: "",
     checkout: "",
+    minp: "",
+    maxp: "",
+    sort: "",
   });
   const [accomodations, setAccommodations] = React.useState([]);
   function getData() {
@@ -18,7 +21,9 @@ export default function Homepage(props) {
     params.append("location", searchOptions.location);
     params.append("checkin", searchOptions.checkin);
     params.append("checkout", searchOptions.checkout);
+    params.append("sort", searchOptions.sort);
     apiUrl = apiUrl + "?" + params.toString();
+    console.log(apiUrl);
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
