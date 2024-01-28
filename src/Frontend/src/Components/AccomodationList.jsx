@@ -13,10 +13,7 @@ export default function AccomodationList(props) {
         return response.json();
       })
       .then((data) => {
-        let e = JSON.parse(data);
-        e = [...e, ...e];
-        console.log(typeof e);
-        setAccommodations(e);
+        setAccommodations(JSON.parse(data));
       })
       .catch((error) => {
         console.error("Fetch error:", error);
@@ -24,12 +21,12 @@ export default function AccomodationList(props) {
   }
   function accomodationElementCreater() {
     if (Array.isArray(accomodations)) {
-      const elements = accomodations.map((Accomodation) => {
+      const elements = accomodations.map((Accomodation, index) => {
         return (
-          <div key={Accomodation.id} className="acm">
+          <div key={Accomodation.id || index} className="acm">
             <div className="acmimg">
               <img
-                src={Accomodation.img}
+                src={Accomodation.image}
                 alt="Accommodation Image"
                 className="imgsrc"
               />
