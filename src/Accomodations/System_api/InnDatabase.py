@@ -72,29 +72,45 @@ class acm:
             self.db.rollback()
             raise e
     
-    def searchacm(self,location,minp,maxp,sort,desc):
+    def searchacm(self, name, location, minp, maxp, sort, desc):
         try:
-            query=f"select name,description,image_url,mailid,rating,phno from accommodations where price>{minp}"
+            query = "SELECT name, description, image_url, mailid, rating, phno FROM accommodations WHERE price > %s"
+
+            params = [minp]
+
             if maxp:
-                query+=f' and price<{maxp}'
+                query += " AND price < %s"
+                params.append(maxp)
+
             if location:
-                query+=f' and location="{location}"'
+                query += " AND location = %s"
+                params.append(location)
+
+            if name:
+                query += " AND name LIKE %s"
+                params.append(f"%{name}%")
+
             if sort:
-                query+=f' order by {sort}'
-            query+=';'
-            self.cursor.execute(query)
-            lst=[]
+                query += f" ORDER BY {sort}"
+
+            query += " LIMIT 50;"
+
+            self.cursor.execute(query, params)
+            lst = []
+
             for i in self.cursor.fetchall():
-                data={
-                    "name":i[0],
-                    "description":i[1],
-                    "image":i[2],
-                    "acmid":i[3],
-                    "rating":i[4],
-                    "phno":i[5]
+                data = {
+                    "name": i[0],
+                    "description": i[1],
+                    "image": i[2],
+                    "acmid": i[3],
+                    "rating": i[4],
+                    "phno": i[5]
                 }
                 lst.append(data)
-            return(json.dumps(lst))
+
+            return json.dumps(lst)
+
         except Exception as e:
             raise e
 

@@ -1,24 +1,8 @@
 import React from "react";
 import "./AccomodationList.css";
 export default function AccomodationList(props) {
-  const [accomodations, setAccommodations] = React.useState([]);
   const [accomodationsElements, setAccomodationsElements] = React.useState([]);
-  function getData() {
-    var apiUrl = "http://127.0.0.1:8080/showacms";
-    fetch(apiUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setAccommodations(JSON.parse(data));
-      })
-      .catch((error) => {
-        console.error("Fetch error:", error);
-      });
-  }
+  const accomodations = props.accomodations;
   function accomodationElementCreater() {
     if (Array.isArray(accomodations)) {
       const elements = accomodations.map((Accomodation, index) => {
@@ -48,8 +32,6 @@ export default function AccomodationList(props) {
       setAccomodationsElements([]);
     }
   }
-
-  React.useEffect(getData, []);
   React.useEffect(accomodationElementCreater, [accomodations]);
   return (
     <div className="acmbody">
