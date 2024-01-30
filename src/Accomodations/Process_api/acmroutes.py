@@ -1,7 +1,9 @@
 import os
 from flask import Flask,request,make_response,jsonify,render_template,url_for
 from acmpro import acm
+from flask_cors import CORS
 app=Flask(__name__)
+CORS(app)
 
 @app.route('/register/',methods=['POST'])
 def reg():

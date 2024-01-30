@@ -4,7 +4,9 @@ import json
 import yaml
 import os 
 import uuid
+from flask_cors import CORS
 app=Flask(__name__)
+CORS(app)
 with open(os.getcwd()+'\\src\\Reviews_Ratings\\Experience_api\\config.yaml', 'r') as file:
     global baseurl
     config=yaml.safe_load(file)

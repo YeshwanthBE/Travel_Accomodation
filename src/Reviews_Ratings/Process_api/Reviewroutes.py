@@ -2,7 +2,9 @@ import os
 from flask import Flask,request,make_response,jsonify,render_template,url_for
 import requests
 from Reviews import reviews
+from flask_cors import CORS
 app=Flask(__name__)
+CORS(app)
 
 @app.route('/reviews/',methods=['PATCH','POST','DELETE'])
 def review():

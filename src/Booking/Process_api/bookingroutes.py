@@ -2,7 +2,9 @@ import os
 from flask import Flask,request,make_response,jsonify,render_template,url_for
 import requests
 from booking import bking
+from flask_cors import CORS
 app=Flask(__name__)
+CORS(app)
 
 @app.route('/pr/booking/',methods=['GET','POST','DELETE'])
 def bkop():
