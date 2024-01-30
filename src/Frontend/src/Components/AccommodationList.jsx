@@ -1,50 +1,52 @@
 import React from "react";
-import "./AccomodationList.css";
-export default function AccomodationList(props) {
-  const [accomodationsElements, setAccomodationsElements] = React.useState([]);
-  const accomodations = props.accomodations;
-  function accomodationElementCreater() {
-    if (Array.isArray(accomodations)) {
-      const elements = accomodations.map((Accomodation, index) => {
-        console.log(Accomodation);
+import { Link } from "react-router-dom";
+import "./AccommodationList.css";
+export default function AccommodationList(props) {
+  const [AccommodationsElements, setAccommodationsElements] = React.useState(
+    []
+  );
+  const Accommodations = props.Accommodations;
+  function AccommodationElementCreater() {
+    if (Array.isArray(Accommodations)) {
+      const elements = Accommodations.map((Accommodation, index) => {
         return (
-          <div key={Accomodation.id || index} className="acm">
+          <div key={Accommodation.id || index} className="acm">
             <div className="acmimg">
               <img
-                src={Accomodation.image}
+                src={Accommodation.image}
                 alt="Accommodation Image"
                 className="imgsrc"
               />
             </div>
             <div className="acminfo">
-              <h3>{Accomodation.name}</h3>
-              <p>{Accomodation.description}</p>
+              <h3>{Accommodation.name}</h3>
+              <p>{Accommodation.description}</p>
             </div>
 
             <div className="acmend">
-              {Accomodation.rating && (
-                <p>{Accomodation.rating.toFixed(1)}&#128970;</p>
+              {Accommodation.rating && (
+                <p>{Accommodation.rating.toFixed(1)}&#128970;</p>
               )}
-              <button className="button">Book</button>
+              <Link to={`/booking/${Accommodation.acmid}`}>
+                <button className="button">Book</button>
+              </Link>
             </div>
           </div>
         );
       });
-      setAccomodationsElements(elements);
+      setAccommodationsElements(elements);
     } else {
-      setAccomodationsElements([]);
+      setAccommodationsElements([]);
     }
   }
-  React.useEffect(accomodationElementCreater, [accomodations]);
+  React.useEffect(AccommodationElementCreater, [Accommodations]);
   return (
-    <div className="acmbody">
-      <div className="acms">
-        {accomodationsElements.length > 0 ? (
-          accomodationsElements
-        ) : (
-          <p className="filteredout">All Accommodations Filtered Out!!</p>
-        )}
-      </div>
+    <div className="acms">
+      {AccommodationsElements.length > 0 ? (
+        AccommodationsElements
+      ) : (
+        <p className="filteredout">All Accommodations Filtered Out!!</p>
+      )}
     </div>
   );
 }
