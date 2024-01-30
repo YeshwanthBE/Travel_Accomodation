@@ -9,6 +9,5 @@ body {
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-  background-color: #cdf5fd;
   position: relative;
 }
