@@ -1,9 +1,9 @@
 import React from "react";
 import PageHeader from "../Components/PageHeader.jsx";
 import SearchBar from "../Components/SearchBar.jsx";
-import AccomodationList from "../Components/AccomodationList.jsx";
-import "./homepage.css";
-export default function Homepage(props) {
+import AccommodationList from "../Components/AccommodationList.jsx";
+import "./Home.css";
+export default function Home(props) {
   const [searchOptions, setSearchOptions] = React.useState({
     name: "",
     location: "",
@@ -13,7 +13,7 @@ export default function Homepage(props) {
     maxp: "",
     sort: "",
   });
-  const [accomodations, setAccommodations] = React.useState([]);
+  const [Accommodations, setAccommodations] = React.useState([]);
   function getData() {
     let apiUrl = "http://127.0.0.1:8080/showacms";
     const params = new URLSearchParams();
@@ -23,7 +23,6 @@ export default function Homepage(props) {
     params.append("checkout", searchOptions.checkout);
     params.append("sort", searchOptions.sort);
     apiUrl = apiUrl + "?" + params.toString();
-    console.log(apiUrl);
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
@@ -43,9 +42,9 @@ export default function Homepage(props) {
     <>
       <PageHeader isLoggedIn={true} isAdmin={false} />
       <SearchBar setSearchOptions={setSearchOptions} getData={getData} />
-      <AccomodationList
+      <AccommodationList
         searchOptions={searchOptions}
-        accomodations={accomodations}
+        Accommodations={Accommodations}
       />
     </>
   );
