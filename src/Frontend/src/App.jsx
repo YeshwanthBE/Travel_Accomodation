@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
-
-import Homepage from "./Pages/Homepage.jsx";
+import Home from "./Pages/Home.jsx";
+import Booking from "./Pages/Booking.jsx";
+import { Route, Routes } from "react-router-dom";
 function App() {
   return (
-    <>
-      <Homepage />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/booking/:acmid" element={<Booking />} />
+    </Routes>
   );
 }
 
