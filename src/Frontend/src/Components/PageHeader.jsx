@@ -12,7 +12,6 @@ export default function PageHeader(props) {
   const login = (
     <>
       <button className="button">Login</button>
-      <button className="button">Signup</button>
     </>
   );
   return (

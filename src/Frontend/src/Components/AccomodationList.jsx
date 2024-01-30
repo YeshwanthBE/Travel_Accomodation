@@ -6,6 +6,7 @@ export default function AccomodationList(props) {
   function accomodationElementCreater() {
     if (Array.isArray(accomodations)) {
       const elements = accomodations.map((Accomodation, index) => {
+        console.log(Accomodation);
         return (
           <div key={Accomodation.id || index} className="acm">
             <div className="acmimg">
@@ -19,11 +20,13 @@ export default function AccomodationList(props) {
               <h3>{Accomodation.name}</h3>
               <p>{Accomodation.description}</p>
             </div>
-            {Accomodation.rating && (
-              <div className="acmend">
-                <p>{Accomodation.rating}&#128970;</p>
-              </div>
-            )}
+
+            <div className="acmend">
+              {Accomodation.rating && (
+                <p>{Accomodation.rating.toFixed(1)}&#128970;</p>
+              )}
+              <button className="button">Book</button>
+            </div>
           </div>
         );
       });
