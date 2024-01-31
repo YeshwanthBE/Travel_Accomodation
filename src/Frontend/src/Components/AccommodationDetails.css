@@ -1,55 +1,45 @@
-.imgsrc {
-  flex: 1;
-  height: 300px;
+.description {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin: 15px;
+  border-radius: 10px;
+  column-gap: 20px;
+}
+.description > .imgsrc {
+  height: 100%;
+  width: 100%;
   border-radius: 20px;
-  padding: 10px;
-  background-color: rgba(121, 179, 234, 0.931);
-  margin: 10px;
+  padding: 15px;
+  background-color: #cdf5fd;
 }
-.namedesc {
-  flex: 4;
-  font-size: 28px;
-  padding-top: 10px;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(121, 179, 234, 0.931);
-  height: fit-content;
-  border-radius: 25px;
-  margin: 10px;
-  padding: 10px;
-}
-.namedesc h3 {
-  color: #fe0000;
+.title {
   font-family: "Cinzel Decorative", cursive;
+  text-align: center;
+  font-size: 3rem;
 }
-.namedesc p {
-  font-size: 20px;
-  color: #895500;
-}
-.hotel {
-  flex: 3;
-}
-.booking {
-  flex: 1;
-}
-.imgdesc {
-  display: flex;
+.acmdesc {
+  font-size: 1.5rem;
+  text-align: center;
 }
 .impdetails {
   display: flex;
-  background-color: rgba(121, 179, 234, 0.931);
   height: fit-content;
   border-radius: 25px;
-  margin: 10px;
-  padding: 10px;
   justify-content: space-evenly;
 }
 .impdetails p {
-  background-color: #ffffffc4;
+  background-color: #a0e9ff;
   margin: 5px 0px;
   padding: 5px;
   border-radius: 12px;
   font-family: "Young Serif", serif;
-  font-size: 25px;
-  color: #007bff;
+  font-size: 2rem;
+}
+.accommodation-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0px 25px;
+  background-color: #cdf5fd;
+  border-radius: 20px;
 }
