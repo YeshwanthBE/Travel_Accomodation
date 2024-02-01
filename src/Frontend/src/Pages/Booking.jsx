@@ -30,7 +30,7 @@ export default function Booking() {
   return (
     <>
       <PageHeader isLoggedIn={true} isAdmin={false} />
-      <AccommdationDetails Accommodation={Accommodation} />
+      <AccommdationDetails Accommodation={Accommodation} Bookings={Bookings} />
     </>
   );
 }

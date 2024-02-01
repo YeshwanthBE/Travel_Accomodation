@@ -1,6 +1,7 @@
 .booking {
   background-color: #cdf5fd;
   border-radius: 20px;
+  padding: 10px;
 }
 .txt_field {
   flex: 1;

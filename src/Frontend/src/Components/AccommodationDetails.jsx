@@ -21,7 +21,10 @@ export default function AccommdationDetails(props) {
           <p>&#x20B9;{Accommodation.price}/Day</p>
         </div>
       </div>
-      <PriceCalculator Accommodation={Accommodation} />
+      <PriceCalculator
+        Accommodation={Accommodation}
+        Bookings={props.Bookings}
+      />
     </div>
   );
 }
