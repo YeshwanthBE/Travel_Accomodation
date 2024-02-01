@@ -3,42 +3,59 @@ import "./PriceCalculator.css";
 export default function PriceCalculator(props) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const [minCheckinDate, setMinCheckinDate] = React.useState();
-  const [maxCheckinDate, setMaxCheckinDate] = React.useState();
-  const [minCheckoutDate, setMinCheckoutDate] = React.useState();
+  const [minCheckinDate, setMinCheckinDate] = React.useState(new Date());
+  const maxCheckinDate = new Date();
+  maxCheckinDate.setDate(today.getDate() + 365);
+  const [minCheckoutDate, setMinCheckoutDate] = React.useState(new Date());
   const [maxCheckoutDate, setMaxCheckoutDate] = React.useState();
+  const checkinDates = [];
   const { Accommodation } = props;
   let Bookings;
   if (props.Bookings.length > 0) {
     Bookings = JSON.parse(props.Bookings);
   }
+  React.useEffect(() => {
+    if (Bookings) {
+      Bookings.forEach((element) => {
+        checkinDates.push(new Date(element.checkin));
+      });
+    }
+  }, [Bookings]);
   function checkBlockedDates(currentCheckinDate) {
     if (Bookings) {
       Bookings.forEach((element) => {
         const checkinDate = new Date(element.checkin);
         const checkoutDate = new Date(element.checkout);
         if (
-          currentCheckinDate > checkinDate &&
-          currentCheckinDate < checkoutDate
+          currentCheckinDate >= checkinDate &&
+          currentCheckinDate <= checkoutDate
         )
           return checkoutDate;
       });
     }
     return false;
   }
-  React.useEffect(() => {
-    if (Bookings) {
-      let currentMinDate = new Date();
-      currentMinDate.setDate(today.getDate() + 1);
-      let flag;
-      while (true) {
-        flag = checkBlockedDates(currentMinDate);
-        if (flag) currentMinDate.setDate(flag.getDate + 1);
-        else break;
+  function nearestCheckinDate(bookingDate) {
+    return checkinDates.reduce((prevDate, currentDate) => {
+      if (currentDate > bookingDate && (!prevDate || currentDate < prevDate)) {
+        return currentDate;
+      } else {
+        return prevDate;
       }
-      setMaxCheckinDate(currentMinDate);
-    }
-  }, [Bookings]);
+    }, null);
+  }
+  function handleCheckinDateChange(event) {
+    const currentCheckinDate = new Date(event.target.value);
+    currentCheckinDate.setHours(0, 0, 0, 0);
+    const newMinCheckoutDate = new Date();
+    newMinCheckoutDate.setDate(currentCheckinDate.getDate() + 1);
+    setMinCheckoutDate(newMinCheckoutDate);
+    const newMaxCheckoutDate = new Date();
+    newMaxCheckoutDate.setDate(
+      nearestCheckinDate(currentCheckinDate).getDate() - 1
+    );
+    setMaxCheckoutDate(newMaxCheckoutDate);
+  }
   return (
     <>
       <div className="booking">
@@ -48,9 +65,9 @@ export default function PriceCalculator(props) {
             type="date"
             name="checkin"
             id="checkin"
-            // min={minCheckinDate.toISOString().split("T")[0]}
-            // max={maxCheckinDate.toISOString().split("T")[0]}
-            // onChange={handleDateChange}
+            min={minCheckinDate && minCheckinDate.toISOString().split("T")[0]}
+            max={maxCheckinDate.toISOString().split("T")[0]}
+            onChange={handleCheckinDateChange}
             required
           />
         </div>
@@ -60,8 +77,8 @@ export default function PriceCalculator(props) {
             type="date"
             name="checkout"
             id="checkout"
-            // min={minCheckoutDate.toISOString().split("T")[0]}
-            // max={maxCheckoutDate.toISOString().split("T")[0]}
+            min={minCheckoutDate && minCheckoutDate.toISOString().split("T")[0]}
+            max={maxCheckoutDate && maxCheckoutDate.toISOString().split("T")[0]}
             // onChange={handleDateChange}
             required
           />
