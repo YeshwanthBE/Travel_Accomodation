@@ -2,28 +2,28 @@ import React from "react";
 import "./AccommodationDetails.css";
 import PriceCalculator from "./PriceCalculator";
 export default function AccommdationDetails(props) {
-  const { Accommodation } = props;
+  const { accommodation } = props;
   return (
     <div className="description">
       <img
-        src={Accommodation.imgurl}
-        alt="Accommodation Image"
+        src={accommodation.imgurl}
+        alt="accommodation Image"
         className="imgsrc"
       />
       <div className="accommodation-details">
-        <h3 className="title">{Accommodation.name}</h3>
-        <p className="acmdesc">{Accommodation.description}</p>
+        <h3 className="title">{accommodation.name}</h3>
+        <p className="acmdesc">{accommodation.description}</p>
 
         <div className="impdetails">
-          <p>Location:{Accommodation.location}</p>
-          <p>{Accommodation.rating}&#128970;</p>
-          <p>Contact:{Accommodation.phno}</p>
-          <p>&#x20B9;{Accommodation.price}/Day</p>
+          <p>Location:{accommodation.location}</p>
+          <p>{accommodation.rating}&#128970;</p>
+          <p>Contact:{accommodation.phno}</p>
+          <p>&#x20B9;{accommodation.price}/Day</p>
         </div>
       </div>
       <PriceCalculator
-        Accommodation={Accommodation}
-        Bookings={props.Bookings}
+        accommodation={accommodation}
+        bookings={props.bookings}
       />
     </div>
   );

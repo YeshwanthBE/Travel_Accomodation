@@ -9,21 +9,21 @@ export default function PriceCalculator(props) {
   const [minCheckoutDate, setMinCheckoutDate] = React.useState(new Date());
   const [maxCheckoutDate, setMaxCheckoutDate] = React.useState();
   const checkinDates = [];
-  const { Accommodation } = props;
-  let Bookings;
-  if (props.Bookings.length > 0) {
-    Bookings = JSON.parse(props.Bookings);
+  const { accommodation } = props;
+  let bookings;
+  if (props.bookings.length > 0) {
+    bookings = JSON.parse(props.bookings);
   }
   React.useEffect(() => {
-    if (Bookings) {
-      Bookings.forEach((element) => {
+    if (bookings) {
+      bookings.forEach((element) => {
         checkinDates.push(new Date(element.checkin));
       });
     }
-  }, [Bookings]);
+  }, [bookings]);
   function checkBlockedDates(currentCheckinDate) {
-    if (Bookings) {
-      Bookings.forEach((element) => {
+    if (bookings) {
+      bookings.forEach((element) => {
         const checkinDate = new Date(element.checkin);
         const checkoutDate = new Date(element.checkout);
         if (
@@ -85,7 +85,7 @@ export default function PriceCalculator(props) {
         </div>
         <span className="bills">
           <div className="bill" id="bill">
-            <script>pricePerNight="{Accommodation.price}"</script>
+            <script>pricePerNight="{accommodation.price}"</script>
             <span>
               <p>Price:</p>
               <p id="price"></p>

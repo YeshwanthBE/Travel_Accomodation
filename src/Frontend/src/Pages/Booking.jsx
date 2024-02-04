@@ -2,6 +2,7 @@ import React from "react";
 import PageHeader from "../Components/PageHeader";
 import { useParams } from "react-router-dom";
 import AccommdationDetails from "../Components/AccommodationDetails";
+import Reviews from "../Components/Reviews";
 function getData(apiUrl, setfunction) {
   fetch(apiUrl)
     .then((response) => {
@@ -19,9 +20,9 @@ function getData(apiUrl, setfunction) {
 }
 export default function Booking() {
   const { acmid } = useParams();
-  const [Accommodation, setAccommodation] = React.useState([]);
-  const [Reviews, setReviwes] = React.useState([]);
-  const [Bookings, setBookings] = React.useState([]);
+  const [accommodation, setAccommodation] = React.useState([]);
+  const [reviews, setReviwes] = React.useState([]);
+  const [bookings, setBookings] = React.useState([]);
   React.useEffect(() => {
     getData(`http://127.0.0.1:8083/acm/mod/?acmid=${acmid}`, setAccommodation);
     getData(`http://127.0.0.1:8096/reviews/?acmid=${acmid}`, setReviwes);
@@ -30,7 +31,8 @@ export default function Booking() {
   return (
     <>
       <PageHeader isLoggedIn={true} isAdmin={false} />
-      <AccommdationDetails Accommodation={Accommodation} Bookings={Bookings} />
+      <AccommdationDetails accommodation={accommodation} bookings={bookings} />
+      <Reviews reviews={reviews} />
     </>
   );
 }
