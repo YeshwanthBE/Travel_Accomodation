@@ -26,13 +26,11 @@
   width: 187px;
 }
 .bill {
-  background-color: rgb(5, 140, 170);
+  background-color: #a0e9ff;
   text-align: right;
-  opacity: 0;
-  font-size: 30px;
+  font-size: 2rem;
   border-radius: 25px;
   width: fit-content;
-  color: #ffffff;
   padding: 10px;
 }
 .bill p {

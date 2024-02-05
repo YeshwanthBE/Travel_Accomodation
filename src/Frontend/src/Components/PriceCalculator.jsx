@@ -1,15 +1,13 @@
 import React from "react";
 import "./PriceCalculator.css";
 export default function PriceCalculator(props) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
   const [minCheckinDate, setMinCheckinDate] = React.useState(new Date());
-  const maxCheckinDate = new Date();
-  maxCheckinDate.setDate(today.getDate() + 365);
+  const [maxCheckinDate, setMaxCheckinDate] = React.useState(new Date());
   const [minCheckoutDate, setMinCheckoutDate] = React.useState(new Date());
   const [maxCheckoutDate, setMaxCheckoutDate] = React.useState();
   const checkinDates = [];
   const { accommodation } = props;
+  const [priceDetails, setPriceDetails] = React.useState({});
   let bookings;
   if (props.bookings.length > 0) {
     bookings = JSON.parse(props.bookings);
@@ -21,7 +19,22 @@ export default function PriceCalculator(props) {
       });
     }
   }, [bookings]);
+  React.useEffect(() => {
+    let newMinCheckinDate = minCheckinDate;
+    while (true) {
+      let temp = checkBlockedDates(newMinCheckinDate);
+      if (!temp) break;
+      newMinCheckinDate.setDate(temp.getDate() + 1);
+    }
+    setMinCheckinDate(newMinCheckinDate);
+  }, [bookings]);
+  React.useEffect(() => {
+    const newMaxCheckinDate = new Date();
+    newMaxCheckinDate.setDate(minCheckinDate.getDate() + 365);
+    setMaxCheckinDate(newMaxCheckinDate);
+  }, [minCheckinDate.getTime()]);
   function checkBlockedDates(currentCheckinDate) {
+    let foundCheckoutDate = null;
     if (bookings) {
       bookings.forEach((element) => {
         const checkinDate = new Date(element.checkin);
@@ -29,11 +42,13 @@ export default function PriceCalculator(props) {
         if (
           currentCheckinDate >= checkinDate &&
           currentCheckinDate <= checkoutDate
-        )
-          return checkoutDate;
+        ) {
+          foundCheckoutDate = checkoutDate;
+          return;
+        }
       });
     }
-    return false;
+    return foundCheckoutDate;
   }
   function nearestCheckinDate(bookingDate) {
     return checkinDates.reduce((prevDate, currentDate) => {
@@ -47,15 +62,36 @@ export default function PriceCalculator(props) {
   function handleCheckinDateChange(event) {
     const currentCheckinDate = new Date(event.target.value);
     currentCheckinDate.setHours(0, 0, 0, 0);
-    const newMinCheckoutDate = new Date();
-    newMinCheckoutDate.setDate(currentCheckinDate.getDate() + 1);
+    const newMinCheckoutDate = new Date(currentCheckinDate);
+    newMinCheckoutDate.setDate(newMinCheckoutDate.getDate() + 2);
+    newMinCheckoutDate.setHours(0, 0, 0, 0);
+    console.log(newMinCheckoutDate);
     setMinCheckoutDate(newMinCheckoutDate);
-    const newMaxCheckoutDate = new Date();
-    newMaxCheckoutDate.setDate(
-      nearestCheckinDate(currentCheckinDate).getDate() - 1
-    );
+    let newMaxCheckoutDate = nearestCheckinDate(currentCheckinDate);
+    if (newMaxCheckoutDate) {
+      newMaxCheckoutDate.setDate(newMaxCheckoutDate.getDate() - 1);
+    } else {
+      newMaxCheckoutDate = new Date(currentCheckinDate);
+      newMaxCheckoutDate.setHours(0, 0, 0, 0);
+      newMaxCheckoutDate.setDate(newMaxCheckoutDate.getDate() + 60);
+    }
+    console.log(newMaxCheckoutDate);
     setMaxCheckoutDate(newMaxCheckoutDate);
   }
+  function calculatePrice() {
+    const checkinDate = new Date(document.getElementById("checkin").value);
+    const checkoutDate = new Date(document.getElementById("checkout").value);
+    if (!isNaN(checkinDate.getTime()) && !isNaN(checkoutDate.getTime())) {
+      const nights = Math.floor(
+        (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24)
+      );
+      const innPrice = nights * accommodation.price;
+      const GST = 0.18 * innPrice;
+      const totalPrice = innPrice + GST * 2;
+      setPriceDetails({ innPrice: innPrice, GST: GST, totalPrice: totalPrice });
+    }
+  }
+
   return (
     <>
       <div className="booking">
@@ -79,28 +115,31 @@ export default function PriceCalculator(props) {
             id="checkout"
             min={minCheckoutDate && minCheckoutDate.toISOString().split("T")[0]}
             max={maxCheckoutDate && maxCheckoutDate.toISOString().split("T")[0]}
-            // onChange={handleDateChange}
+            onChange={calculatePrice}
             required
           />
         </div>
         <span className="bills">
           <div className="bill" id="bill">
-            <script>pricePerNight="{accommodation.price}"</script>
             <span>
               <p>Price:</p>
-              <p id="price"></p>
+              <p id="price">
+                {priceDetails.innPrice && priceDetails.innPrice + "₹"}
+              </p>
             </span>
             <span>
               <p>18% SGST:</p>
-              <p id="SGST"></p>
+              <p id="SGST">{priceDetails.GST && priceDetails.GST + "₹"}</p>
             </span>
             <span>
               <p>18% CGST:</p>
-              <p id="CGST"></p>
+              <p id="CGST">{priceDetails.GST && priceDetails.GST + "₹"}</p>
             </span>
             <span>
               <p>Total:</p>
-              <p id="Totalprice"></p>
+              <p id="Totalprice">
+                {priceDetails.totalPrice && priceDetails.totalPrice + "₹"}
+              </p>
             </span>
           </div>
         </span>

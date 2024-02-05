@@ -25,7 +25,7 @@ export default function Reviews(props) {
           name="userreview"
           id="myText"
           placeholder="Write your review!!"
-          class="userrev"
+          className="userrev"
         ></textarea>
         <div className="star-rating"></div>
       </div>
