@@ -1,0 +1,13 @@
+.star-rating {
+  color: rgb(255, 255, 255);
+  font-size: 2.5rem;
+}
+
+.star {
+  cursor: pointer;
+}
+
+.star.filled {
+  color: rgb(0, 0, 0);
+  transition: color 0.5s ease-in-out;
+}

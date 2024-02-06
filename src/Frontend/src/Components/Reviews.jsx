@@ -1,5 +1,6 @@
 import React from "react";
 import "./Reviews.css";
+import StarRating from "./StarRating";
 export default function Reviews(props) {
   const { reviews } = props.reviews;
   const reviewItems = Array.isArray(reviews)
@@ -17,7 +18,8 @@ export default function Reviews(props) {
         </div>
       ))
     : null;
-
+  const [starRating, setStarRating] = React.useState(0);
+  const [mouseOverStar, setMouseOverStar] = React.useState(0);
   return (
     <div className="reviews">
       <div className="review">
@@ -27,7 +29,17 @@ export default function Reviews(props) {
           placeholder="Write your review!!"
           className="userrev"
         ></textarea>
-        <div className="star-rating"></div>
+        <div className="star-rating">
+          {[1, 2, 3, 4, 5].map((index) => (
+            <StarRating
+              key={index}
+              filled={index <= starRating || index <= mouseOverStar}
+              onClick={() => setStarRating(index)}
+              onMouseOver={() => setMouseOverStar(index)}
+              onMouseLeave={() => setMouseOverStar(0)}
+            />
+          ))}
+        </div>
       </div>
       {reviewItems}
     </div>
