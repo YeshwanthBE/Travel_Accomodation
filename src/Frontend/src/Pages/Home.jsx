@@ -40,7 +40,6 @@ export default function Home(props) {
   React.useEffect(getData, []);
   return (
     <>
-      <PageHeader isLoggedIn={true} isAdmin={false} />
       <SearchBar setSearchOptions={setSearchOptions} getData={getData} />
       <AccommodationList
         searchOptions={searchOptions}

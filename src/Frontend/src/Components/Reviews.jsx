@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Reviews.css";
 import StarRating from "./StarRating";
+import AuthContext from "./AuthContext";
 export default function Reviews(props) {
   const { reviews } = props.reviews;
   const reviewItems = Array.isArray(reviews)

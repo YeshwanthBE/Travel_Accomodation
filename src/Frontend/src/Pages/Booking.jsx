@@ -30,7 +30,6 @@ export default function Booking() {
   }, []);
   return (
     <>
-      <PageHeader isLoggedIn={true} isAdmin={false} />
       <AccommdationDetails accommodation={accommodation} bookings={bookings} />
       <Reviews reviews={reviews} />
     </>
